@@ -1,0 +1,47 @@
+import 'package:beauty_queens_ustomer/components/common/search_dropdown.dart';
+import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class BookAppointmentView extends StatefulWidget {
+  const BookAppointmentView({Key? key}) : super(key: key);
+
+  @override
+  State<BookAppointmentView> createState() => _BookAppointmentView();
+}
+
+class _BookAppointmentView extends State<BookAppointmentView> {
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: const Text("Dashboard"),
+      // ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: primaryColor,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          // Status bar color
+
+          statusBarColor: primaryColor,
+
+          // Status bar brightness (optional)
+          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+        ),
+      ),
+      body: SafeArea(
+          child: Container(
+        child: Column(
+          children: [
+            // searchDropDown(context,
+            //     value: "Akash", list: ["Akash", "Ali", "Abubakar"]),
+          ],
+        ),
+      )),
+    );
+  }
+}

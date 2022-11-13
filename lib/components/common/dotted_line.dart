@@ -1,0 +1,19 @@
+import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/material.dart';
+
+DottedLine dottedLine({double thicknes = 1.0}) {
+  return DottedLine(
+    direction: Axis.horizontal,
+    // lineLength: double.infinity,
+    lineThickness: thicknes,
+    dashLength: 4.0,
+    dashColor: Colors.black,
+    dashGradient: [primaryColor, secandaryColor],
+    dashRadius: 0.0,
+    dashGapLength: 4.0,
+    dashGapColor: Colors.transparent,
+    dashGapGradient: [primaryColor, secandaryColor],
+    dashGapRadius: 0.0,
+  );
+}
