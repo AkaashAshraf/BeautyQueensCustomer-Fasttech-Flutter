@@ -6,8 +6,10 @@ import 'package:beauty_queens_ustomer/components/common/textInputs/password_inpu
 import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
+import 'package:beauty_queens_ustomer/views/auth/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
@@ -59,7 +61,7 @@ class _Login extends State<Login> {
                             duration: Duration(milliseconds: 600)),
                       ],
                       child: Container(
-                        height: height * 0.6,
+                        height: height * 0.65,
                         width: width,
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -92,6 +94,24 @@ class _Login extends State<Login> {
                                   PasswordInput(
                                     lable: "Enter Password",
                                     onTextChange: () {},
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.to(const ForgetPassword(title: ""));
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: SizedBox(
+                                          width: width,
+                                          child: const Text(
+                                            "forget password",
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                                color: primaryColor,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle: FontStyle.italic),
+                                          )),
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: 50,

@@ -35,6 +35,83 @@ class _DashboardView extends State<DashboardView> {
       // appBar: AppBar(
       //   title: const Text("Dashboard"),
       // ),
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Image(
+                  fit: BoxFit.fitHeight,
+                  // opacity: AlwaysStoppedAnimation<double>(0.4),
+                  image: AssetImage('assets/images/logo.jpeg')),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.my_library_books_outlined,
+                size: 25,
+                color: textInputIconColor,
+              ),
+              title: const Text('My Appointments'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.notification_important,
+                size: 25,
+                color: textInputIconColor,
+              ),
+              title: const Text('Notifications'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.password,
+                size: 25,
+                color: textInputIconColor,
+              ),
+              title: const Text('Change Password'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.language,
+                size: 25,
+                color: textInputIconColor,
+              ),
+              title: const Text('Change Language to Arabic'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.logout,
+                size: 25,
+                color: textInputIconColor,
+              ),
+              title: const Text('Logout'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: noAppBar(),
       body: SafeArea(
         child: Container(
@@ -74,13 +151,12 @@ class _DashboardView extends State<DashboardView> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               dashboardItem(height, width,
-                                  imgName: "service_1.jpg",
+                                  imgName: "new_salons.jpeg",
                                   title: "Beauty Centres", onTap: () {
                                 Get.to(const SaloonsListView());
                               }),
                               dashboardItem(height, width,
-                                  imgName: "salon_2.jpg",
-                                  title: "SPA", onTap: () {
+                                  imgName: "spa.jpg", title: "SPA", onTap: () {
                                 Get.to(const BookAppointmentView());
                               }),
                             ],
@@ -92,11 +168,11 @@ class _DashboardView extends State<DashboardView> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               dashboardItem(height, width,
-                                  imgName: "salon_3.jpg",
+                                  imgName: "ladies_gym.jpg",
                                   title: "Ladies Gym",
                                   onTap: () {}),
                               dashboardItem(height, width,
-                                  imgName: "salon_4.jpg",
+                                  imgName: "offerss.jpeg",
                                   title: "Offers", onTap: () {
                                 Get.to(DashboardView(title: ""));
                               }),
@@ -109,15 +185,15 @@ class _DashboardView extends State<DashboardView> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               dashboardItem(height, width,
-                                  imgName: "salon_5.jpg",
+                                  imgName: "beauty_products.jpeg",
                                   title: "Beauty Products", onTap: () {
                                 Get.put(ShopsController()).fetchShopsList();
 
                                 Get.to(const ShopsListView());
                               }),
                               dashboardItem(height, width,
-                                  imgName: "salon_1.jpg",
-                                  title: "Settings",
+                                  imgName: "s_support.jpeg",
+                                  title: "Customer Support",
                                   onTap: () {}),
                             ],
                           )

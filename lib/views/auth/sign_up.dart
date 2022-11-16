@@ -59,7 +59,7 @@ class _SignUp extends State<SignUp> {
                             duration: Duration(milliseconds: 800)),
                       ],
                       child: Container(
-                        height: height * 0.6,
+                        height: height * 0.65,
                         width: width,
                         decoration: BoxDecoration(
                             color: Colors.white,

@@ -31,22 +31,22 @@ class LogoImage extends StatelessWidget {
               // width: 100,
 
               child: Image.asset('assets/images/logo.jpeg',
-                  height: height * 0.16,
+                  height: height * 0.18,
                   scale: 2.5,
                   // color: Color.fromARGB(255, 15, 147, 59),
-                  opacity: const AlwaysStoppedAnimation<double>(0.5)),
+                  opacity: const AlwaysStoppedAnimation<double>(0.75)),
             ),
           ),
           const SizedBox(
             height: 20,
           ),
-          const Text(
-            "Beauty Queens",
-            style: TextStyle(
-              color: logoTextColor,
-              fontSize: 30,
-            ),
-          )
+          // const Text(
+          //   "Beauty Queens",
+          //   style: TextStyle(
+          //     color: logoTextColor,
+          //     fontSize: 30,
+          //   ),
+          // )
         ],
       ),
     );

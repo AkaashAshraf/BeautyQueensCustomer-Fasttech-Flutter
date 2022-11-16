@@ -65,7 +65,7 @@ class _ChooseAuth extends State<ChooseAuth> {
                             duration: Duration(milliseconds: 600)),
                       ],
                       child: Container(
-                        height: height * 0.6,
+                        height: height * 0.65,
                         width: width,
                         decoration: BoxDecoration(
                             color: Colors.white,

@@ -7,7 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 Container dashboardItem(double height, double width,
     {required dynamic onTap, required String imgName, required String title}) {
   return Container(
-    height: width * 0.45,
+    height: width * 0.4,
     width: width * 0.35,
     child: Animate(
       effects: const [
@@ -26,18 +26,21 @@ Container dashboardItem(double height, double width,
                 ),
                 shape: BoxShape.circle,
               ),
-              height: width * 0.35,
-              width: width * 0.35,
+              height: width * 0.33,
+              width: width * 0.33,
               child: ClipOval(
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: "$imageBaseUrl/Assets/$imgName",
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      CircularProgressIndicator(
-                          value: downloadProgress.progress),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                ),
-              ),
+                  child: Image(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/$imgName'))
+                  //  CachedNetworkImage(
+                  //   fit: BoxFit.cover,
+                  //   imageUrl: "$imageBaseUrl/Assets/$imgName",
+                  //   progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  //       CircularProgressIndicator(
+                  //           value: downloadProgress.progress),
+                  //   errorWidget: (context, url, error) => const Icon(Icons.error),
+                  // ),
+                  ),
             ),
             Text(
               title,
