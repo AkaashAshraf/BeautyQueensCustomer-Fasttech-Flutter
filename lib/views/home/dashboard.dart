@@ -5,7 +5,13 @@ import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
-import 'package:beauty_queens_ustomer/views/appoinments/book_appointment.dart';
+import 'package:beauty_queens_ustomer/views/drawer/appoinments/book_appointment.dart';
+import 'package:beauty_queens_ustomer/views/drawer/appoinments/my_appointments.dart';
+import 'package:beauty_queens_ustomer/views/drawer/notifications/notifications.dart';
+import 'package:beauty_queens_ustomer/views/drawer/profile/my_profile.dart';
+import 'package:beauty_queens_ustomer/views/home/gym.dart';
+import 'package:beauty_queens_ustomer/views/home/offers/offers_list.dart';
+import 'package:beauty_queens_ustomer/views/home/spa.dart';
 import 'package:beauty_queens_ustomer/views/products/products_shops_list_view.dart';
 import 'package:beauty_queens_ustomer/views/saloons/saloon_list_view.dart';
 import 'package:flutter/material.dart';
@@ -55,8 +61,24 @@ class _DashboardView extends State<DashboardView> {
                 size: 25,
                 color: textInputIconColor,
               ),
+              title: const Text('Profile'),
+              onTap: () {
+                Get.to(Profile());
+
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.my_library_books_outlined,
+                size: 25,
+                color: textInputIconColor,
+              ),
               title: const Text('My Appointments'),
               onTap: () {
+                Get.to(MyAppointmentsList());
+
                 // Update the state of the app.
                 // ...
               },
@@ -69,6 +91,8 @@ class _DashboardView extends State<DashboardView> {
               ),
               title: const Text('Notifications'),
               onTap: () {
+                Get.to(NotificationsList());
+
                 // Update the state of the app.
                 // ...
               },
@@ -87,11 +111,11 @@ class _DashboardView extends State<DashboardView> {
             ),
             ListTile(
               leading: const Icon(
-                Icons.language,
+                Icons.logout,
                 size: 25,
                 color: textInputIconColor,
               ),
-              title: const Text('Change Language to Arabic'),
+              title: const Text('Logout'),
               onTap: () {
                 // Update the state of the app.
                 // ...
@@ -99,11 +123,11 @@ class _DashboardView extends State<DashboardView> {
             ),
             ListTile(
               leading: const Icon(
-                Icons.logout,
+                Icons.language,
                 size: 25,
                 color: textInputIconColor,
               ),
-              title: const Text('Logout'),
+              title: const Text('Change Language to   عربى'),
               onTap: () {
                 // Update the state of the app.
                 // ...
@@ -157,7 +181,7 @@ class _DashboardView extends State<DashboardView> {
                               }),
                               dashboardItem(height, width,
                                   imgName: "spa.jpg", title: "SPA", onTap: () {
-                                Get.to(const BookAppointmentView());
+                                Get.to(const SPAList());
                               }),
                             ],
                           ),
@@ -169,12 +193,13 @@ class _DashboardView extends State<DashboardView> {
                             children: [
                               dashboardItem(height, width,
                                   imgName: "ladies_gym.jpg",
-                                  title: "Ladies Gym",
-                                  onTap: () {}),
+                                  title: "Ladies Gym", onTap: () {
+                                Get.to(GYM());
+                              }),
                               dashboardItem(height, width,
                                   imgName: "offerss.jpeg",
                                   title: "Offers", onTap: () {
-                                Get.to(DashboardView(title: ""));
+                                Get.to(OFFERSList());
                               }),
                             ],
                           ),

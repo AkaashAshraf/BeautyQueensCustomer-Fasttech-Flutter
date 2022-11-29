@@ -6,7 +6,7 @@ import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
-import 'package:beauty_queens_ustomer/views/appoinments/book_appointment.dart';
+import 'package:beauty_queens_ustomer/views/drawer/appoinments/book_appointment.dart';
 import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
 import 'package:beauty_queens_ustomer/views/products/products_shops_list_view.dart';
 import 'package:beauty_queens_ustomer/views/saloons/saloon_list_view.dart';

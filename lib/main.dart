@@ -1,7 +1,5 @@
 import 'package:beauty_queens_ustomer/conrtollers/languageController.dart';
 import 'package:beauty_queens_ustomer/views/auth/choose_auth.dart';
-import 'package:beauty_queens_ustomer/views/auth/sign_in.dart';
-import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
