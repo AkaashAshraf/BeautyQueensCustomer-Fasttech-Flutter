@@ -42,12 +42,16 @@ Container dashboardItem(double height, double width,
                   // ),
                   ),
             ),
-            Text(
-              title,
-              style: TextStyle(
-                  fontSize: width * 0.04,
-                  color: dashboardTextColor,
-                  fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: Text(
+                title,
+                maxLines: 1,
+                style: TextStyle(
+                    fontSize: width * 0.035,
+                    color: dashboardTextColor,
+                    fontWeight: FontWeight.bold),
+              ),
             )
           ],
         ),

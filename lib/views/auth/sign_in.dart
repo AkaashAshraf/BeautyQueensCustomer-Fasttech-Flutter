@@ -1,19 +1,12 @@
-import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
-import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
-import 'package:beauty_queens_ustomer/components/home/dashboard/dashboard_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
-import 'package:beauty_queens_ustomer/views/drawer/appoinments/book_appointment.dart';
 import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
-import 'package:beauty_queens_ustomer/views/products/products_shops_list_view.dart';
-import 'package:beauty_queens_ustomer/views/saloons/saloon_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:get/get.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key, required this.title}) : super(key: key);

@@ -24,7 +24,7 @@ Future<dynamic> post(String url, dynamic body) async {
       return null;
     }
   } catch (e) {
-    return null;
+    return e.toString();
   }
 }
 
