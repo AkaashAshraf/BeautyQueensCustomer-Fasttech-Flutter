@@ -1,14 +1,11 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
+import 'package:beauty_queens_ustomer/components/common/drawer.dart';
 import 'package:beauty_queens_ustomer/components/home/dashboard/dashboard_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
-import 'package:beauty_queens_ustomer/views/drawer/appoinments/book_appointment.dart';
-import 'package:beauty_queens_ustomer/views/drawer/appoinments/my_appointments.dart';
-import 'package:beauty_queens_ustomer/views/drawer/notifications/notifications.dart';
-import 'package:beauty_queens_ustomer/views/drawer/profile/my_profile.dart';
 import 'package:beauty_queens_ustomer/views/home/gym.dart';
 import 'package:beauty_queens_ustomer/views/home/offers/offers_list.dart';
 import 'package:beauty_queens_ustomer/views/home/spa.dart';
@@ -41,101 +38,7 @@ class _DashboardView extends State<DashboardView> {
       // appBar: AppBar(
       //   title: const Text("Dashboard"),
       // ),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Image(
-                  fit: BoxFit.fitHeight,
-                  // opacity: AlwaysStoppedAnimation<double>(0.4),
-                  image: AssetImage('assets/images/logo.jpeg')),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.my_library_books_outlined,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Profile'),
-              onTap: () {
-                Get.to(Profile());
-
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.my_library_books_outlined,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('My Appointments'),
-              onTap: () {
-                Get.to(MyAppointmentsList());
-
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.notification_important,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Notifications'),
-              onTap: () {
-                Get.to(NotificationsList());
-
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.password,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Change Password'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.logout,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Logout'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.language,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Change Language to   عربى'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const MenuDrawer(),
       appBar: noAppBar(),
       body: SafeArea(
         child: Container(

@@ -6,6 +6,7 @@ import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
+import 'package:beauty_queens_ustomer/models/simple/cart.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 import 'package:beauty_queens_ustomer/models/simple/service.dart';
@@ -466,8 +467,14 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                     right: 10,
                     child: GestureDetector(
                       onTap: () async {
-                        final isAdded =
-                            await Get.put(CartController()).addToCart(service);
+                        final isAdded = await Get.put(CartController())
+                            .addToCart(Cart(
+                                productID: service.servicesId!,
+                                providerID: service.serviceAssigneeId!,
+                                nameEn: service.nameEn!,
+                                nameAr: service.nameAr!,
+                                unitPrice:
+                                    double.tryParse(service.charges!) ?? 0));
                         // var contain = Get.put(SaloonsController())
                         //     .services
                         //     .where((element) =>

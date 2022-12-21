@@ -2,7 +2,9 @@ import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 
 class Profile extends StatefulWidget {
@@ -25,58 +27,77 @@ class _Profile extends State<Profile> {
         child: Container(
           height: height,
           color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 50,
-                ),
-                textInputCustom(
-                    label: "Name:",
-                    initialValue: "Akash Ashraf",
-                    preIcon: const Icon(
-                      Icons.text_decrease,
-                      size: 20,
-                      color: textInputIconColor,
+          child: GetX<AuthController>(builder: (controller) {
+            return SingleChildScrollView(
+              child: Stack(
+                children: [
+                  Container(
+                    height: height * 0.8,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          textInputCustom(
+                              label: "Name:",
+                              initialValue:
+                                  controller.userInfo.value.name.toString(),
+                              preIcon: const Icon(
+                                Icons.text_decrease,
+                                size: 20,
+                                color: textInputIconColor,
+                              ),
+                              onTextChange: (val) {}),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          textInputCustom(
+                              label: "Email:",
+                              initialValue:
+                                  controller.userInfo.value.email.toString(),
+                              preIcon: const Icon(
+                                Icons.email,
+                                size: 20,
+                                color: textInputIconColor,
+                              ),
+                              onTextChange: (val) {}),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          textInputCustom(
+                              label: "Mobile No:",
+                              initialValue:
+                                  controller.userInfo.value.contact.toString(),
+                              preIcon: const Icon(
+                                Icons.numbers,
+                                size: 20,
+                                color: textInputIconColor,
+                              ),
+                              maxLength: 8,
+                              onTextChange: (val) {}),
+                        ],
+                      ),
                     ),
-                    onTextChange: (val) {}),
-                const SizedBox(
-                  height: 30,
-                ),
-                textInputCustom(
-                    label: "Email:",
-                    initialValue: "akash131060@gmail.com",
-                    preIcon: const Icon(
-                      Icons.email,
-                      size: 20,
-                      color: textInputIconColor,
+                  ),
+                  Positioned(
+                    left: 20,
+                    right: 20,
+                    bottom: 20,
+                    child: iconButton(
+                      onClick: () {
+                        Navigator.pop(context);
+                      },
+                      text: "Update",
                     ),
-                    onTextChange: (val) {}),
-                const SizedBox(
-                  height: 30,
-                ),
-                textInputCustom(
-                    label: "Mobile No:",
-                    initialValue: "72722798",
-                    preIcon: const Icon(
-                      Icons.numbers,
-                      size: 20,
-                      color: textInputIconColor,
-                    ),
-                    maxLength: 8,
-                    onTextChange: (val) {}),
-                const SizedBox(
-                  height: 200,
-                ),
-                iconButton(
-                  onClick: () {},
-                  text: "Update",
-                ),
-              ],
-            ),
-          ),
+                  ),
+                ],
+              ),
+            );
+          }),
         ),
       ),
     );

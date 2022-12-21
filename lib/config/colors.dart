@@ -9,6 +9,8 @@ final buttonColor = Colors.pinkAccent.shade200;
 const buttonTexrColor = Colors.white;
 const inputTexrColor = Color(0xffff1493);
 
+const topTabBackground = Color(0xFFE5E5E5);
+const topTabForground = secandaryColor;
 const dashboardItemBorderColor = Color(0xffff1493);
 
 const dashboardTextColor = Colors.white;

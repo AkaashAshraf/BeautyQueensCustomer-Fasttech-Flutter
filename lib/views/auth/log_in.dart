@@ -11,7 +11,6 @@ import 'package:beauty_queens_ustomer/views/auth/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);

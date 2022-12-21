@@ -1,10 +1,8 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
-import 'package:beauty_queens_ustomer/components/products/shops_list_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
-import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
-import 'package:beauty_queens_ustomer/views/products/shop_details_view.dart';
+import 'package:beauty_queens_ustomer/views/drawer/appoinments/appointment_Tab.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 
 class MyAppointmentsList extends StatefulWidget {
   const MyAppointmentsList({Key? key}) : super(key: key);
@@ -13,6 +11,16 @@ class MyAppointmentsList extends StatefulWidget {
 }
 
 class _MyAppointmentsList extends State<MyAppointmentsList> {
+  final List<Tab> myTabs = const <Tab>[
+    Tab(text: 'Pending'),
+    Tab(text: 'Completed'),
+    Tab(text: 'Cancelled'),
+  ];
+  final List<Widget> myWidgets = <Widget>[
+    const AppointmentTab(),
+    const AppointmentTab(),
+    const AppointmentTab(),
+  ];
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -20,10 +28,31 @@ class _MyAppointmentsList extends State<MyAppointmentsList> {
     final cardHeight = height * 0.3;
 
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: Colors.white,
       appBar: appBar(title: "My Appointments"),
       body: SafeArea(
-        child: Center(child: Text("No data available")),
+        child: DefaultTabController(
+          length: myTabs.length,
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 12,
+              ),
+              ButtonsTabBar(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                backgroundColor: topTabForground,
+                unselectedBackgroundColor: topTabBackground,
+                unselectedLabelStyle: const TextStyle(color: Colors.black),
+                labelStyle: const TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold),
+                tabs: myTabs,
+              ),
+              Expanded(
+                child: TabBarView(children: myWidgets),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

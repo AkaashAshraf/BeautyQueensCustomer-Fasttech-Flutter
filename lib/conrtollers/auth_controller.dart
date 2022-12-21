@@ -6,6 +6,7 @@ import 'package:beauty_queens_ustomer/config/sub_urls.dart';
 import 'package:beauty_queens_ustomer/http/http.dart';
 import 'package:beauty_queens_ustomer/main.dart';
 import 'package:beauty_queens_ustomer/models/auth/login.dart';
+import 'package:beauty_queens_ustomer/views/auth/log_in.dart';
 import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
 import 'package:get/get.dart';
 
@@ -14,10 +15,22 @@ class AuthController extends GetxController {
   RxBool checkValidation = false.obs;
   RxString contact = "".obs;
   RxString password = "".obs;
+  Rx<User> userInfo = User().obs;
 
   @override
   void onInit() {
+    try {
+      getUserInfoFromCache();
+    } catch (e) {
+      print(e.toString());
+    }
     super.onInit();
+  }
+
+  getUserInfoFromCache() {
+    final rawData = MyApp().storage.read(userDataPath);
+    final loginResponse = loginFromJson(rawData);
+    userInfo.value = loginResponse.data!.user!;
   }
 
   login() async {
