@@ -24,6 +24,10 @@ Future<dynamic> post(String url, dynamic body) async {
       return null;
     }
   } catch (e) {
+    print("----------------------");
+
+    print(e.toString());
+    print("-------------ppppppppp---------");
     return e.toString();
   }
 }

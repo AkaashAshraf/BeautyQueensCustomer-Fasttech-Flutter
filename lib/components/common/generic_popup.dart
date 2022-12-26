@@ -5,7 +5,7 @@ Alert genericPopup(BuildContext context,
     {required String title,
     String description = "",
     DialogButton? buttons,
-    required Column children}) {
+    required Widget children}) {
   return Alert(
     context: context,
     content: children,

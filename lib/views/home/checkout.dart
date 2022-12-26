@@ -1,0 +1,213 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
+import 'package:beauty_queens_ustomer/components/common/loading_indicator.dart';
+import 'package:beauty_queens_ustomer/components/saloons/employees_list_item2.dart';
+import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/config/text_sizes.dart';
+import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
+import 'package:beauty_queens_ustomer/models/simple/employee.dart';
+import 'package:data_table_2/data_table_2.dart';
+import 'package:date_time_picker/date_time_picker.dart';
+import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+// ignore: must_be_immutable
+class Checkout extends StatefulWidget {
+  const Checkout({Key? key}) : super(key: key);
+  @override
+  State<Checkout> createState() => _Checkout();
+}
+
+class _Checkout extends State<Checkout> {
+  String dateTime = "";
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+
+    final width = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+        backgroundColor: bgColor,
+        appBar: appBar(
+            title: Get.put(CartController())
+                .selectedSaloon
+                .value
+                .nameEn
+                .toString()),
+        body: SafeArea(child: GetX<CartController>(builder: (controller) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: SizedBox(
+                  height: height * 0.9,
+                  child: controller.items.isNotEmpty
+                      ? Column(
+                          children: [
+                            DateTimePicker(
+                              initialValue: '',
+                              type: DateTimePickerType.dateTime,
+                              icon: const Icon(Icons.calendar_month),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2100),
+                              dateLabelText: 'Appointment Date',
+                              onChanged: (val) => setState(() {
+                                dateTime = val;
+                              }),
+                              validator: (val) {
+                                return null;
+                              },
+                              onSaved: (val) => setState(() {
+                                dateTime = val ?? "";
+                              }),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: height * 0.03,
+                                width: width,
+                                child: Text(
+                                  "Choose Employee",
+                                  style: TextStyle(
+                                      fontSize: width * 0.04,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.33,
+                              child: GridView.count(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 4.0,
+                                mainAxisSpacing: 8.0,
+                                children: List.generate(
+                                    controller.employeesList.length, (index) {
+                                  return Center(
+                                      child: SizedBox(
+                                    // width: 200,
+                                    child: employeesListItem2(
+                                        controller.employeesList[index],
+                                        context: context,
+                                        onPress: (Employee employee) {
+                                      controller.selectedEmployee.value =
+                                          employee.empId!;
+                                    }),
+                                  ));
+                                }),
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.3,
+                              child: DataTable2(
+                                  dataRowColor:
+                                      MaterialStateProperty.all(Colors.white),
+                                  columnSpacing: 12,
+                                  horizontalMargin: 12,
+                                  minWidth: width * 0.9,
+                                  columns: const [
+                                    DataColumn2(
+                                      label: Text('No:'),
+                                      size: ColumnSize.S,
+                                    ),
+                                    DataColumn2(
+                                      label: Text('Service Name'),
+                                      size: ColumnSize.L,
+                                    ),
+                                    DataColumn2(
+                                      label: Text('Time'),
+                                      size: ColumnSize.L,
+                                    ),
+                                    DataColumn2(
+                                      label: Text('Price'),
+                                      size: ColumnSize.S,
+                                    ),
+                                  ],
+                                  rows: List<DataRow>.generate(
+                                      controller.items.length,
+                                      (index) => DataRow(cells: [
+                                            DataCell(
+                                                Text((index + 1).toString())),
+                                            DataCell(Text(controller
+                                                .items[index].nameEn)),
+                                            DataCell(Text(controller
+                                                .items[index].time
+                                                .toString())),
+                                            DataCell(Text(
+                                                "${controller.items[index].unitPrice.toStringAsFixed(3)} OMR")),
+                                          ]))),
+                            ),
+                            const DottedLine(),
+                            SizedBox(
+                              width: width,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Services: ${controller.items.length.toString()}",
+                                      style: TextStyle(
+                                          fontSize: width * 0.04,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "Time: ${controller.totalTime.toString()}",
+                                      style: TextStyle(
+                                          fontSize: width * 0.04,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "Amount: ${controller.totalPrice.toStringAsFixed(3)} OMR",
+                                      style: TextStyle(
+                                          fontSize: width * 0.04,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const DottedLine(),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              child: controller.loading.value
+                                  ? const LoadingIndicatore()
+                                  : SizedBox(
+                                      width: width * 0.9,
+                                      height: height * 0.05,
+                                      child: ElevatedButton(
+                                          onPressed: () {
+                                            controller.checkout(
+                                                datetime: dateTime);
+                                          },
+                                          style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      primaryColor)),
+                                          child: Text(
+                                            "Checkout",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: width * 0.045),
+                                          )),
+                                    ),
+                            )
+                          ],
+                        )
+                      : const Center(child: Text("Cart is empty"))),
+            ),
+          );
+        })));
+  }
+}

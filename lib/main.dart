@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
     final token = storage.read(tokenPath);
 
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+
       translations: Messages(), // your translations
       locale:
           const Locale('en'), // translations will be displayed in that locale

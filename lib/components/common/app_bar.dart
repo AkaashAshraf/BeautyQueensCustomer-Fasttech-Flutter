@@ -90,6 +90,7 @@ AppBar appBar({required String title}) {
                 width: 30.0,
                 child: GestureDetector(
                   onTap: () {
+                    Get.to(const Cart());
                     // Get.put(CartController()).items.add(Service());
                   },
                   child: Stack(
@@ -101,29 +102,28 @@ AppBar appBar({required String title}) {
                         ),
                         onPressed: null,
                       ),
-                      false
-                          ? SizedBox()
-                          : Positioned(
-                              child: Stack(
-                              children: <Widget>[
-                                Icon(Icons.brightness_1,
-                                    size: 20.0, color: Colors.green[800]),
-                                Positioned(
-                                    top: 4.0,
-                                    bottom: 4.0,
-                                    right: 4.0,
-                                    left: 4.0,
-                                    child: Center(
-                                      child: Text(
-                                        controller.items.length.toString(),
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 11.0,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    )),
-                              ],
-                            )),
+                      if (controller.items.isNotEmpty)
+                        Positioned(
+                            child: Stack(
+                          children: <Widget>[
+                            Icon(Icons.brightness_1,
+                                size: 20.0, color: Colors.green[800]),
+                            Positioned(
+                                top: 4.0,
+                                bottom: 4.0,
+                                right: 4.0,
+                                left: 4.0,
+                                child: Center(
+                                  child: Text(
+                                    controller.items.length.toString(),
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11.0,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                )),
+                          ],
+                        )),
                     ],
                   ),
                 )));

@@ -65,7 +65,7 @@ Padding productItem(double cardHeight, BuildContext context,
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    product.price.toString(),
+                                    product.price.toStringAsFixed(3),
                                     maxLines: 1,
                                     style: TextStyle(
                                         color: secondaryTextColor,

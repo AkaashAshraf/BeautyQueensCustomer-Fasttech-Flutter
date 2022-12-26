@@ -10,7 +10,8 @@ class HelperController extends GetxController {
     final availableMaps = await MapLauncher.installedMaps;
 
     await availableMaps.first.showMarker(
-      coords: Coords(latitude, longitude),
+      coords: Coords(double.tryParse(latitude.toString()) ?? 0.0,
+          double.tryParse(longitude.toString()) ?? 0.0),
       title: "",
       description: "",
     );

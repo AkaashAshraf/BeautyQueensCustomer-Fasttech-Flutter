@@ -1,5 +1,10 @@
+import 'package:beauty_queens_ustomer/components/cart/cart_item.dart';
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
+import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
+import 'package:beauty_queens_ustomer/views/home/checkout.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class Cart extends StatefulWidget {
@@ -9,27 +14,105 @@ class Cart extends StatefulWidget {
 }
 
 class _Cart extends State<Cart> {
+  CartController cartController = Get.put(CartController());
   @override
   void initState() {
+    cartController.fetchEmployees(cartController.selectedSaloon.value.id ?? 0);
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+
     final width = MediaQuery.of(context).size.width;
 
+    final cardHeight = height * 0.12;
     return Scaffold(
-      appBar: appBar(title: "Cart"),
-      body: SafeArea(
-        child: SizedBox(
-          height: height,
-          child: const Center(
-            child: Padding(
-                padding: EdgeInsets.all(8.0), child: Text("No data found")),
-          ),
-        ),
-      ),
-    );
+        backgroundColor: bgColor,
+        appBar: appBar(title: "Cart"),
+        body: SafeArea(child: GetX<CartController>(builder: (controller) {
+          return Stack(
+            children: [
+              SizedBox(
+                  child: controller.items.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: controller.items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 2.0, left: 5, right: 5),
+                              child: SizedBox(
+                                  height: cardHeight,
+                                  // width: width * 0.95,
+
+                                  child: CartCardItem(
+                                    item: controller.items[index],
+                                  )),
+                            );
+                          })
+                      : const Center(child: Text("Cart is empty"))),
+              Positioned(
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                  child: Card(
+                    elevation: 4,
+                    // decoration: BoxDecoration(
+                    //     color: Colors.white,
+                    //     border: Border.all(
+                    //       color: Colors.white,
+                    //     ),
+                    //     borderRadius:
+                    //         const BorderRadius.all(Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              SizedBox(
+                                width: width * 0.5,
+                                child: Text(
+                                  "x${controller.items.length.toString()}",
+                                  style: TextStyle(
+                                      fontSize: width * 0.045,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              SizedBox(
+                                width: width * 0.5,
+                                child: Text(
+                                    "${controller.totalPrice.toStringAsFixed(3)} OMR",
+                                    style: TextStyle(
+                                        fontSize: width * 0.045,
+                                        fontWeight: FontWeight.w500)),
+                              )
+                            ],
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              controller.selectedEmployee.value = 0;
+                              Get.to(const Checkout());
+                            },
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(secandaryColor),
+                            ),
+                            child: const Text("Checkout"),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ))
+            ],
+          );
+        })));
   }
 }

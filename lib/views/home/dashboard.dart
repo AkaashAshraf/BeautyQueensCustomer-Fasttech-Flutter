@@ -1,11 +1,15 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
+import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/drawer.dart';
+import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
 import 'package:beauty_queens_ustomer/components/home/dashboard/dashboard_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
+import 'package:beauty_queens_ustomer/conrtollers/gym_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
+import 'package:beauty_queens_ustomer/conrtollers/spa_controller.dart';
 import 'package:beauty_queens_ustomer/views/home/gym.dart';
 import 'package:beauty_queens_ustomer/views/home/offers/offers_list.dart';
 import 'package:beauty_queens_ustomer/views/home/spa.dart';
@@ -27,6 +31,8 @@ class _DashboardView extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     Get.put(SaloonsController());
+    Get.put(GYMController());
+    Get.put(SPAController());
 
     Get.put(ShopsController());
     final height = MediaQuery.of(context).size.height;
@@ -121,8 +127,71 @@ class _DashboardView extends State<DashboardView> {
                               }),
                               dashboardItem(height, width,
                                   imgName: "s_support.jpeg",
-                                  title: "Customer Support",
-                                  onTap: () {}),
+                                  title: "Customer Support", onTap: () {
+                                genericPopup(context,
+                                    title: "Contact Support",
+                                    children: Column(
+                                      children: <Widget>[
+                                        SizedBox(
+                                          width: width * 0.5,
+                                          child: iconButton(
+                                            onClick: () {
+                                              Get.put(HelperController())
+                                                  .openUrl(
+                                                      url: "tel:+96872722798");
+                                              Navigator.pop(context);
+                                            },
+                                            text: "Call",
+                                            icon: const Icon(
+                                              Icons.phone,
+                                              size: 20,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width: width * 0.5,
+                                          child: iconButton(
+                                            onClick: () {
+                                              Get.put(HelperController()).openUrl(
+                                                  url:
+                                                      "whatsapp://send?phone=+96872722798&text=");
+                                              Navigator.pop(context);
+                                            },
+                                            text: "Whtasapp",
+                                            icon: const Icon(
+                                              Icons.whatsapp,
+                                              size: 20,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width: width * 0.5,
+                                          child: iconButton(
+                                            onClick: () {
+                                              Get.put(HelperController()).openUrl(
+                                                  url:
+                                                      "mailto:akash131060@gmail.com");
+                                              Navigator.pop(context);
+                                            },
+                                            text: "Email",
+                                            icon: const Icon(
+                                              Icons.email,
+                                              size: 20,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )).show();
+                              }),
                             ],
                           )
                         ],

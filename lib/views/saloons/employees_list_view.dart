@@ -1,12 +1,10 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/saloons/employees_list_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
-import 'package:beauty_queens_ustomer/views/saloons/saloon_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../components/saloons/saloon_list_item.dart';
 
 class EmployeesListView extends StatefulWidget {
   const EmployeesListView({Key? key}) : super(key: key);
@@ -30,11 +28,11 @@ class _EmployeesListView extends State<EmployeesListView> {
           crossAxisCount: 2,
           crossAxisSpacing: 4.0,
           mainAxisSpacing: 8.0,
-          children: List.generate(controller.saloonsList.length, (index) {
+          children: List.generate(controller.employees.length, (index) {
             return Center(
                 child: SizedBox(
               // width: 200,
-              child: employeesListItem(controller.saloonsList[index],
+              child: employeesListItem(controller.employees[index],
                   context: context, onPress: (saloon) {
                 // Get.to(SaloonDetailsView(
                 //   saloon: saloon,

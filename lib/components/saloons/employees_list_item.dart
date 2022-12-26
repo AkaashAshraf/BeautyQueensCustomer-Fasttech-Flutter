@@ -2,16 +2,14 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
-import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
+import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-Card employeesListItem(Saloon saloon,
+Card employeesListItem(Employee employee,
     {required dynamic onPress, required BuildContext context}) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
 
-  final cardHeight = height * 0.3;
   return Card(
     shape: RoundedRectangleBorder(
       side: const BorderSide(color: Colors.white70, width: 1),
@@ -19,13 +17,13 @@ Card employeesListItem(Saloon saloon,
     ),
     elevation: 5,
     child: GestureDetector(
-      onTap: () => {onPress(saloon)},
+      onTap: () => {onPress(employee)},
       child: Column(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
-              "$imageBaseUrl/${saloon.imagePath}",
+              "$imageBaseUrl/${employee.image}",
               fit: BoxFit.cover,
               height: width * 0.33,
               width: width,
@@ -41,7 +39,7 @@ Card employeesListItem(Saloon saloon,
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      saloon.nameEn.toString(),
+                      employee.nameEn.toString(),
                       maxLines: 1,
                       style: TextStyle(
                           fontSize: getTextSize(context).twoColumnGridMainText,
@@ -53,14 +51,14 @@ Card employeesListItem(Saloon saloon,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Philipines",
+                        employee.countryEn.toString(),
                         style: TextStyle(
                             fontSize: getTextSize(context).twoColumnGridSubText,
                             fontWeight: FontWeight.w500,
                             color: secondaryTextColor),
                       ),
                       Text(
-                        "4 years",
+                        "${employee.exp.toString()} years",
                         style: TextStyle(
                             fontSize: getTextSize(context).twoColumnGridSubText,
                             fontWeight: FontWeight.w500,

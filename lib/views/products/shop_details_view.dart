@@ -140,7 +140,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
                               Text(
-                                "08:00 AM - 08:00 PM",
+                                "08:00 AM - 11:00 PM",
                                 style: TextStyle(color: secondaryTextColor),
                               ),
 
@@ -174,7 +174,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                                 onTap: (() {
                                   Get.to(const EmployeesListView());
                                 }),
-                                child: Text(
+                                child: const Text(
                                   "",
                                   style: TextStyle(
                                     color: primaryColor,
@@ -292,6 +292,9 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                           ),
                         ],
                       ),
+                    ),
+                    const SizedBox(
+                      height: 15,
                     ),
                     dottedLine(thicknes: 1),
                   ],

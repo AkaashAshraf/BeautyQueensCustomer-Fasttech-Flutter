@@ -7,13 +7,12 @@ import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 import 'package:beauty_queens_ustomer/models/simple/service.dart';
 import 'package:get/state_manager.dart';
 
-class SaloonsController extends GetxController {
-  RxList<Saloon> saloonsList = <Saloon>[].obs;
+class SPAController extends GetxController {
+  RxList<Saloon> spaList = <Saloon>[].obs;
   RxList<Service> services = <Service>[].obs;
   RxList<Employee> employees = <Employee>[].obs;
 
   RxBool saloonListLoading = false.obs;
-
   @override
   void onInit() {
     fetchSaloonsList();
@@ -23,11 +22,11 @@ class SaloonsController extends GetxController {
   fetchSaloonsList() async {
     try {
       saloonListLoading(true);
-      final result = await post("/client/salons/list", {});
+      final result = await post("/client/salons/list", {"type": "2"});
       if (result != null) {
         final saloons = saloonsFromJson(result?.body);
 
-        saloonsList(saloons.data);
+        spaList(saloons.data);
       }
     } finally {
       saloonListLoading(false);

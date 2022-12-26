@@ -1,12 +1,17 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/labels/auth_top_label.dart';
+import 'package:beauty_queens_ustomer/components/common/loading_indicator.dart';
 import 'package:beauty_queens_ustomer/components/common/logo_image.dart';
 import 'package:beauty_queens_ustomer/components/common/textInputs/password_input.dart';
 import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.dart';
+import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key, required this.title}) : super(key: key);
@@ -19,125 +24,143 @@ class SignUp extends StatefulWidget {
 class _SignUp extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
+    Get.put(AuthController());
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
         appBar: noAppBar(),
         body: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                primaryColor,
-                secandaryColor,
-                primaryColor,
-                secandaryColor,
-              ],
-            )),
-            height: height,
-            width: width,
-            child: Stack(
-              children: [
-                LogoImage(height: height),
+          child: GetX<AuthController>(builder: (controller) {
+            return Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  primaryColor,
+                  secandaryColor,
+                  primaryColor,
+                  secandaryColor,
+                ],
+              )),
+              height: height,
+              width: width,
+              child: Stack(
+                children: [
+                  LogoImage(height: height),
 
-                // const Text("Dalilee Shiper "),
-                Positioned(
-                    bottom: 0,
-                    left: 00,
-                    right: 0,
-                    child: Animate(
-                      effects: const [
-                        // FadeEffect(delay: Duration(milliseconds: 800)),
-                        // MoveEffect()
-                        MoveEffect(
-                            begin: Offset(0, 800),
-                            curve: Curves.easeInOut,
-                            delay: Duration(milliseconds: 000),
-                            duration: Duration(milliseconds: 800)),
-                      ],
-                      child: Container(
-                        height: height * 0.65,
-                        width: width,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
+                  // const Text("Dalilee Shiper "),
+                  Positioned(
+                      bottom: 0,
+                      left: 00,
+                      right: 0,
+                      child: Animate(
+                        effects: const [
+                          // FadeEffect(delay: Duration(milliseconds: 800)),
+                          // MoveEffect()
+                          MoveEffect(
+                              begin: Offset(0, 800),
+                              curve: Curves.easeInOut,
+                              delay: Duration(milliseconds: 000),
+                              duration: Duration(milliseconds: 800)),
+                        ],
+                        child: Container(
+                          height: height * 0.65,
+                          width: width,
+                          decoration: BoxDecoration(
                               color: Colors.white,
-                            ),
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(50),
-                                topRight: Radius.circular(50))),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: Stack(
-                            children: [
-                              SingleChildScrollView(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const SizedBox(
-                                      height: 80,
-                                    ),
-                                    textInputCustom(
-                                        label: "Enter Mobile No",
-                                        initialValue: "",
-                                        preIcon: const Icon(
-                                          Icons.numbers,
-                                          size: 20,
-                                          color: textInputIconColor,
-                                        ),
-                                        maxLength: 8,
-                                        onTextChange: (val) {}),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    textInputCustom(
-                                        label: "Enter Name",
-                                        initialValue: "",
-                                        preIcon: const Icon(
-                                          Icons.numbers,
-                                          size: 20,
-                                          color: textInputIconColor,
-                                        ),
-                                        onTextChange: (val) {}),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    PasswordInput(
-                                      lable: "Enter Password",
-                                      onTextChange: () {},
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    PasswordInput(
-                                      lable: "Re-enter Password",
-                                      onTextChange: () {},
-                                    ),
-                                    const SizedBox(
-                                      height: 40,
-                                    ),
-                                    iconButton(
-                                      onClick: () {},
-                                      text: "SignUp",
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                  ],
-                                ),
+                              border: Border.all(
+                                color: Colors.white,
                               ),
-                              AuthTopText(width: width, title: "SIGNUP")
-                            ],
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(50),
+                                  topRight: Radius.circular(50))),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            child: Stack(
+                              children: [
+                                SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const SizedBox(
+                                        height: 80,
+                                      ),
+                                      textInputCustom(
+                                          label: "Enter Mobile No",
+                                          initialValue: "",
+                                          preIcon: const Icon(
+                                            Icons.numbers,
+                                            size: 20,
+                                            color: textInputIconColor,
+                                          ),
+                                          maxLength: 8,
+                                          onTextChange: (val) {
+                                            // ToastMessages.showError(val);
+                                            controller.contact.value =
+                                                val.toString();
+                                          }),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      textInputCustom(
+                                          label: "Enter Name",
+                                          initialValue: controller.name.value,
+                                          preIcon: const Icon(
+                                            Icons.numbers,
+                                            size: 20,
+                                            color: textInputIconColor,
+                                          ),
+                                          onTextChange: (val) {
+                                            controller.name.value = val;
+                                          }),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      PasswordInput(
+                                        lable: "Enter Password",
+                                        onTextChange: (val) {
+                                          controller.password.value = val;
+                                        },
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      PasswordInput(
+                                        lable: "Re-enter Password",
+                                        onTextChange: (val) {
+                                          controller.confirmPassword.value =
+                                              val;
+                                        },
+                                      ),
+                                      const SizedBox(
+                                        height: 40,
+                                      ),
+                                      controller.loading.value
+                                          ? const LoadingIndicatore()
+                                          : iconButton(
+                                              onClick: () {
+                                                controller.signUp();
+                                              },
+                                              text: "SignUp",
+                                            ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                AuthTopText(width: width, title: "SIGNUP")
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    )),
-              ],
-            ),
-          ),
+                      )),
+                ],
+              ),
+            );
+          }),
         ));
   }
 }

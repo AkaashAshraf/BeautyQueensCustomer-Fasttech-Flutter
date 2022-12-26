@@ -10,13 +10,15 @@ class Service {
       this.nameEn,
       this.nameAr,
       this.descriptionEn,
+      this.time = 0,
       this.descriptionAr,
-      this.isAddedToCart});
+      this.isAddedToCart = false});
 
   int? serviceAssigneeId;
   int? servicesId;
   int? isActive;
-  bool? isAddedToCart;
+  int time;
+  bool isAddedToCart;
   String? charges;
   int? discount;
   String? assigneeImage;
@@ -28,6 +30,7 @@ class Service {
 
   factory Service.fromJson(Map<String, dynamic> json) => Service(
         serviceAssigneeId: json["service_assignee_id"] ?? 0,
+        time: json["time"] ?? "",
         servicesId: json["services_id"] ?? 0,
         isActive: json["isActive"] ?? 1,
         charges: json["charges"] ?? "",
@@ -43,6 +46,7 @@ class Service {
   Map<String, dynamic> toJson() => {
         "service_assignee_id": serviceAssigneeId,
         "services_id": servicesId,
+        "time": time,
         "isActive": isActive,
         "charges": charges,
         "discount": discount,

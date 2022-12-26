@@ -50,7 +50,7 @@ Widget iconButton({required String text, Widget? icon, dynamic onClick}) {
 ElevatedButton button({required String text, dynamic onClick}) {
   return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(buttonColor),
+        backgroundColor: MaterialStateProperty.all(secandaryColor),
       ),
       onPressed: onClick,
       child: Row(

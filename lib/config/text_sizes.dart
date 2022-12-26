@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TextSizes {
+  double height;
+  double width;
   double navTitle;
   double dashboardItem;
   double itemMainText;
@@ -16,6 +18,8 @@ class TextSizes {
   TextSizes(
       {required this.dashboardItem,
       required this.itemMainText,
+      required this.height,
+      required this.width,
       required this.authTitleText,
       required this.itemSubText,
       required this.navTitle,
@@ -27,7 +31,11 @@ class TextSizes {
 
 TextSizes getTextSize(BuildContext context) {
   final width = MediaQuery.of(context).size.width;
+  final height = MediaQuery.of(context).size.height;
+
   final sizes = TextSizes(
+    height: height,
+    width: width,
     dashboardItem: width * 0.045,
     authTitleText: width * 0.055,
     itemMainText: width * 0.045,
