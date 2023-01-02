@@ -42,6 +42,7 @@ Card productListItem(Product product,
                       ColorizeAnimatedText(
                         product.nameEn!,
                         textStyle: TextStyle(
+                            fontFamily: "primary",
                             fontSize: width * 0.045,
                             fontWeight: FontWeight.w500,
                             color: titleColor),
@@ -71,11 +72,17 @@ Card productListItem(Product product,
                   children: const [
                     Text(
                       "08:00 AM - 08:00 PM",
-                      style: TextStyle(color: secondaryTextColor),
+                      style: TextStyle(
+                        color: secondaryTextColor,
+                        fontFamily: "primary",
+                      ),
                     ),
                     Text(
                       "Open Now",
-                      style: TextStyle(color: secondaryTextColor),
+                      style: TextStyle(
+                        color: secondaryTextColor,
+                        fontFamily: "primary",
+                      ),
                     ),
                   ],
                 ),
@@ -101,7 +108,10 @@ Card productListItem(Product product,
                     ),
                     const Text(
                       "4.5 / 26",
-                      style: TextStyle(fontSize: 10),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontFamily: "primary",
+                      ),
                     ),
                   ],
                 )

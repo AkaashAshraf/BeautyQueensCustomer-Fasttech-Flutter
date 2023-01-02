@@ -1,5 +1,6 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsList extends StatefulWidget {
@@ -15,7 +16,12 @@ class _NotificationsList extends State<NotificationsList> {
       backgroundColor: bgColor,
       appBar: appBar(title: "Notifications"),
       body: SafeArea(
-        child: Center(child: Text("No data available")),
+        child: Center(
+            child: Text(
+          "No data available",
+          style: TextStyle(
+              fontFamily: "primary", fontSize: screenWidth(context) * 0.04),
+        )),
       ),
     );
   }

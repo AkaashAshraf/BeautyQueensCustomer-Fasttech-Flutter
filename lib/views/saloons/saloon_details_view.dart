@@ -86,8 +86,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                         child: Text(
                           "Checkout",
                           style: TextStyle(
-                            fontSize: width * 0.045,
-                          ),
+                              fontSize: width * 0.05, fontFamily: "primary"),
                         )),
                   ),
                 )
@@ -131,8 +130,9 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                     ColorizeAnimatedText(
                                       widget.saloon.nameEn!,
                                       textStyle: TextStyle(
-                                          fontSize: width * 0.045,
-                                          fontWeight: FontWeight.w500,
+                                          fontSize: width * 0.05,
+                                          fontFamily: "primary",
+                                          fontWeight: FontWeight.w600,
                                           color: titleColor),
                                       colors: [primaryColor, secandaryColor],
                                     ),
@@ -154,6 +154,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                   Text(
                                     widget.saloon.cityEn!,
                                     style: const TextStyle(
+                                        fontFamily: "primary",
                                         color: secondaryTextColor),
                                   ),
                                 ],
@@ -165,12 +166,18 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                 children: const [
                                   Text(
                                     "08:00 AM - 08:00 PM",
-                                    style: TextStyle(color: secondaryTextColor),
+                                    style: TextStyle(
+                                      color: secondaryTextColor,
+                                      fontFamily: "primary",
+                                    ),
                                   ),
 
                                   Text(
                                     "Open Now",
-                                    style: TextStyle(color: secondaryTextColor),
+                                    style: TextStyle(
+                                      color: secondaryTextColor,
+                                      fontFamily: "primary",
+                                    ),
                                   ),
                                   // DefaultTextStyle(
                                   //   style: TextStyle(
@@ -203,6 +210,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                       "View Employees",
                                       style: TextStyle(
                                         color: primaryColor,
+                                        fontFamily: "primary",
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),
@@ -229,7 +237,10 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                       ),
                                       const Text(
                                         "4.5 / 26",
-                                        style: TextStyle(fontSize: 10),
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          fontFamily: "primary",
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -462,6 +473,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                 child: Text(
                                   service.nameEn ?? "",
                                   style: TextStyle(
+                                      fontFamily: "primary",
                                       color: titleColor,
                                       fontSize: getTextSize(context)
                                           .smallItemMainText),
@@ -473,6 +485,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                   "${service.time.toString()} minutes",
                                   maxLines: 1,
                                   style: TextStyle(
+                                      fontFamily: "primary",
                                       color: secondaryTextColor,
                                       fontSize: getTextSize(context)
                                           .smallItemSubText),
@@ -488,6 +501,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                       "${service.charges} OMR",
                                       maxLines: 1,
                                       style: TextStyle(
+                                          fontFamily: "primary",
                                           color: secondaryTextColor,
                                           fontSize: getTextSize(context)
                                               .smallItemSubText),

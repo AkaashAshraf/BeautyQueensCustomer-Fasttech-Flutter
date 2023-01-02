@@ -72,7 +72,8 @@ class _DashboardView extends State<DashboardView> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: dashbboardTitleColor,
-                            fontSize: width * 0.1),
+                            fontFamily: "primary",
+                            fontSize: width * 0.12),
                       ).animate().scale(delay: 200.ms, duration: 400.ms),
                       SizedBox(
                         height: height * 0.1,

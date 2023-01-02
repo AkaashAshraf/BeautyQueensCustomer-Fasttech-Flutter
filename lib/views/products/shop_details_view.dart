@@ -108,8 +108,9 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                                 ColorizeAnimatedText(
                                   widget.shop.nameEn!,
                                   textStyle: TextStyle(
-                                      fontSize: width * 0.045,
-                                      fontWeight: FontWeight.w500,
+                                      fontFamily: "primary",
+                                      fontSize: width * 0.05,
+                                      fontWeight: FontWeight.w600,
                                       color: titleColor),
                                   colors: [primaryColor, dashbboardTitleColor],
                                 ),
@@ -130,8 +131,10 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                             children: [
                               Text(
                                 widget.shop.cityEn!,
-                                style:
-                                    const TextStyle(color: secondaryTextColor),
+                                style: const TextStyle(
+                                  color: secondaryTextColor,
+                                  fontFamily: "primary",
+                                ),
                               ),
                             ],
                           ),
@@ -141,12 +144,18 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                             children: const [
                               Text(
                                 "08:00 AM - 11:00 PM",
-                                style: TextStyle(color: secondaryTextColor),
+                                style: TextStyle(
+                                  color: secondaryTextColor,
+                                  fontFamily: "primary",
+                                ),
                               ),
 
                               Text(
                                 "Open Now",
-                                style: TextStyle(color: secondaryTextColor),
+                                style: TextStyle(
+                                  color: secondaryTextColor,
+                                  fontFamily: "primary",
+                                ),
                               ),
                               // DefaultTextStyle(
                               //   style: TextStyle(
@@ -178,6 +187,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                                   "",
                                   style: TextStyle(
                                     color: primaryColor,
+                                    fontFamily: "primary",
                                     decoration: TextDecoration.underline,
                                   ),
                                 ),
@@ -204,7 +214,10 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                                   ),
                                   const Text(
                                     "4.5 / 26",
-                                    style: TextStyle(fontSize: 10),
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontFamily: "primary",
+                                    ),
                                   ),
                                 ],
                               ),

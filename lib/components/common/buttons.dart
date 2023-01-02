@@ -40,7 +40,8 @@ Widget iconButton({required String text, Widget? icon, dynamic onClick}) {
 
             Text(
               text,
-              style: const TextStyle(color: buttonTexrColor, fontSize: 16),
+              style: const TextStyle(
+                  color: buttonTexrColor, fontSize: 18, fontFamily: "primary"),
             ),
           ],
         )),
@@ -58,7 +59,8 @@ ElevatedButton button({required String text, dynamic onClick}) {
         children: [
           Text(
             text,
-            style: const TextStyle(color: buttonTexrColor, fontSize: 16),
+            style: const TextStyle(
+                color: buttonTexrColor, fontSize: 18, fontFamily: "primary"),
           ),
         ],
       ));

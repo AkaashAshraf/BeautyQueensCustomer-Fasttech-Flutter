@@ -11,12 +11,16 @@ Alert textAlert(BuildContext context,
     buttons: [
       buttons ??
           DialogButton(
-            child: Text(
-              "OK",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
             onPressed: () => Navigator.pop(context),
             width: 120,
+            child: const Text(
+              "OK",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontFamily: "primary",
+              ),
+            ),
           )
     ],
   );

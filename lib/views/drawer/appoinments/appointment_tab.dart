@@ -1,3 +1,4 @@
+import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentTab extends StatefulWidget {
@@ -13,10 +14,15 @@ class _AppointmentTab extends State<AppointmentTab> {
 
     final cardHeight = height * 0.3;
 
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Center(child: Text("No data available")),
+        child: Center(
+            child: Text(
+          "No data available",
+          style: TextStyle(
+              fontFamily: "primary", fontSize: screenWidth(context) * 0.04),
+        )),
       ),
     );
   }

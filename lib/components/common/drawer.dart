@@ -49,53 +49,22 @@ class MenuDrawer extends StatelessWidget {
                         controller.userInfo.value.name.toString(),
                         style: TextStyle(
                             color: primaryColor,
-                            fontSize: getTextSize(context).itemMainText),
+                            fontFamily: "primary",
+                            fontWeight: FontWeight.w700,
+                            fontSize: screenWidth(context) * 0.05),
                       )),
                 ],
               ),
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.my_library_books_outlined,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Profile'),
-              onTap: () {
-                Get.to(const Profile());
-
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.my_library_books_outlined,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('My Appointments'),
-              onTap: () {
-                Get.to(const MyAppointmentsList());
-
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.notification_important,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Notifications'),
-              onTap: () {
-                Get.to(const NotificationsList());
-
-                // Update the state of the app.
-                // ...
-              },
-            ),
+            drawerItem(context, onPress: () {
+              Get.to(const Profile());
+            }, title: "Profile"),
+            drawerItem(context, onPress: () {
+              Get.to(const MyAppointmentsList());
+            }, title: "My Appointments"),
+            drawerItem(context, onPress: () {
+              Get.to(const NotificationsList());
+            }, title: "Notifications"),
             if (false)
               ListTile(
                 leading: const Icon(
@@ -109,49 +78,46 @@ class MenuDrawer extends StatelessWidget {
                   // ...
                 },
               ),
-            ListTile(
-              leading: const Icon(
-                Icons.logout,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Logout'),
-              onTap: () {
-                textAlert(context,
-                    title: "Are you sure you want to logout?",
-                    buttons: DialogButton(
-                        onPressed: (() {
-                          MyApp().storage.write(tokenPath, "");
-                          MyApp().storage.write(userIDPath, "");
-                          MyApp().storage.write(userNamePath, "");
-                          MyApp().storage.write(userDataPath, "");
-                          Get.offAll(const ChooseAuth(title: ""));
-                        }),
-                        child: const Text(
-                          "Yes",
-                          style: TextStyle(color: Colors.white),
-                        ))).show();
-
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.language,
-                size: 25,
-                color: textInputIconColor,
-              ),
-              title: const Text('Change Language to   عربى'),
-              onTap: () {
-                ToastMessages.showWarning("Will available soon");
-                // Update the state of the app.
-                // ...
-              },
-            ),
+            drawerItem(context, onPress: () {
+              textAlert(context,
+                  title: "Are you sure you want to logout?",
+                  buttons: DialogButton(
+                      onPressed: (() {
+                        MyApp().storage.write(tokenPath, "");
+                        MyApp().storage.write(userIDPath, "");
+                        MyApp().storage.write(userNamePath, "");
+                        MyApp().storage.write(userDataPath, "");
+                        Get.offAll(const ChooseAuth(title: ""));
+                      }),
+                      child: const Text(
+                        "Yes",
+                        style: TextStyle(color: Colors.white),
+                      ))).show();
+            }, title: "Logout"),
+            drawerItem(context, onPress: () {
+              ToastMessages.showWarning("Will available soon");
+            }, title: 'Change Language to   عربى'),
           ],
         );
       }),
     );
+  }
+
+  ListTile drawerItem(BuildContext context,
+      {required dynamic onPress, required String title}) {
+    return ListTile(
+        leading: const Icon(
+          Icons.my_library_books_outlined,
+          size: 25,
+          color: textInputIconColor,
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+              fontFamily: "primary",
+              fontWeight: FontWeight.w600,
+              fontSize: screenWidth(context) * 0.045),
+        ),
+        onTap: onPress);
   }
 }

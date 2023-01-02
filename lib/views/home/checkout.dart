@@ -77,8 +77,9 @@ class _Checkout extends State<Checkout> {
                                 child: Text(
                                   "Choose Employee",
                                   style: TextStyle(
+                                      fontFamily: "primary",
                                       fontSize: width * 0.04,
-                                      fontWeight: FontWeight.w500),
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ),
@@ -114,34 +115,66 @@ class _Checkout extends State<Checkout> {
                                   minWidth: width * 0.9,
                                   columns: const [
                                     DataColumn2(
-                                      label: Text('No:'),
+                                      label: Text(
+                                        'No:',
+                                        style: TextStyle(
+                                            fontFamily: "primary",
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                       size: ColumnSize.S,
                                     ),
                                     DataColumn2(
-                                      label: Text('Service Name'),
+                                      label: Text(
+                                        'Service Name',
+                                        style: TextStyle(
+                                            fontFamily: "primary",
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                       size: ColumnSize.L,
                                     ),
                                     DataColumn2(
-                                      label: Text('Time'),
+                                      label: Text(
+                                        'Time',
+                                        style: TextStyle(
+                                            fontFamily: "primary",
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                       size: ColumnSize.L,
                                     ),
                                     DataColumn2(
-                                      label: Text('Price'),
+                                      label: Text(
+                                        'Price',
+                                        style: TextStyle(
+                                            fontFamily: "primary",
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                       size: ColumnSize.S,
                                     ),
                                   ],
                                   rows: List<DataRow>.generate(
                                       controller.items.length,
                                       (index) => DataRow(cells: [
-                                            DataCell(
-                                                Text((index + 1).toString())),
-                                            DataCell(Text(controller
-                                                .items[index].nameEn)),
-                                            DataCell(Text(controller
-                                                .items[index].time
-                                                .toString())),
                                             DataCell(Text(
-                                                "${controller.items[index].unitPrice.toStringAsFixed(3)} OMR")),
+                                              (index + 1).toString(),
+                                              style: const TextStyle(
+                                                  fontFamily: "primary"),
+                                            )),
+                                            DataCell(Text(
+                                              controller.items[index].nameEn,
+                                              style: const TextStyle(
+                                                  fontFamily: "primary"),
+                                            )),
+                                            DataCell(Text(
+                                              controller.items[index].time
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                  fontFamily: "primary"),
+                                            )),
+                                            DataCell(Text(
+                                              "${controller.items[index].unitPrice.toStringAsFixed(3)} OMR",
+                                              style: const TextStyle(
+                                                  fontFamily: "primary"),
+                                            )),
                                           ]))),
                             ),
                             const DottedLine(),
@@ -156,18 +189,21 @@ class _Checkout extends State<Checkout> {
                                     Text(
                                       "Services: ${controller.items.length.toString()}",
                                       style: TextStyle(
+                                          fontFamily: "primary",
                                           fontSize: width * 0.04,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "Time: ${controller.totalTime.toString()}",
                                       style: TextStyle(
+                                          fontFamily: "primary",
                                           fontSize: width * 0.04,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "Amount: ${controller.totalPrice.toStringAsFixed(3)} OMR",
                                       style: TextStyle(
+                                          fontFamily: "primary",
                                           fontSize: width * 0.04,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -198,6 +234,7 @@ class _Checkout extends State<Checkout> {
                                           child: Text(
                                             "Checkout",
                                             style: TextStyle(
+                                                fontFamily: "primary",
                                                 color: Colors.white,
                                                 fontSize: width * 0.045),
                                           )),
@@ -205,7 +242,13 @@ class _Checkout extends State<Checkout> {
                             )
                           ],
                         )
-                      : const Center(child: Text("Cart is empty"))),
+                      : const Center(
+                          child: Text(
+                          "Cart is empty",
+                          style: TextStyle(
+                            fontFamily: "primary",
+                          ),
+                        ))),
             ),
           );
         })));

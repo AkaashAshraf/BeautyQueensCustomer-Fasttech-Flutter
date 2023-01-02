@@ -48,8 +48,9 @@ Container dashboardItem(double height, double width,
                 title,
                 maxLines: 1,
                 style: TextStyle(
-                    fontSize: width * 0.035,
+                    fontSize: width * 0.045,
                     color: dashboardTextColor,
+                    fontFamily: "primary",
                     fontWeight: FontWeight.bold),
               ),
             )

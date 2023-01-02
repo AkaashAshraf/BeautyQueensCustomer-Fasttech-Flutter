@@ -32,7 +32,10 @@ class _EmployeesTab extends State<EmployeesTab> {
                   child: SizedBox(
                     height: 100,
                     // width: width * 0.95,
-                    child: Text(widget.employees[index].nameEn!),
+                    child: Text(
+                      widget.employees[index].nameEn!,
+                      style: TextStyle(fontFamily: "primary"),
+                    ),
                   ));
             }),
       ),

@@ -80,6 +80,7 @@ class textInputCustom extends StatelessWidget {
     return Card(
       elevation: isElevation ? 2 : 0,
       child: TextFormField(
+        style: const TextStyle(fontFamily: "primary"),
         onChanged: (val) {
           onTextChange(val);
         },
@@ -97,9 +98,15 @@ class textInputCustom extends StatelessWidget {
           labelText: label,
           isDense: true,
           contentPadding: const EdgeInsets.all(15),
-          labelStyle: const TextStyle(color: inputTexrColor, fontSize: 12),
-          hintStyle:
-              TextStyle(fontSize: 12, color: Colors.black.withOpacity(0.3)),
+          labelStyle: const TextStyle(
+            color: inputTexrColor,
+            fontSize: 15,
+            fontFamily: "primary",
+          ),
+          hintStyle: TextStyle(
+              fontSize: 15,
+              fontFamily: "primary",
+              color: Colors.black.withOpacity(0.3)),
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.blue, width: 1),
           ),

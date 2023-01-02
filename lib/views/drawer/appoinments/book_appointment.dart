@@ -1,4 +1,3 @@
-import 'package:beauty_queens_ustomer/components/common/search_dropdown.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +22,7 @@ class _BookAppointmentView extends State<BookAppointmentView> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: primaryColor,
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
           // Status bar color
 
           statusBarColor: primaryColor,
@@ -34,13 +33,11 @@ class _BookAppointmentView extends State<BookAppointmentView> {
         ),
       ),
       body: SafeArea(
-          child: Container(
-        child: Column(
-          children: [
-            // searchDropDown(context,
-            //     value: "Akash", list: ["Akash", "Ali", "Abubakar"]),
-          ],
-        ),
+          child: Column(
+        children: const [
+          // searchDropDown(context,
+          //     value: "Akash", list: ["Akash", "Ali", "Abubakar"]),
+        ],
       )),
     );
   }

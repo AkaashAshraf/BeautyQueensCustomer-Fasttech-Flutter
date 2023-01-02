@@ -42,6 +42,8 @@ Padding productItem(double cardHeight, BuildContext context,
                               child: Text(
                                 product.nameEn ?? "",
                                 style: TextStyle(
+                                    fontFamily: "primary",
+                                    fontWeight: FontWeight.w600,
                                     color: titleColor,
                                     fontSize:
                                         getTextSize(context).smallItemMainText),
@@ -53,6 +55,7 @@ Padding productItem(double cardHeight, BuildContext context,
                                 product.brandEn ?? "",
                                 maxLines: 1,
                                 style: TextStyle(
+                                    fontFamily: "primary",
                                     color: secondaryTextColor,
                                     fontSize:
                                         getTextSize(context).smallItemSubText),
@@ -68,6 +71,7 @@ Padding productItem(double cardHeight, BuildContext context,
                                     product.price.toStringAsFixed(3),
                                     maxLines: 1,
                                     style: TextStyle(
+                                        fontFamily: "primary",
                                         color: secondaryTextColor,
                                         fontSize: getTextSize(context)
                                             .smallItemSubText),

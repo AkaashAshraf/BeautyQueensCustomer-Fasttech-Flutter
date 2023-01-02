@@ -42,8 +42,9 @@ Card employeesListItem(Employee employee,
                       employee.nameEn.toString(),
                       maxLines: 1,
                       style: TextStyle(
+                          fontFamily: "primary",
                           fontSize: getTextSize(context).twoColumnGridMainText,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           color: primaryColor),
                     ),
                   ),
@@ -53,6 +54,7 @@ Card employeesListItem(Employee employee,
                       Text(
                         employee.countryEn.toString(),
                         style: TextStyle(
+                            fontFamily: "primary",
                             fontSize: getTextSize(context).twoColumnGridSubText,
                             fontWeight: FontWeight.w500,
                             color: secondaryTextColor),
@@ -60,6 +62,7 @@ Card employeesListItem(Employee employee,
                       Text(
                         "${employee.exp.toString()} years",
                         style: TextStyle(
+                            fontFamily: "primary",
                             fontSize: getTextSize(context).twoColumnGridSubText,
                             fontWeight: FontWeight.w500,
                             color: secandaryColor),

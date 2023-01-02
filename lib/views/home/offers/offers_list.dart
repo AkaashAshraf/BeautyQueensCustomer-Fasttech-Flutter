@@ -14,7 +14,7 @@ class _OFFERSList extends State<OFFERSList> {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: appBar(title: "Offers"),
-      body: SafeArea(
+      body: const SafeArea(
         child: Center(child: Text("No data available")),
       ),
     );

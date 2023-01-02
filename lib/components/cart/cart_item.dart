@@ -42,7 +42,8 @@ class CartCardItem extends StatelessWidget {
                         item.nameEn,
                         style: TextStyle(
                             fontSize: width * 0.045,
-                            fontWeight: FontWeight.w500,
+                            fontFamily: "primary",
+                            fontWeight: FontWeight.w600,
                             color: titleColor),
                       ),
                     ),
@@ -51,8 +52,9 @@ class CartCardItem extends StatelessWidget {
                       child: Text(
                         "${item.time.toString()} minutes",
                         style: TextStyle(
+                            fontFamily: "primary",
                             color: secondaryTextColor,
-                            fontSize: screenWidth(context) * 0.03),
+                            fontSize: screenWidth(context) * 0.035),
                       ),
                     ),
                     SizedBox(
@@ -60,8 +62,9 @@ class CartCardItem extends StatelessWidget {
                       child: Text(
                         "${item.unitPrice.toStringAsFixed(3)} OMR",
                         style: TextStyle(
+                            fontFamily: "primary",
                             color: secondaryTextColor,
-                            fontSize: screenWidth(context) * 0.03),
+                            fontSize: screenWidth(context) * 0.035),
                       ),
                     ),
                   ],

@@ -38,6 +38,7 @@ class AuthTopText extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: secandaryColor,
+                    fontFamily: "primary",
                     fontSize: getTextSize(context).authTitleText,
                     fontWeight: FontWeight.w500),
               )),

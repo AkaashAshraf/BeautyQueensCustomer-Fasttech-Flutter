@@ -24,7 +24,7 @@ class _ChooseAuth extends State<ChooseAuth> {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        appBar: noAppBar(),
+        appBar: noAppBar(showCart: false),
         body: SafeArea(
           child: Container(
             decoration: const BoxDecoration(

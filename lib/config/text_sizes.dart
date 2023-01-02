@@ -44,7 +44,7 @@ TextSizes getTextSize(BuildContext context) {
     smallItemMainText: width * 0.045,
     smallItemSubText: width * 0.032,
     twoColumnGridMainText: width * 0.035,
-    twoColumnGridSubText: width * 0.03,
+    twoColumnGridSubText: width * 0.032,
   );
   return sizes;
 }
