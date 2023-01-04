@@ -90,7 +90,7 @@ class _DashboardView extends State<DashboardView> {
                                 Get.to(const SaloonsListView());
                               }),
                               dashboardItem(height, width,
-                                  imgName: "spa.jpg", title: "SPA", onTap: () {
+                                  imgName: "spa.jpeg", title: "SPA", onTap: () {
                                 Get.to(const SPAList());
                               }),
                             ],
@@ -102,7 +102,7 @@ class _DashboardView extends State<DashboardView> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               dashboardItem(height, width,
-                                  imgName: "ladies_gym.jpg",
+                                  imgName: "ladies_gym.jpeg",
                                   title: "Ladies Gym", onTap: () {
                                 Get.to(GYM());
                               }),
