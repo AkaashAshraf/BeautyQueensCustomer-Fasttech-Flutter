@@ -1,6 +1,6 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
-import 'package:beauty_queens_ustomer/views/drawer/appoinments/appointment_Tab.dart';
+import 'package:beauty_queens_ustomer/views/drawer/appoinments/appointment_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 
@@ -12,14 +12,20 @@ class MyAppointmentsList extends StatefulWidget {
 
 class _MyAppointmentsList extends State<MyAppointmentsList> {
   final List<Tab> myTabs = const <Tab>[
+    Tab(text: 'All'),
     Tab(text: 'Pending'),
+    Tab(text: 'Confirmed'),
     Tab(text: 'Completed'),
     Tab(text: 'Cancelled'),
   ];
   final List<Widget> myWidgets = <Widget>[
-    const AppointmentTab(),
-    const AppointmentTab(),
-    const AppointmentTab(),
+    const AppointmentTab(type: 0),
+    const AppointmentTab(type: 1),
+    const AppointmentTab(type: 2),
+    const AppointmentTab(type: 3),
+    const AppointmentTab(
+      type: 4,
+    ),
   ];
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ class RequestedService {
     this.status = 0,
     this.createdAt = "",
     this.updatedAt = "",
-    required this.providerService,
+    this.providerService,
   });
 
   int id;
@@ -26,21 +26,23 @@ class RequestedService {
 
   String createdAt;
   String updatedAt;
-  ProviderService providerService;
+  ProviderService? providerService;
 
   factory RequestedService.fromJson(Map<String, dynamic> json) =>
       RequestedService(
         id: json["id"] ?? 0,
         requestId: json["request_id"] ?? 0,
         serviceId: json["service_id"] ?? 0,
-        price: json["price"] ?? 0,
+        price: double.tryParse(json["price"].toString()) ?? 0,
         disount: json["disount"] ?? 0,
-        priceAfterDiscount: json["price_after_discount"] ?? 0,
+        priceAfterDiscount:
+            double.tryParse(json["price_after_discount"].toString()) ?? 0,
         discountDescription: json["discount_description"] ?? "",
         status: json["status"] ?? 0,
         createdAt: json["created_at"] ?? "",
         updatedAt: json["updated_at"] ?? "",
-        providerService: ProviderService.fromJson(json["provider_service"]),
+        providerService:
+            ProviderService.fromJson(json["provider_service"] ?? []),
       );
 
   Map<String, dynamic> toJson() => {

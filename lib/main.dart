@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final token = storage.read(tokenPath);
+    final token = storage.read(tokenPath) ?? "";
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: token == ""
+      home: token == "" || token
           ? const ChooseAuth(
               title: "",
             )

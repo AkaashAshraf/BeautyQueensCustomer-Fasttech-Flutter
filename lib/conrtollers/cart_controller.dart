@@ -1,7 +1,9 @@
 import 'package:beauty_queens_ustomer/components/common/text_alert.dart';
 import 'package:beauty_queens_ustomer/components/common/toasts.dart';
+import 'package:beauty_queens_ustomer/config/storages.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/http/http.dart';
+import 'package:beauty_queens_ustomer/main.dart';
 import 'package:beauty_queens_ustomer/models/simple/cart.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
@@ -68,7 +70,9 @@ class CartController extends GetxController {
         ToastMessages.showError("Please select services");
       }
       var map = new Map<String, dynamic>();
-      map['user_id'] = '1';
+      var userid = MyApp().storage.read(userIDPath);
+
+      map['user_id'] = userid.toString();
       map['emp_id'] = selectedEmployee.toString();
       map['date'] = datetime;
       map['saloon_id'] = selectedSaloon.value.id.toString();

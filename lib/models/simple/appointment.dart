@@ -1,4 +1,6 @@
+import 'package:beauty_queens_ustomer/models/simple/employee_table.dart';
 import 'package:beauty_queens_ustomer/models/simple/requested_service.dart';
+import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 
 class Appointment {
   Appointment({
@@ -18,6 +20,8 @@ class Appointment {
     this.updatedAt = '',
     this.timeElapsed = 0,
     required this.requestedServices,
+    required this.employee,
+    required this.saloon,
   });
 
   int id;
@@ -35,6 +39,9 @@ class Appointment {
   String createdAt;
   String updatedAt;
   int timeElapsed;
+  Employee employee;
+  Saloon saloon;
+
   List<RequestedService> requestedServices;
 
   factory Appointment.fromJson(Map<String, dynamic> json) => Appointment(
@@ -43,16 +50,19 @@ class Appointment {
         customerId: json["customer_id"] ?? 0,
         employeeId: json["employee_id"] ?? 0,
         status: json["status"] ?? 0,
-        totalAmount: json["total_amount"] ?? 0,
+        totalAmount: double.tryParse(json["total_amount"].toString()) ?? 0.0,
         totalServices: json["total_services"] ?? 0,
         discount: json["discount"] ?? 0,
-        priceAfterDiscount: json["price_after_discount"] ?? 0,
+        priceAfterDiscount:
+            double.tryParse(json["price_after_discount"].toString()) ?? 0,
         discountDescription: json["discount_description"] ?? "",
         respondBy: json["respond_by"],
         appointmentDateTime: json["appointment_date_time"] ?? "",
         createdAt: json["created_at"] ?? "",
         updatedAt: json["updated_at"] ?? "",
         timeElapsed: json["time_elapsed"] ?? 0,
+        employee: Employee.fromJson(json["employee"]),
+        saloon: Saloon.fromJson(json["saloon"]),
         requestedServices: List<RequestedService>.from(
             json["requested_services"]
                 .map((x) => RequestedService.fromJson(x))),
@@ -74,6 +84,8 @@ class Appointment {
         "created_at": createdAt,
         "updated_at": updatedAt,
         "time_elapsed": timeElapsed,
+        "employee": employee.toJson(),
+        "saloon": saloon.toJson(),
         "requested_services":
             List<dynamic>.from(requestedServices.map((x) => x.toJson())),
       };

@@ -60,7 +60,7 @@ class ProviderService {
         descriptionEn: json["description_en"] ?? "",
         descriptionAr: json["description_ar"] ?? "",
         image: json["image"] ?? "",
-        generalService: GeneralService.fromJson(json["general_service"]),
+        generalService: GeneralService.fromJson(json["general_service"] ?? []),
       );
 
   Map<String, dynamic> toJson() => {

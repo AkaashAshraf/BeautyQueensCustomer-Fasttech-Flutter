@@ -1,3 +1,5 @@
+import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,5 +22,41 @@ class HelperController extends GetxController {
   openUrl({required String url}) async {
     final Uri uri = Uri.parse(url);
     await launchUrl(uri);
+  }
+
+  String getStatusMessage(int status) {
+    switch (status) {
+      case 1:
+        return "Pending";
+      case 2:
+        return "Confirmed";
+      case 3:
+        return "Availed";
+      case 4:
+        return "Rejected";
+      case 5:
+        return "Cancelled";
+
+      default:
+        return "Pending";
+    }
+  }
+
+  Color getStatusColor(int status) {
+    switch (status) {
+      case 1:
+        return Colors.orange;
+      case 2:
+        return Colors.green;
+      case 3:
+        return primaryColor;
+      case 4:
+        return Colors.red;
+      case 5:
+        return Colors.red;
+
+      default:
+        return Colors.orange;
+    }
   }
 }
