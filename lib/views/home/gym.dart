@@ -2,6 +2,7 @@ import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/products/shops_list_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/gym_controller.dart';
+import 'package:beauty_queens_ustomer/views/products/gym_details_view.dart';
 import 'package:beauty_queens_ustomer/views/products/shop_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,7 @@ class _GYM extends State<GYM> {
                       child: shopsListItem(controller.gymCenterList[index],
                           context: context, onPress: (shop) {
                         controller.fetchShopProducts(shop: shop.id);
-                        Get.to(() => ShopsDetailsView(
+                        Get.to(() => GYMDetailsView(
                               shop: shop,
                             ));
                       })),

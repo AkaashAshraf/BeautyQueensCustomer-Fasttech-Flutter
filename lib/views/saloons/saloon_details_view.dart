@@ -247,6 +247,26 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                 ],
                               ),
                               const SizedBox(height: 10),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: width * 0.7,
+                                      child: const Text(
+                                        "Description: dummy description text",
+                                        style: TextStyle(
+                                          color: secondaryTextColor,
+                                          fontFamily: "primary",
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),

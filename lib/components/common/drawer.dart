@@ -56,13 +56,28 @@ class MenuDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            drawerItem(context, onPress: () {
+            drawerItem(context,
+                icon: const Icon(
+                  Icons.supervised_user_circle_outlined,
+                  size: 25,
+                  color: textInputIconColor,
+                ), onPress: () {
               Get.to(const Profile());
             }, title: "Profile"),
-            drawerItem(context, onPress: () {
+            drawerItem(context,
+                icon: const Icon(
+                  Icons.book_outlined,
+                  size: 25,
+                  color: textInputIconColor,
+                ), onPress: () {
               Get.to(const MyAppointmentsList());
             }, title: "My Appointments"),
-            drawerItem(context, onPress: () {
+            drawerItem(context,
+                icon: const Icon(
+                  Icons.notifications,
+                  size: 25,
+                  color: textInputIconColor,
+                ), onPress: () {
               Get.to(const NotificationsList());
             }, title: "Notifications"),
             if (false)
@@ -78,7 +93,12 @@ class MenuDrawer extends StatelessWidget {
                   // ...
                 },
               ),
-            drawerItem(context, onPress: () {
+            drawerItem(context,
+                icon: const Icon(
+                  Icons.logout,
+                  size: 25,
+                  color: textInputIconColor,
+                ), onPress: () {
               textAlert(context,
                   title: "Are you sure you want to logout?",
                   buttons: DialogButton(
@@ -94,7 +114,12 @@ class MenuDrawer extends StatelessWidget {
                         style: TextStyle(color: Colors.white),
                       ))).show();
             }, title: "Logout"),
-            drawerItem(context, onPress: () {
+            drawerItem(context,
+                icon: const Icon(
+                  Icons.language,
+                  size: 25,
+                  color: textInputIconColor,
+                ), onPress: () {
               ToastMessages.showWarning("Will available soon");
             }, title: 'Change Language to   عربى'),
           ],
@@ -104,13 +129,9 @@ class MenuDrawer extends StatelessWidget {
   }
 
   ListTile drawerItem(BuildContext context,
-      {required dynamic onPress, required String title}) {
+      {required dynamic onPress, required String title, required Widget icon}) {
     return ListTile(
-        leading: const Icon(
-          Icons.my_library_books_outlined,
-          size: 25,
-          color: textInputIconColor,
-        ),
+        leading: icon,
         title: Text(
           title,
           style: TextStyle(
