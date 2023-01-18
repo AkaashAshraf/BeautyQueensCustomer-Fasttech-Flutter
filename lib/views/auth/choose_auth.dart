@@ -2,6 +2,8 @@ import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/logo_image.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
+import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/views/auth/log_in.dart';
 import 'package:beauty_queens_ustomer/views/auth/sign_up.dart';
 import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
@@ -22,6 +24,8 @@ class _ChooseAuth extends State<ChooseAuth> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    Get.put(AuthController());
+    Get.put(CartController());
 
     return Scaffold(
         appBar: noAppBar(showCart: false),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:beauty_queens_ustomer/config/constants.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
@@ -9,6 +11,8 @@ Future<dynamic> post(String url, dynamic body) async {
       "Accept": "application/json",
       // "Authorization": "Bearer $token"
     });
+    // inspect(response);
+
     print("url hitted now  ======>${baseUrl + url}");
     print(
         "response of api-------------------------------------------------start");

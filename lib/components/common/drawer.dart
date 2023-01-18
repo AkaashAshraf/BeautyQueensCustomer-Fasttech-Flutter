@@ -1,11 +1,8 @@
 import 'package:beauty_queens_ustomer/components/common/text_alert.dart';
 import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
-import 'package:beauty_queens_ustomer/config/storages.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
-import 'package:beauty_queens_ustomer/main.dart';
-import 'package:beauty_queens_ustomer/views/auth/choose_auth.dart';
 import 'package:beauty_queens_ustomer/views/drawer/appoinments/my_appointments.dart';
 import 'package:beauty_queens_ustomer/views/drawer/notifications/notifications.dart';
 import 'package:beauty_queens_ustomer/views/drawer/profile/my_profile.dart';
@@ -46,7 +43,7 @@ class MenuDrawer extends StatelessWidget {
                   SizedBox(
                       width: width * 0.8,
                       child: Text(
-                        controller.userInfo.value.name.toString(),
+                        controller.userInfo.value.name ?? "Guest User",
                         style: TextStyle(
                             color: primaryColor,
                             fontFamily: "primary",
@@ -103,11 +100,7 @@ class MenuDrawer extends StatelessWidget {
                   title: "Are you sure you want to logout?",
                   buttons: DialogButton(
                       onPressed: (() {
-                        MyApp().storage.write(tokenPath, "");
-                        MyApp().storage.write(userIDPath, "");
-                        MyApp().storage.write(userNamePath, "");
-                        MyApp().storage.write(userDataPath, "");
-                        Get.offAll(const ChooseAuth(title: ""));
+                        Get.put(AuthController()).logout();
                       }),
                       child: const Text(
                         "Yes",

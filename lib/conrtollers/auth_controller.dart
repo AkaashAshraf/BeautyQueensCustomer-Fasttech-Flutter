@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/config/storages.dart';
 import 'package:beauty_queens_ustomer/config/sub_urls.dart';
 import 'package:beauty_queens_ustomer/http/http.dart';
 import 'package:beauty_queens_ustomer/main.dart';
 import 'package:beauty_queens_ustomer/models/auth/login.dart';
+import 'package:beauty_queens_ustomer/views/auth/choose_auth.dart';
 import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
 import 'package:get/get.dart';
 
@@ -30,6 +29,19 @@ class AuthController extends GetxController {
     super.onInit();
   }
 
+  logout() {
+    MyApp().storage.remove(tokenPath);
+    MyApp().storage.remove(userIDPath);
+    MyApp().storage.remove(userNamePath);
+    MyApp().storage.remove(userDataPath);
+    name.value = "";
+    contact.value = "";
+    password.value = "";
+    userInfo.value = User();
+
+    Get.offAll(const ChooseAuth(title: ""));
+  }
+
   getUserInfoFromCache() {
     final rawData = MyApp().storage.read(userDataPath);
     final loginResponse = loginFromJson(rawData);
@@ -49,7 +61,7 @@ class AuthController extends GetxController {
     try {
       var response = await post(
           loginUrl, {"user_name": contact.value, "password": password.value});
-      inspect(response);
+      // inspect(response);
       if (response.statusCode == 200) {
         var jsonData = loginFromJson(response.body);
         MyApp().storage.write(tokenPath, jsonData.data!.token);
@@ -58,8 +70,9 @@ class AuthController extends GetxController {
         MyApp().storage.write(userDataPath, loginToJson(jsonData));
         ToastMessages.showSuccess("Logged in successfully");
         // Get.to(const DashboardView(title: ""));
-        Get.offAll(const DashboardView(title: ""));
+        getUserInfoFromCache();
 
+        Get.offAll(const DashboardView(title: ""));
         // Get.toEnd(() => const DashboardView(title: ""));
       } else {
         ToastMessages.showSuccess("Logged in successfully bnbn");
@@ -73,8 +86,7 @@ class AuthController extends GetxController {
 
   signUp() async {
     if (contact.value.length < 8) {
-      ToastMessages.showError(
-          "Please Enter a valid mobile number" + contact.value);
+      ToastMessages.showError("Please Enter a valid mobile number");
       return;
     }
 
@@ -93,8 +105,7 @@ class AuthController extends GetxController {
         "password": password.value,
         "name": name.value
       });
-      inspect(response);
-      if (response.statusCode == 200) {
+      if (response != null) {
         var jsonData = loginFromJson(response.body);
         MyApp().storage.write(tokenPath, jsonData.data!.token);
         MyApp().storage.write(userIDPath, jsonData.data!.user!.id.toString());
@@ -102,11 +113,12 @@ class AuthController extends GetxController {
         MyApp().storage.write(userDataPath, loginToJson(jsonData));
         ToastMessages.showSuccess("Logged in successfully");
         // Get.to(const DashboardView(title: ""));
+        getUserInfoFromCache();
         Get.offAll(const DashboardView(title: ""));
 
         // Get.toEnd(() => const DashboardView(title: ""));
       } else {
-        ToastMessages.showSuccess("Logged in successfully bnbn");
+        ToastMessages.showError("This number already exist ");
       }
     } catch (e) {
       ToastMessages.showError(e.toString());

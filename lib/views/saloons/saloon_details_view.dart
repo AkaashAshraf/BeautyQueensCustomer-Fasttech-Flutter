@@ -55,34 +55,6 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        elevation: 0,
-        child: SizedBox(
-          height: height * 0.06,
-          child: cartController.items.isNotEmpty
-              ? Flexible(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Get.to(const Checkout());
-                        },
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(secandaryColor),
-                        ),
-                        child: Text(
-                          "Checkout",
-                          style: TextStyle(
-                              fontSize: width * 0.05, fontFamily: "primary"),
-                        )),
-                  ),
-                )
-              : Container(),
-        ),
-      ),
       appBar: appBar(title: widget.saloon.nameEn!),
       body: SafeArea(
           child: SingleChildScrollView(
