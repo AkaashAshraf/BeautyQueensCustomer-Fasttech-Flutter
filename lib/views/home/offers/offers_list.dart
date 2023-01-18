@@ -13,7 +13,7 @@ class _OFFERSList extends State<OFFERSList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Offers"),
+      appBar: appBar(title: "Offers", showCart: false),
       body: const SafeArea(
         child: Center(child: Text("No data available")),
       ),

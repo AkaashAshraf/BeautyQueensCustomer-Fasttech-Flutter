@@ -1,15 +1,13 @@
 import 'package:beauty_queens_ustomer/http/http.dart';
+import 'package:beauty_queens_ustomer/models/providers/providers_list.dart';
 import 'package:beauty_queens_ustomer/models/response/employee_list.dart';
 import 'package:beauty_queens_ustomer/models/response/saloon_list.dart';
 import 'package:beauty_queens_ustomer/models/response/service_list.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
-import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
-import 'package:beauty_queens_ustomer/models/simple/service.dart';
 import 'package:get/state_manager.dart';
 
 class SPAController extends GetxController {
-  RxList<Saloon> spaList = <Saloon>[].obs;
-  RxList<Service> services = <Service>[].obs;
+  RxList<Provider> spaList = <Provider>[].obs;
   RxList<Employee> employees = <Employee>[].obs;
 
   RxBool saloonListLoading = false.obs;
@@ -24,9 +22,9 @@ class SPAController extends GetxController {
       saloonListLoading(true);
       final result = await post("/client/salons/list", {"type": "2"});
       if (result != null) {
-        final saloons = saloonsFromJson(result?.body);
+        final saloons = providersFromJson(result?.body);
 
-        spaList(saloons.data);
+        spaList(saloons!.data);
       }
     } finally {
       saloonListLoading(false);

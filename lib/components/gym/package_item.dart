@@ -1,11 +1,11 @@
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
-import 'package:beauty_queens_ustomer/models/simple/gym_package.dart';
+import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
 import 'package:flutter/material.dart';
 
 Padding packageItem(double cardHeight, BuildContext context,
-    {required GYMPackage item}) {
+    {required GymPackage item}) {
   return Padding(
     padding: const EdgeInsets.only(top: 2.0, left: 5, right: 5),
     child: SizedBox(
@@ -24,7 +24,7 @@ Padding packageItem(double cardHeight, BuildContext context,
                     ClipRRect(
                       borderRadius: BorderRadius.circular(5.0),
                       child: Image.network(
-                        imageBaseUrl + item.image,
+                        imageBaseUrl + item.image.toString(),
                         fit: BoxFit.fill,
                         height: cardHeight,
                         width: cardHeight * 0.99,
@@ -40,7 +40,7 @@ Padding packageItem(double cardHeight, BuildContext context,
                             SizedBox(
                               width: screenWidth(context) * 0.65,
                               child: Text(
-                                item.nameEn,
+                                item.nameEn.toString(),
                                 style: TextStyle(
                                     fontFamily: "primary",
                                     fontWeight: FontWeight.w600,
@@ -52,7 +52,7 @@ Padding packageItem(double cardHeight, BuildContext context,
                             SizedBox(
                               width: screenWidth(context) * 0.65,
                               child: Text(
-                                item.description,
+                                item.description.toString(),
                                 maxLines: 1,
                                 style: TextStyle(
                                     fontFamily: "primary",
@@ -68,7 +68,7 @@ Padding packageItem(double cardHeight, BuildContext context,
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "${item.price.toStringAsFixed(3)} OMR",
+                                    "${item.price?.toStringAsFixed(3)} OMR",
                                     maxLines: 1,
                                     style: TextStyle(
                                         fontFamily: "primary",
@@ -77,7 +77,7 @@ Padding packageItem(double cardHeight, BuildContext context,
                                             .smallItemSubText),
                                   ),
                                   Text(
-                                    "${item.period.toString()} Months",
+                                    "${item.duration.toString()} Months",
                                     maxLines: 1,
                                     style: TextStyle(
                                         fontFamily: "primary",

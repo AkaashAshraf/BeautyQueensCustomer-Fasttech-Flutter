@@ -1,15 +1,11 @@
 import 'package:beauty_queens_ustomer/http/http.dart';
+import 'package:beauty_queens_ustomer/models/providers/providers_list.dart';
 import 'package:beauty_queens_ustomer/models/response/employee_list.dart';
-import 'package:beauty_queens_ustomer/models/response/saloon_list.dart';
-import 'package:beauty_queens_ustomer/models/response/service_list.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
-import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
-import 'package:beauty_queens_ustomer/models/simple/service.dart';
 import 'package:get/state_manager.dart';
 
 class SaloonsController extends GetxController {
-  RxList<Saloon> saloonsList = <Saloon>[].obs;
-  RxList<Service> services = <Service>[].obs;
+  RxList<Provider> saloonsList = <Provider>[].obs;
   RxList<Employee> employees = <Employee>[].obs;
 
   RxBool saloonListLoading = false.obs;
@@ -25,9 +21,9 @@ class SaloonsController extends GetxController {
       saloonListLoading(true);
       final result = await post("/client/salons/list", {});
       if (result != null) {
-        final saloons = saloonsFromJson(result?.body);
+        final saloons = providersFromJson(result?.body);
 
-        saloonsList(saloons.data);
+        saloonsList(saloons!.data!);
       }
     } finally {
       saloonListLoading(false);
@@ -44,21 +40,6 @@ class SaloonsController extends GetxController {
         final employeesResulut = employeesFromJson(result?.body);
         employees.value = employeesResulut.data!;
         return employeesResulut.data;
-      }
-    } finally {
-      saloonListLoading(false);
-    }
-  }
-
-  fetchServicesList({required int id}) async {
-    try {
-      saloonListLoading(true);
-      final result = await post(
-          "/admin/services/list", {"user_id": id.toString(), "type": "1"});
-      if (result != null) {
-        final servicesResponse = servicesFromJson(result?.body);
-        print(servicesResponse.toJson());
-        return servicesResponse.data;
       }
     } finally {
       saloonListLoading(false);

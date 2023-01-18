@@ -22,7 +22,7 @@ class _GYM extends State<GYM> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "GYM Centers"),
+      appBar: appBar(title: "GYM Centers", showCart: false),
       body: SafeArea(child: GetX<GYMController>(builder: (controller) {
         return SizedBox(
           child: ListView.builder(
@@ -36,7 +36,6 @@ class _GYM extends State<GYM> {
 
                       child: shopsListItem(controller.gymCenterList[index],
                           context: context, onPress: (shop) {
-                        controller.fetchShopProducts(shop: shop.id);
                         Get.to(() => GYMDetailsView(
                               shop: shop,
                             ));

@@ -26,7 +26,7 @@ class AppoinmentController extends GetxController {
           "/client/appointments/my-list", {"user_id": userid.toString()});
       if (result != null) {
         final products = appointmentsFromJson(result?.body);
-        appoinments.value = products.data;
+        appoinments.value = products.data.reversed.toList();
         return products.data;
       }
     } finally {

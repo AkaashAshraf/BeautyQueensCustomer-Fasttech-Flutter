@@ -6,11 +6,10 @@ import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
 import 'package:beauty_queens_ustomer/components/gym/package_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
-import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
+import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
 import 'package:beauty_queens_ustomer/models/simple/gym_package.dart';
-import 'package:beauty_queens_ustomer/models/simple/shop.dart';
 import 'package:beauty_queens_ustomer/views/saloons/employees_list_view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +66,7 @@ class _GYMDetailsView extends State<GYMDetailsView> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: widget.shop.nameEn!),
+      appBar: appBar(title: widget.shop.nameEn!, showCart: false),
       body: SafeArea(
           child: SingleChildScrollView(
               child: Column(
@@ -334,8 +333,8 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                         child: iconButton(
                             onClick: () async {
                               Get.put(HelperController()).openLocation(
-                                latitude: widget.shop.latitude,
-                                longitude: widget.shop.longitude,
+                                latitude: widget.shop.id,
+                                longitude: widget.shop.id,
                               );
                             },
                             icon: const Icon(
@@ -371,11 +370,11 @@ class _GYMDetailsView extends State<GYMDetailsView> {
               ),
             ],
           ),
-          for (var i = 0; i < packages.length; i++)
+          for (var i = 0; i < widget.shop.gymPackages!.length; i++)
             packageItem(
               cardHeight,
               context,
-              item: packages[i],
+              item: widget.shop.gymPackages![i]!,
             )
         ],
       ))),

@@ -1,11 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
-import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
+import 'package:beauty_queens_ustomer/models/providers/providers_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-Card saloonListItem(Saloon saloon,
+Card saloonListItem(Provider saloon,
     {required dynamic onPress, required BuildContext context}) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
@@ -26,7 +26,7 @@ Card saloonListItem(Saloon saloon,
             child: Image.network(
               "$imageBaseUrl/${saloon.imagePath}",
               fit: BoxFit.cover,
-              height: cardHeight * 0.62,
+              height: cardHeight * 0.58,
               width: width,
             ),
           ),

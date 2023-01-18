@@ -35,7 +35,7 @@ class _MyAppointmentsList extends State<MyAppointmentsList> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: appBar(title: "My Appointments"),
+      appBar: appBar(title: "My Appointments", showCart: false),
       body: SafeArea(
         child: DefaultTabController(
           length: myTabs.length,

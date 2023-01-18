@@ -9,21 +9,18 @@ import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
+import 'package:beauty_queens_ustomer/models/providers/providers_list.dart';
 import 'package:beauty_queens_ustomer/models/simple/cart.dart';
-import 'package:beauty_queens_ustomer/models/simple/employee.dart';
-import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
-import 'package:beauty_queens_ustomer/models/simple/service.dart';
 import 'package:beauty_queens_ustomer/views/home/checkout.dart';
 import 'package:beauty_queens_ustomer/views/saloons/employees_list_view.dart';
-import 'package:beauty_queens_ustomer/views/saloons/tabs/employees_tab.dart';
 import 'package:beauty_queens_ustomer/views/saloons/tabs/services_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 class SaloonDetailsView extends StatefulWidget {
-  SaloonDetailsView({Key? key, required this.saloon}) : super(key: key);
-  final Saloon saloon;
+  const SaloonDetailsView({Key? key, required this.saloon}) : super(key: key);
+  final Provider saloon;
 
   @override
   State<SaloonDetailsView> createState() => _SaloonDetailsView();
@@ -44,13 +41,6 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
   }
 
   getInitializeObjects() async {
-    final resServices =
-        await controller.fetchServicesList(id: widget.saloon.id!);
-    setState(() {
-      // employees = resEmployees;
-      services = resServices;
-      loading = false;
-    });
     controller.fetchEmployeesList(id: widget.saloon.id ?? 0);
   }
 
@@ -274,10 +264,10 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                       ],
                     ),
                   ),
-                  if (loading == true) const Center(child: LoadingIndicatore()),
-                  for (var i = 0; i < services.length; i++)
+                  for (var i = 0; i < widget.saloon.services!.length; i++)
                     serviceItem(cardHeight, context,
-                        service: services[i], saloon: widget.saloon),
+                        service: widget.saloon.services![i],
+                        saloon: widget.saloon),
 
                   // ListView.builder(
                   //     itemCount: widget.controller.saloonsList.length,
@@ -397,55 +387,6 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                   //   saloonID: widget.saloon.id!,
                   //   services: services,
                   // ),
-                  if (false)
-                    SizedBox(
-                      child: DefaultTabController(
-                        length: 2,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            const SizedBox(
-                              child: TabBar(tabs: [
-                                Tab(
-                                  child: Text(
-                                    "Services",
-                                    style: TextStyle(color: tabTextColor),
-                                  ),
-                                ),
-                                Tab(
-                                  child: Text(
-                                    "Employees",
-                                    style: TextStyle(color: tabTextColor),
-                                  ),
-                                ),
-                              ]),
-                            ),
-                            SizedBox(
-                              //Add this to give height
-                              height: MediaQuery.of(context).size.height,
-                              child: TabBarView(children: [
-                                ServicesTab(
-                                  saloonID: widget.saloon.id!,
-                                  services: services,
-                                ),
-                                // EmployeesTab(employees: employees),
-                                // Column(
-                                //   children: <Widget>[
-                                //     for (var item in employees) // Rest of the items
-
-                                //       SizedBox(
-                                //         height: 67,
-                                //         child: Text("Akash"),
-                                //       )
-                                //   ],
-                                // )
-                                // EmployeesTab(employees: employees)
-                              ]),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                 ],
               ),
             ),
@@ -456,7 +397,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
   }
 
   Padding serviceItem(double cardHeight, BuildContext context,
-      {required Service service, required Saloon saloon}) {
+      {required Service service, required Provider saloon}) {
     return Padding(
       padding: const EdgeInsets.only(top: 2.0, left: 5, right: 5),
       child: SizedBox(
@@ -475,7 +416,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(5.0),
                         child: Image.network(
-                          imageBaseUrl + service.assigneeImage.toString(),
+                          imageBaseUrl + service.image.toString(),
                           fit: BoxFit.fill,
                           height: cardHeight,
                           width: cardHeight * 0.99,
@@ -491,7 +432,8 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                               SizedBox(
                                 width: screenWidth(context) * 0.65,
                                 child: Text(
-                                  service.nameEn ?? "",
+                                  service.generalService?.nameEn.toString() ??
+                                      "",
                                   style: TextStyle(
                                       fontFamily: "primary",
                                       color: titleColor,
@@ -582,12 +524,12 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                         } else {
                           cartController.addToCart(
                               CartItem(
-                                  imagePath: service.assigneeImage ?? "",
-                                  productID: service.serviceAssigneeId ?? 0,
-                                  providerID: service.serviceAssigneeId ?? 0,
-                                  nameEn: service.nameEn ?? "",
-                                  time: service.time,
-                                  nameAr: service.nameAr ?? "",
+                                  imagePath: service.image ?? "",
+                                  productID: service.id ?? 0,
+                                  providerID: service.companyId ?? 0,
+                                  nameEn: service.generalService?.nameEn ?? "",
+                                  time: service.time ?? 0,
+                                  nameAr: service.generalService?.nameAr ?? "",
                                   unitPrice:
                                       double.tryParse(service.charges!) ?? 0),
                               saloon);
@@ -600,8 +542,8 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                         //     .first
                         //     .isAddedToCart = isAdded;
 
-                        Get.put(
-                            SaloonsController().services.first.isAddedToCart);
+                        // Get.put(
+                        //     SaloonsController().services.first.isAddedToCart);
                       },
                       child: const Icon(
                         Icons.shopping_cart,

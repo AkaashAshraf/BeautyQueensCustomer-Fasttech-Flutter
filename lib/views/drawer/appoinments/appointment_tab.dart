@@ -1,14 +1,9 @@
 import 'package:beauty_queens_ustomer/components/appointments/appointment_item.dart';
 import 'package:beauty_queens_ustomer/components/common/loading_indicator.dart';
-import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/appointment_controller.dart';
-import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
-import 'package:beauty_queens_ustomer/models/simple/appointment.dart';
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 class AppointmentTab extends StatefulWidget {
   const AppointmentTab({Key? key, required this.type}) : super(key: key);

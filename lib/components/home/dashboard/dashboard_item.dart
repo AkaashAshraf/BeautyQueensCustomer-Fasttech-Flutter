@@ -7,8 +7,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 Container dashboardItem(double height, double width,
     {required dynamic onTap, required String imgName, required String title}) {
   return Container(
-    height: width * 0.4,
-    width: width * 0.35,
+    // height: width * 0.4,
+    // width: width * 0.35,
     child: Animate(
       effects: const [
         FadeEffect(delay: Duration(milliseconds: 400)),
