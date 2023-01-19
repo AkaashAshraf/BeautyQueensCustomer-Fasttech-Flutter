@@ -33,7 +33,7 @@ class _AppointmentTab extends State<AppointmentTab> {
                             .isEmpty)
                 ? Center(
                     child: Text(
-                    "No data available",
+                    "No appointments available",
                     style: TextStyle(
                         fontFamily: "primary",
                         fontSize: screenWidth(context) * 0.04),
@@ -46,8 +46,7 @@ class _AppointmentTab extends State<AppointmentTab> {
                                     (element) => element.status == widget.type)
                                 .isEmpty)
                     ? const Center(child: LoadingIndicatore())
-                    : Expanded(
-                        child: ListView.builder(
+                    : ListView.builder(
                         itemCount: widget.type == 0
                             ? controller.appoinments.length
                             : controller.appoinments
@@ -66,7 +65,7 @@ class _AppointmentTab extends State<AppointmentTab> {
                                     .toList()[index],
                           );
                         },
-                      )));
+                      ));
       }),
     );
   }

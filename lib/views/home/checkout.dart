@@ -47,178 +47,186 @@ class _Checkout extends State<Checkout> {
               child: SizedBox(
                   height: height * 0.9,
                   child: controller.items.isNotEmpty
-                      ? Column(
+                      ? Stack(
                           children: [
-                            DateTimePicker(
-                              initialValue: '',
-                              type: DateTimePickerType.dateTime,
-                              icon: const Icon(Icons.calendar_month),
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(2100),
-                              dateLabelText: 'Appointment Date',
-                              onChanged: (val) => setState(() {
-                                dateTime = val;
-                              }),
-                              validator: (val) {
-                                return null;
-                              },
-                              onSaved: (val) => setState(() {
-                                dateTime = val ?? "";
-                              }),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SizedBox(
-                                height: height * 0.03,
-                                width: width,
-                                child: Text(
-                                  "Choose Employee",
-                                  style: TextStyle(
-                                      fontFamily: "primary",
-                                      fontSize: width * 0.04,
-                                      fontWeight: FontWeight.w600),
+                            Column(
+                              children: [
+                                DateTimePicker(
+                                  initialValue: '',
+                                  type: DateTimePickerType.dateTime,
+                                  icon: const Icon(Icons.calendar_month),
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2100),
+                                  dateLabelText: 'Appointment Date',
+                                  onChanged: (val) => setState(() {
+                                    dateTime = val;
+                                  }),
+                                  validator: (val) {
+                                    return null;
+                                  },
+                                  onSaved: (val) => setState(() {
+                                    dateTime = val ?? "";
+                                  }),
                                 ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: height * 0.33,
-                              child: GridView.count(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 4.0,
-                                mainAxisSpacing: 8.0,
-                                children: List.generate(
-                                    controller.employeesList.length, (index) {
-                                  return Center(
-                                      child: SizedBox(
-                                    // width: 200,
-                                    child: employeesListItem2(
-                                        controller.employeesList[index],
-                                        context: context,
-                                        onPress: (Employee employee) {
-                                      controller.selectedEmployee.value =
-                                          employee.empId!;
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    height: height * 0.03,
+                                    width: width,
+                                    child: Text(
+                                      "Choose Employee",
+                                      style: TextStyle(
+                                          fontFamily: "primary",
+                                          fontSize: width * 0.04,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.33,
+                                  child: GridView.count(
+                                    crossAxisCount: 3,
+                                    crossAxisSpacing: 4.0,
+                                    mainAxisSpacing: 8.0,
+                                    children: List.generate(
+                                        controller.employeesList.length,
+                                        (index) {
+                                      return Center(
+                                          child: SizedBox(
+                                        // width: 200,
+                                        child: employeesListItem2(
+                                            controller.employeesList[index],
+                                            context: context,
+                                            onPress: (Employee employee) {
+                                          controller.selectedEmployee.value =
+                                              employee.empId!;
+                                        }),
+                                      ));
                                     }),
-                                  ));
-                                }),
-                              ),
-                            ),
-                            SizedBox(
-                              height: height * 0.3,
-                              child: DataTable2(
-                                  dataRowColor:
-                                      MaterialStateProperty.all(Colors.white),
-                                  columnSpacing: 12,
-                                  horizontalMargin: 12,
-                                  minWidth: width * 0.9,
-                                  columns: const [
-                                    DataColumn2(
-                                      label: Text(
-                                        'No:',
-                                        style: TextStyle(
-                                            fontFamily: "primary",
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      size: ColumnSize.S,
-                                    ),
-                                    DataColumn2(
-                                      label: Text(
-                                        'Service Name',
-                                        style: TextStyle(
-                                            fontFamily: "primary",
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      size: ColumnSize.L,
-                                    ),
-                                    DataColumn2(
-                                      label: Text(
-                                        'Time',
-                                        style: TextStyle(
-                                            fontFamily: "primary",
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      size: ColumnSize.L,
-                                    ),
-                                    DataColumn2(
-                                      label: Text(
-                                        'Price',
-                                        style: TextStyle(
-                                            fontFamily: "primary",
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      size: ColumnSize.S,
-                                    ),
-                                  ],
-                                  rows: List<DataRow>.generate(
-                                      controller.items.length,
-                                      (index) => DataRow(cells: [
-                                            DataCell(Text(
-                                              (index + 1).toString(),
-                                              style: const TextStyle(
-                                                  fontFamily: "primary"),
-                                            )),
-                                            DataCell(Text(
-                                              controller.items[index].nameEn,
-                                              style: const TextStyle(
-                                                  fontFamily: "primary"),
-                                            )),
-                                            DataCell(Text(
-                                              controller.items[index].time
-                                                  .toString(),
-                                              style: const TextStyle(
-                                                  fontFamily: "primary"),
-                                            )),
-                                            DataCell(Text(
-                                              "${controller.items[index].unitPrice.toStringAsFixed(3)} OMR",
-                                              style: const TextStyle(
-                                                  fontFamily: "primary"),
-                                            )),
-                                          ]))),
-                            ),
-                            const DottedLine(),
-                            SizedBox(
-                              width: width,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Services: ${controller.items.length.toString()}",
-                                      style: TextStyle(
-                                          fontFamily: "primary",
-                                          fontSize: width * 0.04,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      "Time: ${controller.totalTime.toString()}",
-                                      style: TextStyle(
-                                          fontFamily: "primary",
-                                          fontSize: width * 0.04,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      "Amount: ${controller.totalPrice.toStringAsFixed(3)} OMR",
-                                      style: TextStyle(
-                                          fontFamily: "primary",
-                                          fontSize: width * 0.04,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            const DottedLine(),
-                            const SizedBox(
-                              height: 10,
+                                SizedBox(
+                                  height: height * 0.3,
+                                  child: DataTable2(
+                                      dataRowColor: MaterialStateProperty.all(
+                                          Colors.white),
+                                      columnSpacing: 12,
+                                      horizontalMargin: 12,
+                                      minWidth: width * 0.9,
+                                      columns: const [
+                                        DataColumn2(
+                                          label: Text(
+                                            'No:',
+                                            style: TextStyle(
+                                                fontFamily: "primary",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          label: Text(
+                                            'Service Name',
+                                            style: TextStyle(
+                                                fontFamily: "primary",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          size: ColumnSize.L,
+                                        ),
+                                        DataColumn2(
+                                          label: Text(
+                                            'Time',
+                                            style: TextStyle(
+                                                fontFamily: "primary",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          size: ColumnSize.L,
+                                        ),
+                                        DataColumn2(
+                                          label: Text(
+                                            'Price',
+                                            style: TextStyle(
+                                                fontFamily: "primary",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          size: ColumnSize.S,
+                                        ),
+                                      ],
+                                      rows: List<DataRow>.generate(
+                                          controller.items.length,
+                                          (index) => DataRow(cells: [
+                                                DataCell(Text(
+                                                  (index + 1).toString(),
+                                                  style: const TextStyle(
+                                                      fontFamily: "primary"),
+                                                )),
+                                                DataCell(Text(
+                                                  controller
+                                                      .items[index].nameEn,
+                                                  style: const TextStyle(
+                                                      fontFamily: "primary"),
+                                                )),
+                                                DataCell(Text(
+                                                  controller.items[index].time
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                      fontFamily: "primary"),
+                                                )),
+                                                DataCell(Text(
+                                                  "${controller.items[index].unitPrice.toStringAsFixed(3)} OMR",
+                                                  style: const TextStyle(
+                                                      fontFamily: "primary"),
+                                                )),
+                                              ]))),
+                                ),
+                                const DottedLine(),
+                                SizedBox(
+                                  width: width,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Services: ${controller.items.length.toString()}",
+                                          style: TextStyle(
+                                              fontFamily: "primary",
+                                              fontSize: width * 0.04,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "Time: ${controller.totalTime.toString()}",
+                                          style: TextStyle(
+                                              fontFamily: "primary",
+                                              fontSize: width * 0.04,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "Amount: ${controller.totalPrice.toStringAsFixed(3)} OMR",
+                                          style: TextStyle(
+                                              fontFamily: "primary",
+                                              fontSize: width * 0.04,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const DottedLine(),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
                             ),
                             Positioned(
                               bottom: 0,
+                              left: 0,
+                              right: 0,
                               child: controller.loading.value
-                                  ? const LoadingIndicatore()
+                                  ? const Center(child: LoadingIndicatore())
                                   : SizedBox(
                                       width: width * 0.9,
                                       height: height * 0.05,

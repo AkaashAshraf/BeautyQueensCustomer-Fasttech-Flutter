@@ -62,12 +62,15 @@ class CartController extends GetxController {
       loading(true);
       if (datetime.isEmpty) {
         ToastMessages.showError("Please select appointment date time");
+        return;
       }
       if (selectedEmployee.value == 0) {
         ToastMessages.showError("Please select employee");
+        return;
       }
       if (items.isEmpty) {
         ToastMessages.showError("Please select services");
+        return;
       }
       var map = new Map<String, dynamic>();
       var userid = MyApp().storage.read(userIDPath);
@@ -83,7 +86,7 @@ class CartController extends GetxController {
       print(map.toString());
       var res = await post("/client/appointment/add", map);
       // ToastMessages.showError(res.statusCode.toString());
-      print(res.statusCode.toString());
+      // print(res.statusCode.toString());
       loading(false);
       if (res?.statusCode == 200) {
         ToastMessages.showSuccess(

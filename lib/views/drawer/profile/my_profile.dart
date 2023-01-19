@@ -22,7 +22,7 @@ class _Profile extends State<Profile> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Profile"),
+      appBar: appBar(title: "Profile", showCart: false),
       body: SafeArea(
         child: Container(
           height: height,

@@ -29,7 +29,8 @@ class _SignUp extends State<SignUp> {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        appBar: noAppBar(),
+        resizeToAvoidBottomInset: false,
+        appBar: noAppBar(showCart: false),
         body: SafeArea(
           child: GetX<AuthController>(builder: (controller) {
             return Container(
@@ -46,117 +47,114 @@ class _SignUp extends State<SignUp> {
               )),
               height: height,
               width: width,
-              child: Stack(
+              child: Column(
                 children: [
-                  LogoImage(height: height),
+                  Expanded(child: LogoImage(height: height)),
 
                   // const Text("Dalilee Shiper "),
-                  Positioned(
-                      bottom: 0,
-                      left: 00,
-                      right: 0,
-                      child: Animate(
-                        effects: const [
-                          // FadeEffect(delay: Duration(milliseconds: 800)),
-                          // MoveEffect()
-                          MoveEffect(
-                              begin: Offset(0, 800),
-                              curve: Curves.easeInOut,
-                              delay: Duration(milliseconds: 000),
-                              duration: Duration(milliseconds: 800)),
-                        ],
-                        child: Container(
-                          height: height * 0.65,
-                          width: width,
-                          decoration: BoxDecoration(
+                  Animate(
+                    effects: const [
+                      // FadeEffect(delay: Duration(milliseconds: 800)),
+                      // MoveEffect()
+                      MoveEffect(
+                          begin: Offset(0, 800),
+                          curve: Curves.easeInOut,
+                          delay: Duration(milliseconds: 000),
+                          duration: Duration(milliseconds: 800)),
+                    ],
+                    child: SingleChildScrollView(
+                      child: Container(
+                        height: height * 0.65,
+                        width: width,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
                               color: Colors.white,
-                              border: Border.all(
-                                color: Colors.white,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(50),
-                                  topRight: Radius.circular(50))),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            child: Stack(
-                              children: [
-                                SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const SizedBox(
-                                        height: 80,
-                                      ),
-                                      textInputCustom(
-                                          label: "Enter Mobile No",
-                                          initialValue: "",
-                                          preIcon: const Icon(
-                                            Icons.numbers,
-                                            size: 20,
-                                            color: textInputIconColor,
-                                          ),
-                                          maxLength: 8,
-                                          onTextChange: (val) {
-                                            // ToastMessages.showError(val);
-                                            controller.contact.value =
-                                                val.toString();
-                                          }),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      textInputCustom(
-                                          label: "Enter Name",
-                                          initialValue: controller.name.value,
-                                          preIcon: const Icon(
-                                            Icons.numbers,
-                                            size: 20,
-                                            color: textInputIconColor,
-                                          ),
-                                          onTextChange: (val) {
-                                            controller.name.value = val;
-                                          }),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      PasswordInput(
-                                        lable: "Enter Password",
-                                        onTextChange: (val) {
-                                          controller.password.value = val;
-                                        },
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      PasswordInput(
-                                        lable: "Re-enter Password",
-                                        onTextChange: (val) {
-                                          controller.confirmPassword.value =
-                                              val;
-                                        },
-                                      ),
-                                      const SizedBox(
-                                        height: 40,
-                                      ),
-                                      controller.loading.value
-                                          ? const LoadingIndicatore()
-                                          : iconButton(
-                                              onClick: () {
-                                                controller.signUp();
-                                              },
-                                              text: "SignUp",
-                                            ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                AuthTopText(width: width, title: "SIGNUP")
-                              ],
                             ),
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(50),
+                                topRight: Radius.circular(50))),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: Stack(
+                            children: [
+                              SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const SizedBox(
+                                      height: 80,
+                                    ),
+                                    textInputCustom(
+                                        label: "Enter Mobile No",
+                                        initialValue: "",
+                                        preIcon: const Icon(
+                                          Icons.numbers,
+                                          size: 20,
+                                          color: textInputIconColor,
+                                        ),
+                                        maxLength: 8,
+                                        onTextChange: (val) {
+                                          // ToastMessages.showError(val);
+                                          controller.contact.value =
+                                              val.toString();
+                                        }),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    textInputCustom(
+                                        label: "Enter Name",
+                                        initialValue: controller.name.value,
+                                        preIcon: const Icon(
+                                          Icons.numbers,
+                                          size: 20,
+                                          color: textInputIconColor,
+                                        ),
+                                        onTextChange: (val) {
+                                          controller.name.value = val;
+                                        }),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    PasswordInput(
+                                      lable: "Enter Password",
+                                      onTextChange: (val) {
+                                        controller.password.value = val;
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    PasswordInput(
+                                      lable: "Re-enter Password",
+                                      onTextChange: (val) {
+                                        controller.confirmPassword.value = val;
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 40,
+                                    ),
+                                    controller.loading.value
+                                        ? const LoadingIndicatore()
+                                        : iconButton(
+                                            onClick: () {
+                                              controller.signUp();
+                                            },
+                                            text: "SignUp",
+                                          ),
+                                    const SizedBox(
+                                      height: 300,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              AuthTopText(width: width, title: "SIGNUP")
+                            ],
                           ),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             );

@@ -26,7 +26,8 @@ class _Login extends State<Login> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: noAppBar(),
+        resizeToAvoidBottomInset: false,
+        appBar: noAppBar(showCart: false),
         body: SafeArea(
           child: GetX<AuthController>(builder: (controller) {
             return Container(
@@ -43,42 +44,43 @@ class _Login extends State<Login> {
               )),
               height: height,
               width: width,
-              child: Stack(
+              child: Column(
                 children: [
-                  LogoImage(height: height),
+                  Expanded(child: LogoImage(height: height)),
                   // const Text("Dalilee Shiper "),
-                  Positioned(
-                      bottom: 0,
-                      left: 00,
-                      right: 0,
-                      child: Animate(
-                        effects: const [
-                          // FadeEffect(delay: Duration(milliseconds: 800)),
-                          // MoveEffect()
-                          MoveEffect(
-                              begin: Offset(0, 600),
-                              curve: Curves.easeInOut,
-                              delay: Duration(milliseconds: 000),
-                              duration: Duration(milliseconds: 600)),
-                        ],
-                        child: Container(
-                          height: height * 0.65,
-                          width: width,
-                          decoration: BoxDecoration(
+                  Animate(
+                    effects: const [
+                      // FadeEffect(delay: Duration(milliseconds: 800)),
+                      // MoveEffect()
+                      MoveEffect(
+                          begin: Offset(0, 600),
+                          curve: Curves.easeInOut,
+                          delay: Duration(milliseconds: 000),
+                          duration: Duration(milliseconds: 600)),
+                    ],
+                    child: SingleChildScrollView(
+                      child: Container(
+                        height: height * 0.65,
+                        width: width,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
                               color: Colors.white,
-                              border: Border.all(
-                                color: Colors.white,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(50),
-                                  topRight: Radius.circular(50))),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            child: Stack(
-                              children: [
-                                Column(
+                            ),
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(50),
+                                topRight: Radius.circular(50))),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: Stack(
+                            children: [
+                              SingleChildScrollView(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
+                                    const SizedBox(
+                                      height: 100,
+                                    ),
                                     textInputCustom(
                                         label: "Enter Mobile No",
                                         initialValue:
@@ -130,14 +132,19 @@ class _Login extends State<Login> {
                                             },
                                             text: "Login",
                                           ),
+                                    const SizedBox(
+                                      height: 300,
+                                    ),
                                   ],
                                 ),
-                                AuthTopText(width: width, title: "Login")
-                              ],
-                            ),
+                              ),
+                              AuthTopText(width: width, title: "Login")
+                            ],
                           ),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                   // Positioned(
                   //     top: 0,
                   //     left: 0,

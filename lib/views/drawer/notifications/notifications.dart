@@ -18,7 +18,7 @@ class _NotificationsList extends State<NotificationsList> {
       body: SafeArea(
         child: Center(
             child: Text(
-          "No data available",
+          "No notifications available",
           style: TextStyle(
               fontFamily: "primary", fontSize: screenWidth(context) * 0.04),
         )),

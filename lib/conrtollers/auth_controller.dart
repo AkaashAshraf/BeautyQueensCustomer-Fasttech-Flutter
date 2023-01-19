@@ -44,6 +44,7 @@ class AuthController extends GetxController {
 
   getUserInfoFromCache() {
     final rawData = MyApp().storage.read(userDataPath);
+    if (rawData == "" || rawData == null) return;
     final loginResponse = loginFromJson(rawData);
     userInfo.value = loginResponse.data!.user!;
   }

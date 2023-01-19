@@ -1,7 +1,6 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/saloons/employees_list_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
-import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +21,7 @@ class _EmployeesListView extends State<EmployeesListView> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Employees"),
+      appBar: appBar(title: "Employees", showCart: false),
       body: SafeArea(child: GetX<SaloonsController>(builder: (controller) {
         return GridView.count(
           crossAxisCount: 2,

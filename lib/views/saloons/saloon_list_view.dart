@@ -23,7 +23,7 @@ class _SaloonsListView extends State<SaloonsListView> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Beauty Centers"),
+      appBar: appBar(title: "Beauty Centers", showCart: false),
       body: SafeArea(child: GetX<SaloonsController>(builder: (controller) {
         return SizedBox(
           child: ListView.builder(

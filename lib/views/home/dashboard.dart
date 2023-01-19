@@ -45,7 +45,7 @@ class _DashboardView extends State<DashboardView> {
       //   title: const Text("Dashboard"),
       // ),
       drawer: const MenuDrawer(),
-      appBar: noAppBar(),
+      appBar: noAppBar(showCart: false),
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
@@ -128,9 +128,9 @@ class _DashboardView extends State<DashboardView> {
                               }),
                               dashboardItem(height, width,
                                   imgName: "s_support.jpeg",
-                                  title: "Customer Support", onTap: () {
+                                  title: "Join Us", onTap: () {
                                 genericPopup(context,
-                                    title: "Contact Support",
+                                    title: "Join Us",
                                     children: Column(
                                       children: <Widget>[
                                         SizedBox(
