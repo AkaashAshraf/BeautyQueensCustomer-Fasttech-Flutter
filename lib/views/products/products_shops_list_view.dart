@@ -3,7 +3,6 @@ import 'package:beauty_queens_ustomer/components/products/shops_list_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
 import 'package:beauty_queens_ustomer/views/products/shop_details_view.dart';
-import 'package:beauty_queens_ustomer/views/saloons/saloon_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

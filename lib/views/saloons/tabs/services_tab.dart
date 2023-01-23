@@ -56,7 +56,7 @@ class _ServicesTab extends State<ServicesTab> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(5.0),
                   child: Image.network(
-                    imageBaseUrl + service.generalImage.toString(),
+                    imageBaseUrl + service.generalService!.image,
                     fit: BoxFit.fill,
                     height: cardHeight,
                     width: cardHeight * 0.99,
@@ -72,7 +72,7 @@ class _ServicesTab extends State<ServicesTab> {
                         SizedBox(
                           width: screenWidth(context) * 0.65,
                           child: Text(
-                            widget.services[0].nameEn ?? "",
+                            widget.services[0].generalService?.nameEn ?? "",
                             style: TextStyle(
                                 color: titleColor,
                                 fontSize:

@@ -8,7 +8,7 @@ import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
-import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
+import 'package:beauty_queens_ustomer/models/simple/shop.dart';
 import 'package:beauty_queens_ustomer/views/saloons/employees_list_view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -74,12 +74,12 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                         ],
                         options: CarouselOptions(
                           // height: 400,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 0.8,
+                          aspectRatio: 14 / 9,
+                          viewportFraction: 1,
                           initialPage: 0,
                           enableInfiniteScroll: true,
                           reverse: false,
-                          autoPlay: true,
+                          autoPlay: false,
                           autoPlayInterval: const Duration(seconds: 3),
                           autoPlayAnimationDuration:
                               const Duration(milliseconds: 800),

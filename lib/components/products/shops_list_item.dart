@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
-import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
+import 'package:beauty_queens_ustomer/models/simple/shop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 

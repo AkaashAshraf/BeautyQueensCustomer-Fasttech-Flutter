@@ -1,7 +1,7 @@
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
-import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
+import 'package:beauty_queens_ustomer/models/simple/products.dart';
 import 'package:flutter/material.dart';
 
 Padding productItem(double cardHeight, BuildContext context,
@@ -52,7 +52,7 @@ Padding productItem(double cardHeight, BuildContext context,
                         SizedBox(
                           width: screenWidth(context) * 0.65,
                           child: Text(
-                            product.brand?.nameEn ?? "",
+                            product.brandEn ?? "",
                             maxLines: 1,
                             style: TextStyle(
                                 fontFamily: "primary",

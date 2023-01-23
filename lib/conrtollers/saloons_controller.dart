@@ -2,10 +2,11 @@ import 'package:beauty_queens_ustomer/http/http.dart';
 import 'package:beauty_queens_ustomer/models/providers/providers_list.dart';
 import 'package:beauty_queens_ustomer/models/response/employee_list.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
+import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 import 'package:get/state_manager.dart';
 
 class SaloonsController extends GetxController {
-  RxList<Provider> saloonsList = <Provider>[].obs;
+  RxList<Saloon> saloonsList = <Saloon>[].obs;
   RxList<Employee> employees = <Employee>[].obs;
 
   RxBool saloonListLoading = false.obs;

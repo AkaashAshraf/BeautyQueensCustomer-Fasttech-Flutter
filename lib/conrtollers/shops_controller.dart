@@ -1,5 +1,6 @@
 import 'package:beauty_queens_ustomer/http/http.dart';
 import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
+import 'package:beauty_queens_ustomer/models/simple/shop.dart';
 import 'package:get/state_manager.dart';
 
 class ShopsController extends GetxController {

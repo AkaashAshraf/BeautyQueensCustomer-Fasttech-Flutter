@@ -1,7 +1,7 @@
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
-import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
+import 'package:beauty_queens_ustomer/models/simple/gym_package.dart';
 import 'package:flutter/material.dart';
 
 Padding packageItem(double cardHeight, BuildContext context,

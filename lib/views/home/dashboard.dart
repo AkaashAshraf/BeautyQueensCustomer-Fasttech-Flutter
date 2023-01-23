@@ -7,6 +7,7 @@ import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/gym_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
+import 'package:beauty_queens_ustomer/conrtollers/offers_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/spa_controller.dart';
@@ -33,6 +34,8 @@ class _DashboardView extends State<DashboardView> {
     Get.put(SaloonsController());
     Get.put(GYMController());
     Get.put(SPAController());
+    Get.put(OffersController());
+    Get.put(OffersController());
 
     Get.put(ShopsController());
     final height = MediaQuery.of(context).size.height;
@@ -104,12 +107,12 @@ class _DashboardView extends State<DashboardView> {
                               dashboardItem(height, width,
                                   imgName: "ladies_gym.jpeg",
                                   title: "Ladies Gym", onTap: () {
-                                Get.to(GYM());
+                                Get.to(const GYM());
                               }),
                               dashboardItem(height, width,
                                   imgName: "offerss.jpeg",
                                   title: "Offers", onTap: () {
-                                Get.to(OFFERSList());
+                                Get.to(const OffersView());
                               }),
                             ],
                           ),

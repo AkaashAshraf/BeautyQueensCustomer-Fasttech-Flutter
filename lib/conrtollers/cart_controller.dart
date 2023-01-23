@@ -1,19 +1,18 @@
-import 'package:beauty_queens_ustomer/components/common/text_alert.dart';
 import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/config/storages.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/http/http.dart';
 import 'package:beauty_queens_ustomer/main.dart';
-import 'package:beauty_queens_ustomer/models/providers/providers_list.dart';
 import 'package:beauty_queens_ustomer/models/simple/cart.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
+import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
   RxList<CartItem> items = <CartItem>[].obs;
   RxInt selectedEmployee = 0.obs;
-  Rx<Provider> selectedSaloon = Provider().obs;
+  Rx<Saloon> selectedSaloon = Saloon().obs;
   RxInt saloonID = 0.obs;
 
   RxList<Employee> employeesList = <Employee>[].obs;
@@ -40,7 +39,7 @@ class CartController extends GetxController {
     ToastMessages.showSuccess("Cart has been cleared successfully");
   }
 
-  bool addToCart(CartItem item, Provider saloon) {
+  bool addToCart(CartItem item, Saloon saloon) {
     saloonID.value = item.providerID;
     var contain = items.where((element) => element.productID == item.productID);
     if (contain.isEmpty) {

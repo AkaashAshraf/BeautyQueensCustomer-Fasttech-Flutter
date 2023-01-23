@@ -1,60 +1,67 @@
-class Service {
-  Service(
-      {this.serviceAssigneeId,
-      this.servicesId,
-      this.isActive,
-      this.charges,
-      this.discount,
-      this.assigneeImage,
-      this.generalImage,
-      this.nameEn,
-      this.nameAr,
-      this.descriptionEn,
-      this.time = 0,
-      this.descriptionAr,
-      this.isAddedToCart = false});
+import 'package:beauty_queens_ustomer/models/simple/general_service.dart';
 
-  int? serviceAssigneeId;
-  int? servicesId;
-  int? isActive;
-  int time;
-  bool isAddedToCart;
+class Service {
+  Service({
+    this.id = 0,
+    this.companyId = 0,
+    this.serviceId = 0,
+    this.charges = "",
+    this.discount = 0,
+    this.time = 0,
+    this.chargesAfterDiscount = 0,
+    this.discountTime = "",
+    this.estimatedTime = "",
+    this.descriptionEn = "",
+    this.descriptionAr = "",
+    this.image = "",
+    this.generalService,
+  });
+
+  int? id;
+  int? companyId;
+  int? serviceId;
   String? charges;
   int? discount;
-  String? assigneeImage;
-  String? generalImage;
-  String? nameEn;
-  String? nameAr;
+  int? time;
+  dynamic chargesAfterDiscount;
+  String? discountTime;
+  dynamic estimatedTime;
   String? descriptionEn;
   String? descriptionAr;
+  String? image;
+  GeneralService? generalService;
 
   factory Service.fromJson(Map<String, dynamic> json) => Service(
-        serviceAssigneeId: json["service_assignee_id"] ?? 0,
-        time: json["time"] ?? "",
-        servicesId: json["services_id"] ?? 0,
-        isActive: json["isActive"] ?? 1,
+        id: json["id"] ?? 0,
+        companyId: json["company_id"] ?? 0,
+        serviceId: json["service_id"] ?? 0,
         charges: json["charges"] ?? "",
         discount: json["discount"] ?? 0,
-        assigneeImage: json["assignee_image"] ?? "",
-        generalImage: json["general_image"] ?? "",
-        nameEn: json["name_en"] ?? "",
-        nameAr: json["name_ar"] ?? "",
+        time: json["time"] ?? 0,
+        chargesAfterDiscount: json["charges_after_discount"] ?? 0,
+        discountTime: json["discount_time"] ?? "",
+        estimatedTime: json["estimated_time"] ?? "",
         descriptionEn: json["description_en"] ?? "",
         descriptionAr: json["description_ar"] ?? "",
+        image: json["image"] ?? "",
+        generalService: json["general_service"] != null
+            ? GeneralService.fromJson(json["general_service"])
+            : GeneralService(),
       );
 
   Map<String, dynamic> toJson() => {
-        "service_assignee_id": serviceAssigneeId,
-        "services_id": servicesId,
-        "time": time,
-        "isActive": isActive,
+        "id": id,
+        "company_id": companyId,
+        "service_id": serviceId,
         "charges": charges,
         "discount": discount,
-        "assignee_image": assigneeImage,
-        "general_image": generalImage,
-        "name_en": nameEn,
-        "name_ar": nameAr,
+        "time": time,
+        "charges_after_discount": chargesAfterDiscount,
+        "discount_time": discountTime,
+        "estimated_time": estimatedTime,
         "description_en": descriptionEn,
         "description_ar": descriptionAr,
+        "image": image,
+        "general_service": generalService,
       };
 }
