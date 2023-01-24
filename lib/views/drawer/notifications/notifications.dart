@@ -14,7 +14,7 @@ class _NotificationsList extends State<NotificationsList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Notifications"),
+      appBar: appBar(title: "Notifications", showCart: false),
       body: SafeArea(
         child: Center(
             child: Text(

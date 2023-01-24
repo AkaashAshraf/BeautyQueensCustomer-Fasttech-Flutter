@@ -31,7 +31,7 @@ class _Cart extends State<Cart> {
     final cardHeight = height * 0.12;
     return Scaffold(
         backgroundColor: bgColor,
-        appBar: appBar(title: "Cart"),
+        appBar: appBar(title: "Cart", showCart: false),
         body: SafeArea(child: GetX<CartController>(builder: (controller) {
           return Stack(
             children: [

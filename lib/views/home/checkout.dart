@@ -35,6 +35,7 @@ class _Checkout extends State<Checkout> {
     return Scaffold(
         backgroundColor: bgColor,
         appBar: appBar(
+            showCart: false,
             title: Get.put(CartController())
                 .selectedSaloon
                 .value

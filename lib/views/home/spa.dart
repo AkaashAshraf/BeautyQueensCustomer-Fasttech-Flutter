@@ -25,7 +25,7 @@ class _SPAList extends State<SPAList> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "SPA"),
+      appBar: appBar(title: "SPA", showCart: false),
       body: SafeArea(child: GetX<SPAController>(builder: (controller) {
         return SizedBox(
           child: ListView.builder(

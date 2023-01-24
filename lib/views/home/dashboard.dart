@@ -4,6 +4,7 @@ import 'package:beauty_queens_ustomer/components/common/drawer.dart';
 import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
 import 'package:beauty_queens_ustomer/components/home/dashboard/dashboard_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/gym_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
@@ -140,9 +141,9 @@ class _DashboardView extends State<DashboardView> {
                                           width: width * 0.5,
                                           child: iconButton(
                                             onClick: () {
-                                              Get.put(HelperController())
-                                                  .openUrl(
-                                                      url: "tel:+96872722798");
+                                              Get.put(HelperController()).openUrl(
+                                                  url:
+                                                      "tel:$contactSuppportCallNumber");
                                               Navigator.pop(context);
                                             },
                                             text: "Call",
@@ -162,7 +163,7 @@ class _DashboardView extends State<DashboardView> {
                                             onClick: () {
                                               Get.put(HelperController()).openUrl(
                                                   url:
-                                                      "whatsapp://send?phone=+96872722798&text=");
+                                                      "whatsapp://send?phone=$contactSuppportWhatsAppNumber&text=");
                                               Navigator.pop(context);
                                             },
                                             text: "Whtasapp",
