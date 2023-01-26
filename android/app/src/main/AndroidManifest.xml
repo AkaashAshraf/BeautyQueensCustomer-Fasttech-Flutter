@@ -13,10 +13,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="beauty_queens_ustomer"
-         android:icon="@mipmap/ic_launcher">
+        android:label="Beauty Queens"
+         android:icon="@mipmap/ic_launcher_bq">
         <activity
-            android:name=".MainActivity"
+            android:name="fasttech.bq.customer.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

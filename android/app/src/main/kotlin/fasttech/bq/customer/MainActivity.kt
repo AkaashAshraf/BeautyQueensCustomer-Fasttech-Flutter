@@ -1,4 +1,4 @@
-package com.example.beauty_queens_ustomer
+package fasttech.bq.customer
 
 import io.flutter.embedding.android.FlutterActivity
 
