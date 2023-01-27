@@ -64,7 +64,7 @@ class _SignUp extends State<SignUp> {
                     ],
                     child: SingleChildScrollView(
                       child: Container(
-                        height: height * 0.65,
+                        height: height * 0.63,
                         width: width,
                         decoration: BoxDecoration(
                             color: Colors.white,

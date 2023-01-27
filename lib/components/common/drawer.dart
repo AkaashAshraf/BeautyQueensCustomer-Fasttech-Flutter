@@ -109,6 +109,23 @@ class MenuDrawer extends StatelessWidget {
             }, title: "Logout"),
             drawerItem(context,
                 icon: const Icon(
+                  Icons.logout,
+                  size: 25,
+                  color: textInputIconColor,
+                ), onPress: () {
+              textAlert(context,
+                  title: "Are you sure you want to delete your account?",
+                  buttons: DialogButton(
+                      onPressed: (() {
+                        Get.put(AuthController()).logout();
+                      }),
+                      child: const Text(
+                        "Yes",
+                        style: TextStyle(color: Colors.white),
+                      ))).show();
+            }, title: "Delete Account"),
+            drawerItem(context,
+                icon: const Icon(
                   Icons.language,
                   size: 25,
                   color: textInputIconColor,
