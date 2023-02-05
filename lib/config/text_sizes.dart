@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TextSizes {
   double height;
@@ -41,7 +42,8 @@ TextSizes getTextSize(BuildContext context) {
     itemMainText: width * 0.045,
     itemSubText: width * 0.038,
     navTitle: width * 0.045,
-    smallItemMainText: width * 0.045,
+    smallItemMainText:
+        Get.locale.toString() == "en" ? width * 0.045 : width * 0.04,
     smallItemSubText: width * 0.032,
     twoColumnGridMainText: width * 0.035,
     twoColumnGridSubText: width * 0.032,

@@ -4,8 +4,7 @@ import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.da
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/instance_manager.dart';
+import 'package:get/get.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -18,11 +17,9 @@ class _Profile extends State<Profile> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
 
-    final cardHeight = height * 0.3;
-
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Profile", showCart: false),
+      appBar: appBar(title: "Profile".tr, showCart: false),
       body: SafeArea(
         child: Container(
           height: height,
@@ -43,9 +40,9 @@ class _Profile extends State<Profile> {
                             height: 50,
                           ),
                           textInputCustom(
-                              label: "Name:",
+                              label: "Name".tr,
                               initialValue:
-                                  controller.userInfo.value.name.toString(),
+                                  controller.userInfo.value.name ?? "",
                               preIcon: const Icon(
                                 Icons.text_decrease,
                                 size: 20,
@@ -56,9 +53,9 @@ class _Profile extends State<Profile> {
                             height: 30,
                           ),
                           textInputCustom(
-                              label: "Email:",
+                              label: "Email".tr,
                               initialValue:
-                                  controller.userInfo.value.email.toString(),
+                                  controller.userInfo.value.email ?? "",
                               preIcon: const Icon(
                                 Icons.email,
                                 size: 20,
@@ -69,9 +66,9 @@ class _Profile extends State<Profile> {
                             height: 30,
                           ),
                           textInputCustom(
-                              label: "Mobile No:",
+                              label: "MobileNo".tr,
                               initialValue:
-                                  controller.userInfo.value.contact.toString(),
+                                  controller.userInfo.value.contact ?? "",
                               preIcon: const Icon(
                                 Icons.numbers,
                                 size: 20,
@@ -91,7 +88,7 @@ class _Profile extends State<Profile> {
                       onClick: () {
                         Navigator.pop(context);
                       },
-                      text: "Update",
+                      text: "Update".tr,
                     ),
                   ),
                 ],

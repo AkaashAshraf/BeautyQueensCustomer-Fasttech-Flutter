@@ -4,6 +4,7 @@ import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/models/simple/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
 Card productListItem(Product product,
     {required dynamic onPress, required BuildContext context}) {
@@ -69,8 +70,8 @@ Card productListItem(Product product,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "08:00 AM - 08:00 PM",
                       style: TextStyle(
                         color: secondaryTextColor,
@@ -78,8 +79,8 @@ Card productListItem(Product product,
                       ),
                     ),
                     Text(
-                      "Open Now",
-                      style: TextStyle(
+                      "OpenNow".tr,
+                      style: const TextStyle(
                         color: secondaryTextColor,
                         fontFamily: "primary",
                       ),

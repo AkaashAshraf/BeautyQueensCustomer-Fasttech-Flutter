@@ -1,6 +1,6 @@
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,18 +27,18 @@ class HelperController extends GetxController {
   String getStatusMessage(int status) {
     switch (status) {
       case 1:
-        return "Pending";
+        return "Pending".tr;
       case 2:
-        return "Confirmed";
+        return "Confirmed".tr;
       case 3:
-        return "Availed";
+        return "Availed".tr;
       case 4:
-        return "Rejected";
+        return "Rejected".tr;
       case 5:
-        return "Cancelled";
+        return "Cancelled".tr;
 
       default:
-        return "Pending";
+        return "Pending".tr;
     }
   }
 

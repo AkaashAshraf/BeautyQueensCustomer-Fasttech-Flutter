@@ -15,13 +15,9 @@ class ShopsListView extends StatefulWidget {
 class _ShopsListView extends State<ShopsListView> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-
-    final cardHeight = height * 0.3;
-
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Beauty Products Shops", showCart: false),
+      appBar: appBar(title: "BeautyProductsShops".tr, showCart: false),
       body: SafeArea(child: GetX<ShopsController>(builder: (controller) {
         return SizedBox(
           child: ListView.builder(
@@ -30,15 +26,12 @@ class _ShopsListView extends State<ShopsListView> {
                 return Padding(
                   padding: const EdgeInsets.only(top: 2.0, left: 5, right: 5),
                   child: SizedBox(
-                      height: cardHeight,
-                      // width: width * 0.95,
-
                       child: shopsListItem(controller.shopsList[index],
                           context: context, onPress: (shop) {
-                        Get.to(() => ShopsDetailsView(
-                              shop: shop,
-                            ));
-                      })),
+                    Get.to(() => ShopsDetailsView(
+                          shop: shop,
+                        ));
+                  })),
                 );
               }),
         );

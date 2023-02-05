@@ -8,6 +8,7 @@ class GymPackage {
     this.price = 0,
     this.duration = "",
     this.description = "",
+    this.descriptionAr = "",
     this.createdAt = "",
     this.updatedAt = "",
   });
@@ -20,6 +21,8 @@ class GymPackage {
   double? price;
   String? duration;
   String? description;
+  String? descriptionAr;
+
   String? createdAt;
   String? updatedAt;
 
@@ -32,6 +35,7 @@ class GymPackage {
         price: double.tryParse(json["price"].toString()),
         duration: json["duration"] ?? "",
         description: json["description"] ?? "",
+        descriptionAr: json["description_ar"] ?? "",
         createdAt: json["created_at"] ?? "",
         updatedAt: json["updated_at"] ?? "",
       );

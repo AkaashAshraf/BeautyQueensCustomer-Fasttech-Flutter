@@ -31,7 +31,7 @@ class _Cart extends State<Cart> {
     final cardHeight = height * 0.12;
     return Scaffold(
         backgroundColor: bgColor,
-        appBar: appBar(title: "Cart", showCart: false),
+        appBar: appBar(title: "Cart".tr, showCart: false),
         body: SafeArea(child: GetX<CartController>(builder: (controller) {
           return Stack(
             children: [
@@ -52,7 +52,7 @@ class _Cart extends State<Cart> {
                                   )),
                             );
                           })
-                      : const Center(child: Text("Cart is empty"))),
+                      : Center(child: Text("CartIsEmpty".tr))),
               Positioned(
                   bottom: 10,
                   left: 10,
@@ -89,7 +89,7 @@ class _Cart extends State<Cart> {
                               SizedBox(
                                 width: width * 0.5,
                                 child: Text(
-                                    "${controller.totalPrice.toStringAsFixed(3)} OMR",
+                                    "${controller.totalPrice.toStringAsFixed(3)} ${"OMR".tr}",
                                     style: TextStyle(
                                         fontSize: width * 0.045,
                                         fontWeight: FontWeight.w500)),
@@ -105,7 +105,7 @@ class _Cart extends State<Cart> {
                               backgroundColor:
                                   MaterialStateProperty.all(secandaryColor),
                             ),
-                            child: const Text("Checkout"),
+                            child: Text("Checkout".tr),
                           ),
                         ],
                       ),

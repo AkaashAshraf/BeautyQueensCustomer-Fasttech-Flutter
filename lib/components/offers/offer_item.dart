@@ -3,6 +3,7 @@ import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/models/offers/offers_list.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget offerItem(double cardHeight, BuildContext context,
     {required Offer item, required dynamic onPress}) {
@@ -36,8 +37,15 @@ Widget offerItem(double cardHeight, BuildContext context,
                     width: screenWidth(context) * 0.65,
                     child: Text(
                       item.providerType == 1
-                          ? item.saloon?.nameEn ?? ""
-                          : item.shop?.nameEn ?? "",
+                          ? Get.locale.toString() == "en"
+                              ? item.saloon?.nameEn ?? ""
+                              : item.saloon?.nameAr ?? ""
+                          : Get.locale.toString() == "en"
+                              ? item.shop?.nameEn ?? ""
+                              : item.shop?.nameAr ?? "",
+                      textAlign: Get.locale.toString() == "en"
+                          ? TextAlign.left
+                          : TextAlign.right,
                       style: TextStyle(
                           fontFamily: "primary",
                           color: titleColor,
@@ -53,9 +61,9 @@ Widget offerItem(double cardHeight, BuildContext context,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "Discount",
-                          style: TextStyle(
+                        Text(
+                          "Discount".tr,
+                          style: const TextStyle(
                             color: secondaryTextColor,
                             fontFamily: "primary",
                           ),
@@ -80,9 +88,9 @@ Widget offerItem(double cardHeight, BuildContext context,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "Expiry",
-                          style: TextStyle(
+                        Text(
+                          "Expiry".tr,
+                          style: const TextStyle(
                             color: secondaryTextColor,
                             fontFamily: "primary",
                           ),

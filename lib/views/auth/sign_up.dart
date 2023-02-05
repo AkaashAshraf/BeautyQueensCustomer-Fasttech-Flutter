@@ -5,13 +5,11 @@ import 'package:beauty_queens_ustomer/components/common/loading_indicator.dart';
 import 'package:beauty_queens_ustomer/components/common/logo_image.dart';
 import 'package:beauty_queens_ustomer/components/common/textInputs/password_input.dart';
 import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.dart';
-import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key, required this.title}) : super(key: key);
@@ -86,7 +84,7 @@ class _SignUp extends State<SignUp> {
                                       height: 80,
                                     ),
                                     textInputCustom(
-                                        label: "Enter Mobile No",
+                                        label: "EnterMobileNo".tr,
                                         initialValue: "",
                                         preIcon: const Icon(
                                           Icons.numbers,
@@ -103,7 +101,7 @@ class _SignUp extends State<SignUp> {
                                       height: 10,
                                     ),
                                     textInputCustom(
-                                        label: "Enter Name",
+                                        label: "EnterName".tr,
                                         initialValue: controller.name.value,
                                         preIcon: const Icon(
                                           Icons.numbers,
@@ -117,7 +115,7 @@ class _SignUp extends State<SignUp> {
                                       height: 20,
                                     ),
                                     PasswordInput(
-                                      lable: "Enter Password",
+                                      lable: "EnterPassword".tr,
                                       onTextChange: (val) {
                                         controller.password.value = val;
                                       },
@@ -126,7 +124,7 @@ class _SignUp extends State<SignUp> {
                                       height: 20,
                                     ),
                                     PasswordInput(
-                                      lable: "Re-enter Password",
+                                      lable: "ReEnterPassword".tr,
                                       onTextChange: (val) {
                                         controller.confirmPassword.value = val;
                                       },
@@ -140,7 +138,7 @@ class _SignUp extends State<SignUp> {
                                             onClick: () {
                                               controller.signUp();
                                             },
-                                            text: "SignUp",
+                                            text: "SignUp".tr,
                                           ),
                                     const SizedBox(
                                       height: 300,
@@ -148,7 +146,7 @@ class _SignUp extends State<SignUp> {
                                   ],
                                 ),
                               ),
-                              AuthTopText(width: width, title: "SIGNUP")
+                              AuthTopText(width: width, title: "SignUp".tr)
                             ],
                           ),
                         ),

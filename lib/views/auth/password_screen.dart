@@ -3,10 +3,7 @@ import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/labels/auth_top_label.dart';
 import 'package:beauty_queens_ustomer/components/common/logo_image.dart';
 import 'package:beauty_queens_ustomer/components/common/textInputs/password_input.dart';
-import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
-import 'package:beauty_queens_ustomer/config/text_sizes.dart';
-import 'package:beauty_queens_ustomer/views/auth/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -79,14 +76,14 @@ class _PasswordScreen extends State<PasswordScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   PasswordInput(
-                                    lable: "Enter Password",
+                                    lable: "EnterPassword".tr,
                                     onTextChange: () {},
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
                                   PasswordInput(
-                                    lable: "Re - Enter Password",
+                                    lable: "ReEnterPassword".tr,
                                     onTextChange: () {},
                                   ),
                                   const SizedBox(
@@ -94,11 +91,11 @@ class _PasswordScreen extends State<PasswordScreen> {
                                   ),
                                   iconButton(
                                     onClick: () {},
-                                    text: "Submit",
+                                    text: "Submit".tr,
                                   ),
                                 ],
                               ),
-                              AuthTopText(width: width, title: "Set Password")
+                              AuthTopText(width: width, title: "SetPassword".tr)
                             ],
                           ),
                         ),

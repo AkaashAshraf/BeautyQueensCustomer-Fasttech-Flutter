@@ -3,6 +3,7 @@ import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/models/simple/gym_package.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Padding packageItem(double cardHeight, BuildContext context,
     {required GymPackage item}) {
@@ -40,7 +41,7 @@ Padding packageItem(double cardHeight, BuildContext context,
                             SizedBox(
                               width: screenWidth(context) * 0.65,
                               child: Text(
-                                item.nameEn.toString(),
+                                item.nameAr.toString(),
                                 style: TextStyle(
                                     fontFamily: "primary",
                                     fontWeight: FontWeight.w600,
@@ -52,7 +53,9 @@ Padding packageItem(double cardHeight, BuildContext context,
                             SizedBox(
                               width: screenWidth(context) * 0.65,
                               child: Text(
-                                item.description.toString(),
+                                Get.locale.toString() == "en"
+                                    ? item.description ?? ""
+                                    : item.descriptionAr ?? "",
                                 maxLines: 1,
                                 style: TextStyle(
                                     fontFamily: "primary",
@@ -68,7 +71,7 @@ Padding packageItem(double cardHeight, BuildContext context,
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "${item.price?.toStringAsFixed(3)} OMR",
+                                    "${item.price?.toStringAsFixed(3)} ${"OMR".tr}",
                                     maxLines: 1,
                                     style: TextStyle(
                                         fontFamily: "primary",
@@ -77,7 +80,7 @@ Padding packageItem(double cardHeight, BuildContext context,
                                             .smallItemSubText),
                                   ),
                                   Text(
-                                    "${item.duration.toString()} Months",
+                                    "${item.duration.toString()} ${(int.tryParse(item.duration ?? "") ?? 0) > 1 ? "Months".tr : "Month".tr}",
                                     maxLines: 1,
                                     style: TextStyle(
                                         fontFamily: "primary",

@@ -15,13 +15,9 @@ class EmployeesListView extends StatefulWidget {
 class _EmployeesListView extends State<EmployeesListView> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-
-    final cardHeight = height * 0.3;
-
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Employees", showCart: false),
+      appBar: appBar(title: "Employees".tr, showCart: false),
       body: SafeArea(child: GetX<SaloonsController>(builder: (controller) {
         return GridView.count(
           crossAxisCount: 2,
@@ -39,25 +35,6 @@ class _EmployeesListView extends State<EmployeesListView> {
               }),
             ));
           }),
-
-          // ListView.builder(
-          //     itemCount: controller.saloonsList.length,
-          //     itemBuilder: (BuildContext context, int index) {
-          //       return
-          //       Padding(
-          //         padding: const EdgeInsets.only(top: 2.0, left: 5, right: 5),
-          //         child: SizedBox(
-          //             height: cardHeight,
-          //             // width: width * 0.95,
-
-          //             child: employeesListItem(controller.saloonsList[index],
-          //                 context: context, onPress: (saloon) {
-          //               Get.to(SaloonDetailsView(
-          //                 saloon: saloon,
-          //               ));
-          //             })),
-          //       );
-          //     }),
         );
       })),
     );

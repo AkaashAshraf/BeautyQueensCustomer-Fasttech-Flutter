@@ -1,13 +1,16 @@
 import 'package:beauty_queens_ustomer/components/common/text_alert.dart';
 import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/config/storages.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
+import 'package:beauty_queens_ustomer/main.dart';
 import 'package:beauty_queens_ustomer/views/drawer/appoinments/my_appointments.dart';
 import 'package:beauty_queens_ustomer/views/drawer/notifications/notifications.dart';
 import 'package:beauty_queens_ustomer/views/drawer/profile/my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -43,7 +46,7 @@ class MenuDrawer extends StatelessWidget {
                   SizedBox(
                       width: width * 0.8,
                       child: Text(
-                        controller.userInfo.value.name ?? "Guest User",
+                        controller.userInfo.value.name ?? "GuestUser".tr,
                         style: TextStyle(
                             color: primaryColor,
                             fontFamily: "primary",
@@ -60,7 +63,7 @@ class MenuDrawer extends StatelessWidget {
                   color: textInputIconColor,
                 ), onPress: () {
               Get.to(const Profile());
-            }, title: "Profile"),
+            }, title: "Profile".tr),
             drawerItem(context,
                 icon: const Icon(
                   Icons.book_outlined,
@@ -68,7 +71,7 @@ class MenuDrawer extends StatelessWidget {
                   color: textInputIconColor,
                 ), onPress: () {
               Get.to(const MyAppointmentsList());
-            }, title: "My Appointments"),
+            }, title: "MyAppointments".tr),
             drawerItem(context,
                 icon: const Icon(
                   Icons.notifications,
@@ -76,7 +79,7 @@ class MenuDrawer extends StatelessWidget {
                   color: textInputIconColor,
                 ), onPress: () {
               Get.to(const NotificationsList());
-            }, title: "Notifications"),
+            }, title: "Notifications".tr),
             if (false)
               ListTile(
                 leading: const Icon(
@@ -84,7 +87,7 @@ class MenuDrawer extends StatelessWidget {
                   size: 25,
                   color: textInputIconColor,
                 ),
-                title: const Text('Change Password'),
+                title: Text('ChangePassword'.tr),
                 onTap: () {
                   // Update the state of the app.
                   // ...
@@ -97,16 +100,16 @@ class MenuDrawer extends StatelessWidget {
                   color: textInputIconColor,
                 ), onPress: () {
               textAlert(context,
-                  title: "Are you sure you want to logout?",
+                  title: "logout_alert".tr,
                   buttons: DialogButton(
                       onPressed: (() {
                         Get.put(AuthController()).logout();
                       }),
-                      child: const Text(
-                        "Yes",
-                        style: TextStyle(color: Colors.white),
+                      child: Text(
+                        "Yes".tr,
+                        style: const TextStyle(color: Colors.white),
                       ))).show();
-            }, title: "Logout"),
+            }, title: "Logout".tr),
             drawerItem(context,
                 icon: const Icon(
                   Icons.logout,
@@ -114,24 +117,35 @@ class MenuDrawer extends StatelessWidget {
                   color: textInputIconColor,
                 ), onPress: () {
               textAlert(context,
-                  title: "Are you sure you want to delete your account?",
+                  title: "delete_alert".tr,
                   buttons: DialogButton(
                       onPressed: (() {
                         Get.put(AuthController()).logout();
                       }),
-                      child: const Text(
-                        "Yes",
-                        style: TextStyle(color: Colors.white),
+                      child: Text(
+                        "Yes".tr,
+                        style: const TextStyle(color: Colors.white),
                       ))).show();
-            }, title: "Delete Account"),
+            }, title: "DeleteAccount".tr),
             drawerItem(context,
                 icon: const Icon(
                   Icons.language,
                   size: 25,
                   color: textInputIconColor,
                 ), onPress: () {
-              ToastMessages.showWarning("Will available soon");
-            }, title: 'Change Language to   عربى'),
+              textAlert(context,
+                  title: "language_alert".tr,
+                  buttons: DialogButton(
+                      onPressed: (() {
+                        MyApp().storage.write(localizationPath,
+                            Get.locale.toString() == "en" ? "ar" : "en");
+                        Restart.restartApp();
+                      }),
+                      child: Text(
+                        "Yes".tr,
+                        style: const TextStyle(color: Colors.white),
+                      ))).show();
+            }, title: "ChangeLanguage".tr),
           ],
         );
       }),
@@ -147,7 +161,9 @@ class MenuDrawer extends StatelessWidget {
           style: TextStyle(
               fontFamily: "primary",
               fontWeight: FontWeight.w600,
-              fontSize: screenWidth(context) * 0.045),
+              fontSize: Get.locale.toString() == "en"
+                  ? screenWidth(context) * 0.045
+                  : screenWidth(context) * 0.04),
         ),
         onTap: onPress);
   }

@@ -19,11 +19,9 @@ class _SaloonsListView extends State<SaloonsListView> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
 
-    final cardHeight = height * 0.3;
-
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Beauty Centers", showCart: false),
+      appBar: appBar(title: "BeautyCenters".tr, showCart: false),
       body: SafeArea(child: GetX<SaloonsController>(builder: (controller) {
         return SizedBox(
           child: ListView.builder(
@@ -32,15 +30,14 @@ class _SaloonsListView extends State<SaloonsListView> {
                 return Padding(
                   padding: const EdgeInsets.only(top: 2.0, left: 5, right: 5),
                   child: SizedBox(
-                      height: cardHeight,
                       // width: width * 0.95,
 
                       child: saloonListItem(controller.saloonsList[index],
                           context: context, onPress: (saloon) {
-                        Get.to(SaloonDetailsView(
-                          saloon: saloon,
-                        ));
-                      })),
+                    Get.to(SaloonDetailsView(
+                      saloon: saloon,
+                    ));
+                  })),
                 );
               }),
         );

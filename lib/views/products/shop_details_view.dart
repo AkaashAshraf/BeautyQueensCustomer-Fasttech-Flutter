@@ -42,7 +42,11 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: widget.shop.nameEn!, showCart: false),
+      appBar: appBar(
+          title: Get.locale.toString() == "en"
+              ? widget.shop.nameEn ?? ''
+              : widget.shop.nameAr ?? "",
+          showCart: false),
       body: SafeArea(
           child: SingleChildScrollView(
               child: Column(
@@ -100,21 +104,25 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                   child: Column(
                     children: [
                       Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Get.locale.toString() == "en"
+                            ? Alignment.centerLeft
+                            : Alignment.centerRight,
                         child: AnimatedTextKit(
-                          repeatForever: true,
+                          // repeatForever: true,
                           animatedTexts: [
                             ColorizeAnimatedText(
-                              widget.shop.nameEn!,
+                              Get.locale.toString() == "en"
+                                  ? widget.shop.nameEn ?? ""
+                                  : widget.shop.nameAr ?? "",
                               textStyle: TextStyle(
                                   fontFamily: "primary",
                                   fontSize: width * 0.05,
                                   fontWeight: FontWeight.w600,
                                   color: titleColor),
-                              colors: [primaryColor, dashbboardTitleColor],
+                              colors: [primaryColor, primaryColor],
                             ),
                           ],
-                          isRepeatingAnimation: true,
+                          isRepeatingAnimation: false,
                         ),
                       ),
                       //   Text(
@@ -127,9 +135,14 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                       // ),
                       const SizedBox(height: 5),
                       Row(
+                        textDirection: Get.locale.toString() == "en"
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
                         children: [
                           Text(
-                            widget.shop.cityEn!,
+                            Get.locale.toString() == "en"
+                                ? widget.shop.city?.nameEn ?? ""
+                                : widget.shop.city?.nameAr ?? "",
                             style: const TextStyle(
                               color: secondaryTextColor,
                               fontFamily: "primary",
@@ -140,8 +153,8 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                       const SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             "08:00 AM - 11:00 PM",
                             style: TextStyle(
                               color: secondaryTextColor,
@@ -150,8 +163,8 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                           ),
 
                           Text(
-                            "Open Now",
-                            style: TextStyle(
+                            "OpenNow".tr,
+                            style: const TextStyle(
                               color: secondaryTextColor,
                               fontFamily: "primary",
                             ),
@@ -230,9 +243,9 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                           children: [
                             SizedBox(
                               width: width * 0.7,
-                              child: const Text(
-                                "Description: dummy description text",
-                                style: TextStyle(
+                              child: Text(
+                                widget.shop.description ?? "",
+                                style: const TextStyle(
                                   color: secondaryTextColor,
                                   fontFamily: "primary",
                                 ),
@@ -254,7 +267,8 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                         child: iconButton(
                             onClick: () async {
                               genericPopup(context,
-                                  title: "Contact ${widget.shop.nameEn}",
+                                  title:
+                                      "${"Contact".tr} ${Get.locale.toString() == "en" ? widget.shop.nameEn : widget.shop.nameAr}",
                                   children: Column(
                                     children: <Widget>[
                                       SizedBox(
@@ -266,7 +280,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                                                     "tel:+968${widget.shop.contact}");
                                             Navigator.pop(context);
                                           },
-                                          text: "Contact",
+                                          text: "Contact".tr,
                                           icon: const Icon(
                                             Icons.phone,
                                             size: 20,
@@ -286,7 +300,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                                                     "whatsapp://send?phone=${widget.shop.contact}&text=");
                                             Navigator.pop(context);
                                           },
-                                          text: "Whtasapp",
+                                          text: "Whatsapp".tr,
                                           icon: const Icon(
                                             Icons.whatsapp,
                                             size: 20,
@@ -302,7 +316,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                               size: 20,
                               color: Colors.white,
                             ),
-                            text: "Contact"),
+                            text: "Contact".tr),
                       ),
                       SizedBox(
                         width: width * 0.43,
@@ -318,7 +332,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                               Icons.location_on,
                               color: Colors.white,
                             ),
-                            text: "Location"),
+                            text: "Location".tr),
                       ),
                     ],
                   ),
@@ -334,7 +348,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
             productItem(
               cardHeight,
               context,
-              product: widget.shop.products![i]!,
+              product: widget.shop.products![i],
             )
         ],
       ))),

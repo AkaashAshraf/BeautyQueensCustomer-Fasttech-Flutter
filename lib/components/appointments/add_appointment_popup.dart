@@ -1,5 +1,4 @@
 import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
-import 'package:beauty_queens_ustomer/components/common/search_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 

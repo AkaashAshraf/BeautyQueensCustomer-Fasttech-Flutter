@@ -1,9 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
+import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
 Card saloonListItem(Saloon saloon,
     {required dynamic onPress, required BuildContext context}) {
@@ -35,12 +37,16 @@ Card saloonListItem(Saloon saloon,
             child: Column(
               children: [
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Get.locale.toString() == "en"
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
                   child: AnimatedTextKit(
                     repeatForever: true,
                     animatedTexts: [
                       ColorizeAnimatedText(
-                        saloon.nameEn!,
+                        Get.locale.toString() == "en"
+                            ? saloon.nameEn ?? ""
+                            : saloon.nameAr ?? "",
                         textStyle: TextStyle(
                             fontFamily: "primary",
                             fontSize: width * 0.05,
@@ -59,26 +65,33 @@ Card saloonListItem(Saloon saloon,
                   //       color: titleColor),
                   // ),
                 ),
-                Row(
-                  children: [
-                    Text(
-                      saloon.cityEn!,
-                      style: const TextStyle(
-                          color: secondaryTextColor, fontFamily: "primary"),
-                    ),
-                  ],
+                SizedBox(
+                  width: screenWidth(context) * 0.9,
+                  child: Text(
+                    Get.locale.toString() == "en"
+                        ? saloon.cityEn ?? ""
+                        : saloon.cityAr ?? "",
+                    textDirection: Get.locale.toString() == "en"
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
+                    style: const TextStyle(
+                        color: secondaryTextColor, fontFamily: "primary"),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  textDirection: Get.locale.toString() == "en"
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+                  children: [
+                    const Text(
                       "08:00 AM - 08:00 PM",
                       style: TextStyle(
                           color: secondaryTextColor, fontFamily: "primary"),
                     ),
                     Text(
-                      "Open Now",
-                      style: TextStyle(
+                      "OpenNow".tr,
+                      style: const TextStyle(
                           color: secondaryTextColor, fontFamily: "primary"),
                     ),
                   ],

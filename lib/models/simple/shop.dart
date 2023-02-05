@@ -1,6 +1,6 @@
 import 'package:beauty_queens_ustomer/models/simple/city.dart';
 import 'package:beauty_queens_ustomer/models/simple/gym_package.dart';
-import 'package:beauty_queens_ustomer/models/simple/products.dart';
+import 'package:beauty_queens_ustomer/models/simple/product.dart';
 
 class Shop {
   Shop({
@@ -31,6 +31,7 @@ class Shop {
     this.cityAr = "",
     this.latitude,
     this.longitude,
+    this.description,
     this.products,
     this.gymPackages,
   });
@@ -56,6 +57,8 @@ class Shop {
   String? b8;
   String? b9;
   String? b10;
+  String? description;
+
   String? createdAt;
   String? updatedAt;
   String? cityEn;
@@ -87,6 +90,7 @@ class Shop {
         b7: json["b7"] ?? "",
         b8: json["b8"] ?? "",
         b9: json["b9"] ?? "",
+        description: json["description"] ?? "",
         b10: json["b10"] ?? "",
         createdAt: json["created_at"] ?? "",
         updatedAt: json["updated_at"] ?? "",

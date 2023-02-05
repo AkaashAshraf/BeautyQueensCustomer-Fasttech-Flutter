@@ -36,7 +36,6 @@ class SaloonsController extends GetxController {
       saloonListLoading(true);
       final result =
           await post("/admin/employees/list", {"user_id": id.toString()});
-      print(result);
       if (result != null) {
         final employeesResulut = employeesFromJson(result?.body);
         employees.value = employeesResulut.data!;

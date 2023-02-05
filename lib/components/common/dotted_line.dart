@@ -9,11 +9,11 @@ DottedLine dottedLine({double thicknes = 1.0}) {
     lineThickness: thicknes,
     dashLength: 4.0,
     dashColor: Colors.black,
-    dashGradient: [primaryColor, secandaryColor],
+    dashGradient: const [primaryColor, secandaryColor],
     dashRadius: 0.0,
     dashGapLength: 4.0,
     dashGapColor: Colors.transparent,
-    dashGapGradient: [primaryColor, secandaryColor],
+    dashGapGradient: const [primaryColor, secandaryColor],
     dashGapRadius: 0.0,
   );
 }

@@ -4,6 +4,7 @@ import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/models/simple/shop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
 Card shopsListItem(Shop shop,
     {required dynamic onPress, required BuildContext context}) {
@@ -35,18 +36,22 @@ Card shopsListItem(Shop shop,
             child: Column(
               children: [
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Get.locale.toString() == "en"
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
                   child: AnimatedTextKit(
                     repeatForever: true,
                     animatedTexts: [
                       ColorizeAnimatedText(
-                        shop.nameEn!,
+                        Get.locale.toString() == "en"
+                            ? shop.nameEn ?? ""
+                            : shop.nameAr ?? "",
                         textStyle: TextStyle(
                             fontFamily: "primary",
                             fontSize: width * 0.05,
                             fontWeight: FontWeight.w600,
                             color: titleColor),
-                        colors: [primaryColor, dashbboardTitleColor],
+                        colors: [primaryColor, secandaryColor],
                       ),
                     ],
                     isRepeatingAnimation: true,
@@ -60,9 +65,14 @@ Card shopsListItem(Shop shop,
                   // ),
                 ),
                 Row(
+                  textDirection: Get.locale.toString() == "en"
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
                   children: [
                     Text(
-                      shop.cityEn!,
+                      Get.locale.toString() == "en"
+                          ? shop.city?.nameEn ?? ""
+                          : shop.city?.nameAr ?? "",
                       style: const TextStyle(
                         color: secondaryTextColor,
                         fontFamily: "primary",
@@ -72,8 +82,8 @@ Card shopsListItem(Shop shop,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "08:00 AM - 08:00 PM",
                       style: TextStyle(
                         color: secondaryTextColor,
@@ -81,8 +91,8 @@ Card shopsListItem(Shop shop,
                       ),
                     ),
                     Text(
-                      "Open Now",
-                      style: TextStyle(
+                      "OpenNow".tr,
+                      style: const TextStyle(
                         color: secondaryTextColor,
                         fontFamily: "primary",
                       ),

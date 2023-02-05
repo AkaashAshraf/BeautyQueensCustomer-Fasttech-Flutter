@@ -34,7 +34,7 @@ class _EmployeesTab extends State<EmployeesTab> {
                     // width: width * 0.95,
                     child: Text(
                       widget.employees[index].nameEn!,
-                      style: TextStyle(fontFamily: "primary"),
+                      style: const TextStyle(fontFamily: "primary"),
                     ),
                   ));
             }),

@@ -45,7 +45,7 @@ class AppointmentItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Appointment #:",
+                    "Appointment#:".tr,
                     style: TextStyle(
                         fontFamily: "primary",
                         fontSize: width * 0.04,
@@ -75,7 +75,7 @@ class AppointmentItem extends StatelessWidget {
                   SizedBox(
                     width: width * 0.85,
                     child: Text(
-                      "Saloon Name",
+                      "SaloonName".tr,
                       style: TextStyle(
                           fontFamily: "primary",
                           color: Colors.grey,
@@ -90,7 +90,9 @@ class AppointmentItem extends StatelessWidget {
                   SizedBox(
                     width: width * 0.85,
                     child: Text(
-                      item.saloon.nameEn.toString(),
+                      Get.locale.toString() == "en"
+                          ? item.saloon.nameEn ?? ""
+                          : item.saloon.nameAr ?? "",
                       style: TextStyle(
                           fontFamily: "primary",
                           color: Colors.black,
@@ -104,8 +106,8 @@ class AppointmentItem extends StatelessWidget {
                 height: 15,
               ),
               textRow(
-                  title1: "Date",
-                  title2: "Status",
+                  title1: "Date".tr,
+                  title2: "Status".tr,
                   textColor1: Colors.grey,
                   textColor2: Colors.grey),
               textRow(
@@ -118,21 +120,23 @@ class AppointmentItem extends StatelessWidget {
                 height: 5,
               ),
               textRow(
-                  title1: "Total Services",
-                  title2: "Total Amount",
+                  title1: "TotalServices".tr,
+                  title2: "TotalAmount".tr,
                   textColor1: Colors.grey,
                   textColor2: Colors.grey),
               textRow(
                   title1: item.requestedServices.length.toString(),
-                  title2: "${item.totalAmount.toStringAsFixed(3)} OMR",
+                  title2: "${item.totalAmount.toStringAsFixed(3)} ${"OMR".tr}",
                   textColor1: Colors.black,
                   textColor2: primaryColor),
               const SizedBox(
                 height: 5,
               ),
               textRow(
-                  title1: "Employess",
-                  title2: item.employee.nameEn,
+                  title1: "Employees".tr,
+                  title2: Get.locale.toString() == "en"
+                      ? item.employee.nameEn
+                      : item.employee.nameAr,
                   textColor1: Colors.grey,
                   textColor2: Colors.black),
               const SizedBox(
@@ -153,7 +157,7 @@ class AppointmentItem extends StatelessWidget {
                         SizedBox(
                           width: width * 0.5,
                           child: Text(
-                            "${(i + 1).toString()}- ${item.requestedServices[i].providerService!.generalService.nameEn} x 1 ",
+                            "${(i + 1).toString()}- ${Get.locale.toString() == "en" ? item.requestedServices[i].providerService!.generalService.nameEn : item.requestedServices[i].providerService!.generalService.nameAr} x ${Get.locale.toString() == "en" ? " 1 " : " ١ "} ",
                             style: TextStyle(
                                 fontFamily: "primary",
                                 color: Colors.grey,
@@ -164,6 +168,9 @@ class AppointmentItem extends StatelessWidget {
                         Expanded(
                           child: Text(
                             "1 x ${item.requestedServices[i].providerService!.charges.toString()}",
+                            textDirection: Get.locale.toString() == "en"
+                                ? TextDirection.rtl
+                                : TextDirection.ltr,
                             style: TextStyle(
                                 fontFamily: "primary",
                                 color: Colors.grey,

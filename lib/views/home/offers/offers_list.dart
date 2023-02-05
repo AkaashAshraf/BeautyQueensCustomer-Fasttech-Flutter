@@ -17,7 +17,7 @@ class _OffersView extends State<OffersView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "Offers", showCart: false),
+      appBar: appBar(title: "Offers".tr, showCart: false),
       body: SafeArea(child: GetX<OffersController>(builder: (controller) {
         return SizedBox(
           child: ListView.builder(

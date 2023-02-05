@@ -77,7 +77,7 @@ class _DashboardView extends State<DashboardView> {
                             fontWeight: FontWeight.bold,
                             color: dashbboardTitleColor,
                             fontFamily: "primary",
-                            fontSize: width * 0.12),
+                            fontSize: width * 0.10),
                       ).animate().scale(delay: 200.ms, duration: 400.ms),
                       SizedBox(
                         height: height * 0.1,
@@ -90,11 +90,12 @@ class _DashboardView extends State<DashboardView> {
                             children: [
                               dashboardItem(height, width,
                                   imgName: "new_salons.jpeg",
-                                  title: "Beauty Centres", onTap: () {
+                                  title: "BeautyCentres".tr, onTap: () {
                                 Get.to(const SaloonsListView());
                               }),
                               dashboardItem(height, width,
-                                  imgName: "spa.jpeg", title: "SPA", onTap: () {
+                                  imgName: "spa.jpeg",
+                                  title: "SPA".tr, onTap: () {
                                 Get.to(const SPAList());
                               }),
                             ],
@@ -107,12 +108,12 @@ class _DashboardView extends State<DashboardView> {
                             children: [
                               dashboardItem(height, width,
                                   imgName: "ladies_gym.jpeg",
-                                  title: "Ladies Gym", onTap: () {
+                                  title: "LadiesGym".tr, onTap: () {
                                 Get.to(const GYM());
                               }),
                               dashboardItem(height, width,
                                   imgName: "offerss.jpeg",
-                                  title: "Offers", onTap: () {
+                                  title: "Offers".tr, onTap: () {
                                 Get.to(const OffersView());
                               }),
                             ],
@@ -125,16 +126,16 @@ class _DashboardView extends State<DashboardView> {
                             children: [
                               dashboardItem(height, width,
                                   imgName: "beauty_products.jpeg",
-                                  title: "Beauty Products", onTap: () {
+                                  title: "BeautyProducts".tr, onTap: () {
                                 Get.put(ShopsController()).fetchShopsList();
 
                                 Get.to(const ShopsListView());
                               }),
                               dashboardItem(height, width,
                                   imgName: "s_support.jpeg",
-                                  title: "Join Us", onTap: () {
+                                  title: "JoinUs".tr, onTap: () {
                                 genericPopup(context,
-                                    title: "Join Us",
+                                    title: "JoinUs".tr,
                                     children: Column(
                                       children: <Widget>[
                                         SizedBox(
@@ -146,7 +147,7 @@ class _DashboardView extends State<DashboardView> {
                                                       "tel:$contactSuppportCallNumber");
                                               Navigator.pop(context);
                                             },
-                                            text: "Call",
+                                            text: "Call".tr,
                                             icon: const Icon(
                                               Icons.phone,
                                               size: 20,
@@ -166,7 +167,7 @@ class _DashboardView extends State<DashboardView> {
                                                       "whatsapp://send?phone=$contactSuppportWhatsAppNumber&text=");
                                               Navigator.pop(context);
                                             },
-                                            text: "Whtasapp",
+                                            text: "Whatsapp".tr,
                                             icon: const Icon(
                                               Icons.whatsapp,
                                               size: 20,
@@ -186,7 +187,7 @@ class _DashboardView extends State<DashboardView> {
                                                       "mailto:akash131060@gmail.com");
                                               Navigator.pop(context);
                                             },
-                                            text: "Email",
+                                            text: "Email".tr,
                                             icon: const Icon(
                                               Icons.email,
                                               size: 20,

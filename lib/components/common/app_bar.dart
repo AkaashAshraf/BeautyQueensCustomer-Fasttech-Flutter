@@ -133,9 +133,9 @@ AppBar appBar({required String title, bool showCart = true}) {
     centerTitle: true,
     title: Text(
       title,
-      style: const TextStyle(
+      style: TextStyle(
           color: appBarTitleColor,
-          fontSize: 22,
+          fontSize: Get.locale.toString() == "en" ? 22 : 18,
           fontFamily: "primary",
           fontWeight: FontWeight.w600),
       textAlign: TextAlign.center,

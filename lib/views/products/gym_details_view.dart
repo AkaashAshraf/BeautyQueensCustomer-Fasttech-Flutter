@@ -8,7 +8,6 @@ import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
-import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
 import 'package:beauty_queens_ustomer/models/simple/gym_package.dart';
 import 'package:beauty_queens_ustomer/models/simple/shop.dart';
 import 'package:beauty_queens_ustomer/views/saloons/employees_list_view.dart';
@@ -45,7 +44,11 @@ class _GYMDetailsView extends State<GYMDetailsView> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: widget.shop.nameEn!, showCart: false),
+      appBar: appBar(
+          title: Get.locale.toString() == "en"
+              ? widget.shop.nameEn ?? ""
+              : widget.shop.nameAr ?? "",
+          showCart: false),
       body: SafeArea(
           child: SingleChildScrollView(
               child: Column(
@@ -103,18 +106,26 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                   child: Column(
                     children: [
                       Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Get.locale.toString() == "en"
+                            ? Alignment.centerLeft
+                            : Alignment.centerRight,
                         child: AnimatedTextKit(
                           repeatForever: true,
                           animatedTexts: [
                             ColorizeAnimatedText(
-                              widget.shop.nameEn!,
+                              Get.locale.toString() == "en"
+                                  ? widget.shop.nameEn ?? ""
+                                  : widget.shop.nameAr ?? "",
                               textStyle: TextStyle(
                                   fontFamily: "primary",
                                   fontSize: width * 0.05,
                                   fontWeight: FontWeight.w600,
                                   color: titleColor),
-                              colors: [primaryColor, dashbboardTitleColor],
+                              colors: [
+                                primaryColor,
+                                dashbboardTitleColor,
+                                primaryColor
+                              ],
                             ),
                           ],
                           isRepeatingAnimation: true,
@@ -130,9 +141,14 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                       // ),
                       const SizedBox(height: 5),
                       Row(
+                        textDirection: Get.locale.toString() == "en"
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
                         children: [
                           Text(
-                            widget.shop.cityEn!,
+                            Get.locale.toString() == "en"
+                                ? widget.shop.city?.nameEn ?? ""
+                                : widget.shop.city?.nameAr ?? "",
                             style: const TextStyle(
                               color: secondaryTextColor,
                               fontFamily: "primary",
@@ -143,8 +159,8 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                       const SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             "08:00 AM - 11:00 PM",
                             style: TextStyle(
                               color: secondaryTextColor,
@@ -153,8 +169,8 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                           ),
 
                           Text(
-                            "Open Now",
-                            style: TextStyle(
+                            "OpenNow".tr,
+                            style: const TextStyle(
                               color: secondaryTextColor,
                               fontFamily: "primary",
                             ),
@@ -233,9 +249,9 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                           children: [
                             SizedBox(
                               width: width * 0.7,
-                              child: const Text(
-                                "Description: dummy description text",
-                                style: TextStyle(
+                              child: Text(
+                                widget.shop.description ?? "",
+                                style: const TextStyle(
                                   color: secondaryTextColor,
                                   fontFamily: "primary",
                                 ),
@@ -257,7 +273,8 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                         child: iconButton(
                             onClick: () async {
                               genericPopup(context,
-                                  title: "Contact ${widget.shop.nameEn}",
+                                  title:
+                                      "${"Contact".tr} ${Get.locale.toString() == "en" ? widget.shop.nameEn : widget.shop.nameAr}",
                                   children: Column(
                                     children: <Widget>[
                                       SizedBox(
@@ -269,7 +286,7 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                                                     "tel:+968${widget.shop.contact}");
                                             Navigator.pop(context);
                                           },
-                                          text: "Contact",
+                                          text: "Contact".tr,
                                           icon: const Icon(
                                             Icons.phone,
                                             size: 20,
@@ -289,7 +306,7 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                                                     "whatsapp://send?phone=${widget.shop.contact}&text=");
                                             Navigator.pop(context);
                                           },
-                                          text: "Whtasapp",
+                                          text: "Whatsapp".tr,
                                           icon: const Icon(
                                             Icons.whatsapp,
                                             size: 20,
@@ -305,7 +322,7 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                               size: 20,
                               color: Colors.white,
                             ),
-                            text: "Contact"),
+                            text: "Contact".tr),
                       ),
                       SizedBox(
                         width: width * 0.43,
@@ -321,7 +338,7 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                               Icons.location_on,
                               color: Colors.white,
                             ),
-                            text: "Location"),
+                            text: "Location".tr),
                       ),
                     ],
                   ),
@@ -338,7 +355,7 @@ class _GYMDetailsView extends State<GYMDetailsView> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  "Packages",
+                  "Packages".tr,
                   maxLines: 1,
                   style: TextStyle(
                       fontFamily: "primary",
@@ -353,7 +370,7 @@ class _GYMDetailsView extends State<GYMDetailsView> {
             packageItem(
               cardHeight,
               context,
-              item: widget.shop.gymPackages![i]!,
+              item: widget.shop.gymPackages![i],
             )
         ],
       ))),

@@ -1,12 +1,11 @@
 import 'package:beauty_queens_ustomer/config/colors.dart';
-import 'package:beauty_queens_ustomer/config/constants.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 
-Container dashboardItem(double height, double width,
+Widget dashboardItem(double height, double width,
     {required dynamic onTap, required String imgName, required String title}) {
-  return Container(
+  return SizedBox(
     // height: width * 0.4,
     // width: width * 0.35,
     child: Animate(
@@ -48,7 +47,9 @@ Container dashboardItem(double height, double width,
                 title,
                 maxLines: 1,
                 style: TextStyle(
-                    fontSize: width * 0.045,
+                    fontSize: Get.locale.toString() == "en"
+                        ? width * 0.045
+                        : width * 0.04,
                     color: dashboardTextColor,
                     fontFamily: "primary",
                     fontWeight: FontWeight.bold),

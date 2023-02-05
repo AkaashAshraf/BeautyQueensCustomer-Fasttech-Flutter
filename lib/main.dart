@@ -20,14 +20,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final token = storage.read(tokenPath) ?? "";
+    final local = storage.read(localizationPath) ?? "en";
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
 
       translations: Messages(), // your translations
-      locale:
-          const Locale('en'), // translations will be displayed in that locale
-      fallbackLocale: const Locale('ar'),
+      locale: Locale(local), // translations will be displayed in that locale
+      fallbackLocale: Locale(local),
       title: 'Queens Beauty',
       theme: ThemeData(
         primarySwatch: Colors.blue,

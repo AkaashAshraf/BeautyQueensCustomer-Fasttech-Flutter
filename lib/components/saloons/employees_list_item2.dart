@@ -3,11 +3,10 @@ import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 Widget employeesListItem2(Employee employee,
     {required dynamic onPress, required BuildContext context}) {
-  final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
 
   return GetX<CartController>(builder: (controller) {
@@ -43,9 +42,13 @@ Widget employeesListItem2(Employee employee,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: Get.locale.toString() == "en"
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
                       child: Text(
-                        employee.nameEn.toString(),
+                        Get.locale.toString() == "en"
+                            ? employee.nameEn ?? ""
+                            : employee.nameAr ?? "",
                         maxLines: 1,
                         style: TextStyle(
                             fontFamily: "primary",
@@ -60,7 +63,9 @@ Widget employeesListItem2(Employee employee,
                         SizedBox(
                           width: width * 0.12,
                           child: Text(
-                            employee.countryEn.toString(),
+                            Get.locale.toString() == "en"
+                                ? employee.countryEn ?? ""
+                                : employee.countryAr ?? "",
                             maxLines: 1,
                             style: TextStyle(
                                 fontFamily: "primary",
@@ -71,7 +76,7 @@ Widget employeesListItem2(Employee employee,
                         ),
                         Flexible(
                           child: Text(
-                            "${employee.exp.toString()} years",
+                            "${employee.exp.toString()} ${"Years".tr}",
                             maxLines: 1,
                             style: TextStyle(
                                 fontFamily: "primary",

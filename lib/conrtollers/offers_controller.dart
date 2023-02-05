@@ -21,7 +21,6 @@ class OffersController extends GetxController {
       final result = await post("/client/offers/list", {});
       if (result != null) {
         final data = offerListFromJson(result?.body);
-        inspect(data);
         offersList(data.data!);
       }
     } finally {

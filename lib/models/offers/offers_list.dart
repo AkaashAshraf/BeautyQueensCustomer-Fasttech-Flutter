@@ -51,6 +51,7 @@ class Offer {
     this.fromStamp = "",
     this.discount = 0,
     this.description = "",
+    this.descriptionAr = "",
     this.imagePath1 = "",
     this.imagePath2 = "",
     this.imagePath3 = "",
@@ -71,6 +72,8 @@ class Offer {
   String? fromStamp;
   int? discount;
   String? description;
+  String? descriptionAr;
+
   String? imagePath1;
   String? imagePath2;
   String? imagePath3;
@@ -90,6 +93,7 @@ class Offer {
         fromStamp: json["from_stamp"] ?? "",
         discount: json["discount"] ?? 0,
         description: json["description"] ?? "",
+        descriptionAr: json["description_ar"] ?? "",
         imagePath1: json["image_path1"] ?? "",
         imagePath2: json["image_path2"] ?? "",
         imagePath3: json["image_path3"] ?? "",

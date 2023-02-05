@@ -2,7 +2,6 @@ import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/labels/auth_top_label.dart';
 import 'package:beauty_queens_ustomer/components/common/logo_image.dart';
-import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/views/auth/password_screen.dart';
 import 'package:flutter/material.dart';
@@ -82,12 +81,12 @@ class _OTPScreen extends State<OTPScreen> {
                                     length: 4,
                                     width: MediaQuery.of(context).size.width,
                                     fieldWidth: width / 8,
-                                    style: TextStyle(fontSize: 17),
+                                    style: const TextStyle(fontSize: 17),
                                     textFieldAlignment:
                                         MainAxisAlignment.spaceAround,
                                     fieldStyle: FieldStyle.box,
                                     onCompleted: (pin) {
-                                      print("Completed: " + pin);
+                                      // print("Completed: " + pin);
                                     },
                                   ),
                                   const SizedBox(
@@ -98,13 +97,13 @@ class _OTPScreen extends State<OTPScreen> {
                                   ),
                                   iconButton(
                                     onClick: () {
-                                      Get.to(PasswordScreen(title: ""));
+                                      Get.to(const PasswordScreen(title: ""));
                                     },
-                                    text: "Submit",
+                                    text: "Submit".tr,
                                   ),
                                 ],
                               ),
-                              AuthTopText(width: width, title: "OTPScreen")
+                              AuthTopText(width: width, title: "OTPScreen".tr)
                             ],
                           ),
                         ),

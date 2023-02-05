@@ -84,7 +84,7 @@ class _ChooseAuth extends State<ChooseAuth> {
                                 onClick: () {
                                   Get.to(const Login(title: ""));
                                 },
-                                text: "Sign In",
+                                text: "SignIn".tr,
                               ),
                             ),
                             const SizedBox(
@@ -97,7 +97,7 @@ class _ChooseAuth extends State<ChooseAuth> {
                                 onClick: () {
                                   Get.to(const SignUp(title: ""));
                                 },
-                                text: "Sign Up",
+                                text: "SignUp".tr,
                               ),
                             ),
                             const SizedBox(
@@ -110,7 +110,7 @@ class _ChooseAuth extends State<ChooseAuth> {
                                 onClick: () {
                                   Get.to(const DashboardView(title: ""));
                                 },
-                                text: "Login As Guest",
+                                text: "LoginAsGuest".tr,
                               ),
                             ),
                             const SizedBox(

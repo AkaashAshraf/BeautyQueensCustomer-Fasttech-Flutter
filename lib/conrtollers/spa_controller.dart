@@ -36,7 +36,6 @@ class SPAController extends GetxController {
       saloonListLoading(true);
       final result =
           await post("/admin/employees/list", {"user_id": id.toString()});
-      print(result);
       if (result != null) {
         final employeesResulut = employeesFromJson(result?.body);
         employees.value = employeesResulut.data!;
@@ -54,7 +53,6 @@ class SPAController extends GetxController {
           "/admin/services/list", {"user_id": id.toString(), "type": "1"});
       if (result != null) {
         final servicesResponse = servicesFromJson(result?.body);
-        print(servicesResponse.toJson());
         return servicesResponse.data;
       }
     } finally {

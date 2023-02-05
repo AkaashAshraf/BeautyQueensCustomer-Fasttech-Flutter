@@ -24,11 +24,6 @@ class CartController extends GetxController {
 
   RxBool saloonListLoading = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
   fetchEmployees(int id) async {
     employeesList.value =
         await Get.put(SaloonsController()).fetchEmployeesList(id: id);
@@ -36,7 +31,7 @@ class CartController extends GetxController {
 
   emptyCart() {
     items.value = [];
-    ToastMessages.showSuccess("Cart has been cleared successfully");
+    ToastMessages.showSuccess("CartHasBeenClearedSuccessfully".tr);
   }
 
   bool addToCart(CartItem item, Saloon saloon) {
@@ -44,7 +39,7 @@ class CartController extends GetxController {
     var contain = items.where((element) => element.productID == item.productID);
     if (contain.isEmpty) {
       items.add(item);
-      ToastMessages.showSuccess("Added to cart");
+      ToastMessages.showSuccess("AddedToCart".tr);
       // if (items.length == 1) {
       selectedSaloon.value = saloon;
       fetchEmployees(selectedSaloon.value.id ?? 0);
@@ -60,15 +55,15 @@ class CartController extends GetxController {
     try {
       loading(true);
       if (datetime.isEmpty) {
-        ToastMessages.showError("Please select appointment date time");
+        ToastMessages.showError("PleaseSelectAppointmentDateTime".tr);
         return;
       }
       if (selectedEmployee.value == 0) {
-        ToastMessages.showError("Please select employee");
+        ToastMessages.showError("PleaseSelectEmployee".tr);
         return;
       }
       if (items.isEmpty) {
-        ToastMessages.showError("Please select services");
+        ToastMessages.showError("PleaseSelectServices".tr);
         return;
       }
       var map = new Map<String, dynamic>();
@@ -82,21 +77,18 @@ class CartController extends GetxController {
       for (int i = 0; i < items.length; i++) {
         map['service_ids[${i.toString()}]'] = items[i].productID.toString();
       }
-      print(map.toString());
       var res = await post("/client/appointment/add", map);
       // ToastMessages.showError(res.statusCode.toString());
       // print(res.statusCode.toString());
       loading(false);
       if (res?.statusCode == 200) {
-        ToastMessages.showSuccess(
-            "Your appointment request has been submitted successfully. You will be notified after accept");
+        ToastMessages.showSuccess("AppointmentSuccessToast".tr);
         items.value = [];
         Get.offAll(const DashboardView(title: ""));
       } else {
         // ToastMessages.showError("Something went wrong");
       }
     } catch (e) {
-      print(e.toString());
     } finally {
       loading(false);
     }

@@ -4,7 +4,7 @@ import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class ServicesTab extends StatefulWidget {
@@ -82,7 +82,7 @@ class _ServicesTab extends State<ServicesTab> {
                         SizedBox(
                           width: screenWidth(context) * 0.65,
                           child: Text(
-                            "Time : 20 mins",
+                            service.time.toString() + "Minutes".tr,
                             maxLines: 1,
                             style: TextStyle(
                                 color: secondaryTextColor,
@@ -96,7 +96,7 @@ class _ServicesTab extends State<ServicesTab> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Price : 2.2 OMR",
+                                "${"Price".tr} : ${service.charges.toString()} ${"OMR".tr}",
                                 maxLines: 1,
                                 style: TextStyle(
                                     color: secondaryTextColor,

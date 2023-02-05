@@ -43,7 +43,7 @@ class _OfferDetailsView extends State<OfferDetailsView> {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: appBar(
-          title: "Offer Details",
+          title: "OfferDetails".tr,
           showCart: widget.item.providerType == 1 ? true : false),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -116,14 +116,20 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                   child: Column(
                     children: [
                       Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Get.locale.toString() == "en"
+                            ? Alignment.centerLeft
+                            : Alignment.centerRight,
                         child: AnimatedTextKit(
                           repeatForever: true,
                           animatedTexts: [
                             ColorizeAnimatedText(
                               widget.item.providerType == 1
-                                  ? widget.item.saloon?.nameEn ?? ""
-                                  : widget.item.shop?.nameEn ?? "",
+                                  ? Get.locale.toString() == "en"
+                                      ? widget.item.saloon?.nameEn ?? ""
+                                      : widget.item.saloon?.nameAr ?? ""
+                                  : Get.locale.toString() == "en"
+                                      ? widget.item.shop?.nameEn ?? ""
+                                      : widget.item.shop?.nameAr ?? "",
                               textStyle: TextStyle(
                                   fontFamily: "primary",
                                   fontSize: width * 0.05,
@@ -145,11 +151,18 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                       // ),
                       const SizedBox(height: 5),
                       Row(
+                        textDirection: Get.locale.toString() == "en"
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
                         children: [
                           Text(
                             widget.item.providerType == 1
-                                ? widget.item.saloon?.city?.nameEn ?? ""
-                                : widget.item.shop?.city?.nameEn ?? "",
+                                ? Get.locale.toString() == "en"
+                                    ? widget.item.saloon?.city?.nameEn ?? ""
+                                    : widget.item.saloon?.city?.nameAr ?? ""
+                                : Get.locale.toString() == "en"
+                                    ? widget.item.shop?.city?.nameEn ?? ""
+                                    : widget.item.shop?.city?.nameAr ?? "",
                             style: const TextStyle(
                               color: secondaryTextColor,
                               fontFamily: "primary",
@@ -161,9 +174,9 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "Discount",
-                            style: TextStyle(
+                          Text(
+                            "Discount".tr,
+                            style: const TextStyle(
                               color: secondaryTextColor,
                               fontFamily: "primary",
                             ),
@@ -202,9 +215,9 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "Expiry",
-                            style: TextStyle(
+                          Text(
+                            "Expiry".tr,
+                            style: const TextStyle(
                               color: secondaryTextColor,
                               fontFamily: "primary",
                             ),
@@ -228,7 +241,7 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                             SizedBox(
                               width: width * 0.7,
                               child: Text(
-                                "Description: ${widget.item.description}",
+                                "${"Description".tr} ${Get.locale.toString() == "en" ? widget.item.description : widget.item.descriptionAr}",
                                 style: const TextStyle(
                                   color: secondaryTextColor,
                                   fontFamily: "primary",
@@ -252,7 +265,7 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                             onClick: () async {
                               genericPopup(context,
                                   title:
-                                      "Contact ${widget.item.providerType == 1 ? widget.item.saloon?.contact ?? "" : widget.item.shop?.contact ?? ""}",
+                                      "${"Contact".tr} ${widget.item.providerType == 1 ? widget.item.saloon?.contact ?? "" : widget.item.shop?.contact ?? ""}",
                                   children: Column(
                                     children: <Widget>[
                                       SizedBox(
@@ -261,10 +274,10 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                                           onClick: () {
                                             Get.put(HelperController()).openUrl(
                                                 url:
-                                                    "tel:+968${widget.item.providerType == 1 ? widget.item.saloon?.contact ?? "" : widget.item.shop?.contact ?? ""}");
+                                                    "tel:+968${widget.item.providerType == 1 ? Get.locale.toString() == "en" ? widget.item.saloon?.nameEn : widget.item.saloon?.nameAr ?? "" : Get.locale.toString() == "en" ? widget.item.shop?.nameEn : widget.item.shop?.nameAr ?? ""}");
                                             Navigator.pop(context);
                                           },
-                                          text: "Contact",
+                                          text: "Contact".tr,
                                           icon: const Icon(
                                             Icons.phone,
                                             size: 20,
@@ -284,7 +297,7 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                                                     "whatsapp://send?phone=${widget.item.providerType == 1 ? widget.item.saloon?.contact ?? "" : widget.item.shop?.contact ?? ""}&text=");
                                             Navigator.pop(context);
                                           },
-                                          text: "Whtasapp",
+                                          text: "Whatsapp".tr,
                                           icon: const Icon(
                                             Icons.whatsapp,
                                             size: 20,
@@ -300,7 +313,7 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                               size: 20,
                               color: Colors.white,
                             ),
-                            text: "Contact"),
+                            text: "Contact".tr),
                       ),
                       SizedBox(
                         width: width * 0.43,
@@ -320,7 +333,7 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                               Icons.location_on,
                               color: Colors.white,
                             ),
-                            text: "Location"),
+                            text: "Location".tr),
                       ),
                     ],
                   ),

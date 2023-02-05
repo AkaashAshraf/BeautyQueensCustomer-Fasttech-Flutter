@@ -25,7 +25,7 @@ class _SPAList extends State<SPAList> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "SPA", showCart: false),
+      appBar: appBar(title: "SPA".tr, showCart: false),
       body: SafeArea(child: GetX<SPAController>(builder: (controller) {
         return SizedBox(
           child: ListView.builder(
@@ -34,15 +34,14 @@ class _SPAList extends State<SPAList> {
                 return Padding(
                   padding: const EdgeInsets.only(top: 2.0, left: 5, right: 5),
                   child: SizedBox(
-                      height: cardHeight,
                       // width: width * 0.95,
 
                       child: saloonListItem(controller.spaList[index],
                           context: context, onPress: (saloon) {
-                        Get.to(SaloonDetailsView(
-                          saloon: saloon,
-                        ));
-                      })),
+                    Get.to(SaloonDetailsView(
+                      saloon: saloon,
+                    ));
+                  })),
                 );
               }),
         );

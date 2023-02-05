@@ -44,11 +44,11 @@ class _SignIn extends State<SignIn> {
     Get.put(HelperController());
 
     return FlutterLogin(
-      title: 'Beauty Queen',
+      title: 'Beauty Queens'.tr,
 
       userValidator: (value) {
         if (value!.length > 8 || value.length < 8) {
-          return "Invalid Phone Number";
+          return "InvalidPhoneNumber".tr;
         } else {
           null;
         }

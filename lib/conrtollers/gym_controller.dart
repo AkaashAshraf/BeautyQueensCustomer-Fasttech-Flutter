@@ -22,7 +22,6 @@ class GYMController extends GetxController {
       if (result != null) {
         final shops = shopsFromJson(result?.body);
 
-        print(shops);
         gymCenterList(shops!.data);
       }
     } finally {

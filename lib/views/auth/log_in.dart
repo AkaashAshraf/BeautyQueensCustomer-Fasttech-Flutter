@@ -82,7 +82,7 @@ class _Login extends State<Login> {
                                       height: 100,
                                     ),
                                     textInputCustom(
-                                        label: "Enter Mobile No",
+                                        label: "EnterMobileNo".tr,
                                         initialValue:
                                             controller.contact.toString(),
                                         preIcon: const Icon(
@@ -98,7 +98,7 @@ class _Login extends State<Login> {
                                       height: 10,
                                     ),
                                     PasswordInput(
-                                      lable: "Enter Password",
+                                      lable: "EnterPassword".tr,
                                       onTextChange: (val) {
                                         controller.password.value = val;
                                       },
@@ -111,10 +111,13 @@ class _Login extends State<Login> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: SizedBox(
                                             width: width,
-                                            child: const Text(
-                                              "forget password",
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
+                                            child: Text(
+                                              "ForgetPassword".tr,
+                                              textAlign:
+                                                  Get.locale.toString() == "en"
+                                                      ? TextAlign.right
+                                                      : TextAlign.left,
+                                              style: const TextStyle(
                                                   color: primaryColor,
                                                   fontWeight: FontWeight.w500,
                                                   fontStyle: FontStyle.italic),
@@ -130,7 +133,7 @@ class _Login extends State<Login> {
                                             onClick: () {
                                               controller.login();
                                             },
-                                            text: "Login",
+                                            text: "Login".tr,
                                           ),
                                     const SizedBox(
                                       height: 300,
@@ -138,7 +141,7 @@ class _Login extends State<Login> {
                                   ],
                                 ),
                               ),
-                              AuthTopText(width: width, title: "Login")
+                              AuthTopText(width: width, title: "Login".tr)
                             ],
                           ),
                         ),

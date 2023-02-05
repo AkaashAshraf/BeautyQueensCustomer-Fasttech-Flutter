@@ -1,5 +1,6 @@
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget iconButton({required String text, Widget? icon, dynamic onClick}) {
   return Container(
@@ -59,8 +60,10 @@ ElevatedButton button({required String text, dynamic onClick}) {
         children: [
           Text(
             text,
-            style: const TextStyle(
-                color: buttonTexrColor, fontSize: 18, fontFamily: "primary"),
+            style: TextStyle(
+                color: buttonTexrColor,
+                fontSize: Get.locale.toString() == "en" ? 18 : 14,
+                fontFamily: "primary"),
           ),
         ],
       ));

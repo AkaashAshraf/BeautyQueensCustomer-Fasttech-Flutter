@@ -16,13 +16,9 @@ class GYM extends StatefulWidget {
 class _GYM extends State<GYM> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-
-    final cardHeight = height * 0.3;
-
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: "GYM Centers", showCart: false),
+      appBar: appBar(title: "LadiesGym".tr, showCart: false),
       body: SafeArea(child: GetX<GYMController>(builder: (controller) {
         return SizedBox(
           child: ListView.builder(
@@ -31,15 +27,14 @@ class _GYM extends State<GYM> {
                 return Padding(
                   padding: const EdgeInsets.only(top: 2.0, left: 5, right: 5),
                   child: SizedBox(
-                      height: cardHeight,
                       // width: width * 0.95,
 
                       child: shopsListItem(controller.gymCenterList[index],
                           context: context, onPress: (shop) {
-                        Get.to(() => GYMDetailsView(
-                              shop: shop,
-                            ));
-                      })),
+                    Get.to(() => GYMDetailsView(
+                          shop: shop,
+                        ));
+                  })),
                 );
               }),
         );

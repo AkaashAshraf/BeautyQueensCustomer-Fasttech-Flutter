@@ -2,11 +2,8 @@ import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/labels/auth_top_label.dart';
 import 'package:beauty_queens_ustomer/components/common/logo_image.dart';
-import 'package:beauty_queens_ustomer/components/common/textInputs/password_input.dart';
 import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
-import 'package:beauty_queens_ustomer/config/text_sizes.dart';
-import 'package:beauty_queens_ustomer/views/auth/forget_password.dart';
 import 'package:beauty_queens_ustomer/views/auth/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -80,7 +77,7 @@ class _ForgetPassword extends State<ForgetPassword> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   textInputCustom(
-                                      label: "Enter Mobile No",
+                                      label: "EnterMobileNo".tr,
                                       initialValue: "",
                                       preIcon: const Icon(
                                         Icons.numbers,
@@ -101,11 +98,12 @@ class _ForgetPassword extends State<ForgetPassword> {
                                         title: "",
                                       )));
                                     },
-                                    text: "ForgetPassword",
+                                    text: "ForgetPassword".tr,
                                   ),
                                 ],
                               ),
-                              AuthTopText(width: width, title: "ForgetPassword")
+                              AuthTopText(
+                                  width: width, title: "ForgetPassword".tr)
                             ],
                           ),
                         ),

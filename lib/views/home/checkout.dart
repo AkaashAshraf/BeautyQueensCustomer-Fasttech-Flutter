@@ -1,9 +1,7 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/loading_indicator.dart';
 import 'package:beauty_queens_ustomer/components/saloons/employees_list_item2.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
-import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:data_table_2/data_table_2.dart';
@@ -58,7 +56,7 @@ class _Checkout extends State<Checkout> {
                                   icon: const Icon(Icons.calendar_month),
                                   firstDate: DateTime(2000),
                                   lastDate: DateTime(2100),
-                                  dateLabelText: 'Appointment Date',
+                                  dateLabelText: 'AppointmentDate'.tr,
                                   onChanged: (val) => setState(() {
                                     dateTime = val;
                                   }),
@@ -78,7 +76,7 @@ class _Checkout extends State<Checkout> {
                                     height: height * 0.03,
                                     width: width,
                                     child: Text(
-                                      "Choose Employee",
+                                      "ChooseEmployee".tr,
                                       style: TextStyle(
                                           fontFamily: "primary",
                                           fontSize: width * 0.04,
@@ -117,11 +115,11 @@ class _Checkout extends State<Checkout> {
                                       columnSpacing: 12,
                                       horizontalMargin: 12,
                                       minWidth: width * 0.9,
-                                      columns: const [
+                                      columns: [
                                         DataColumn2(
                                           label: Text(
-                                            'No:',
-                                            style: TextStyle(
+                                            'Number'.tr,
+                                            style: const TextStyle(
                                                 fontFamily: "primary",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -129,8 +127,8 @@ class _Checkout extends State<Checkout> {
                                         ),
                                         DataColumn2(
                                           label: Text(
-                                            'Service Name',
-                                            style: TextStyle(
+                                            'ServiceName'.tr,
+                                            style: const TextStyle(
                                                 fontFamily: "primary",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -138,8 +136,8 @@ class _Checkout extends State<Checkout> {
                                         ),
                                         DataColumn2(
                                           label: Text(
-                                            'Time',
-                                            style: TextStyle(
+                                            'Time'.tr,
+                                            style: const TextStyle(
                                                 fontFamily: "primary",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -147,8 +145,8 @@ class _Checkout extends State<Checkout> {
                                         ),
                                         DataColumn2(
                                           label: Text(
-                                            'Price',
-                                            style: TextStyle(
+                                            'Price'.tr,
+                                            style: const TextStyle(
                                                 fontFamily: "primary",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -164,8 +162,11 @@ class _Checkout extends State<Checkout> {
                                                       fontFamily: "primary"),
                                                 )),
                                                 DataCell(Text(
-                                                  controller
-                                                      .items[index].nameEn,
+                                                  Get.locale.toString() == "en"
+                                                      ? controller
+                                                          .items[index].nameEn
+                                                      : controller
+                                                          .items[index].nameAr,
                                                   style: const TextStyle(
                                                       fontFamily: "primary"),
                                                 )),
@@ -176,7 +177,7 @@ class _Checkout extends State<Checkout> {
                                                       fontFamily: "primary"),
                                                 )),
                                                 DataCell(Text(
-                                                  "${controller.items[index].unitPrice.toStringAsFixed(3)} OMR",
+                                                  "${controller.items[index].unitPrice.toStringAsFixed(3)} ${"OMR".tr}",
                                                   style: const TextStyle(
                                                       fontFamily: "primary"),
                                                 )),
@@ -192,21 +193,21 @@ class _Checkout extends State<Checkout> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "Services: ${controller.items.length.toString()}",
+                                          "${"Services".tr} ${controller.items.length.toString()}",
                                           style: TextStyle(
                                               fontFamily: "primary",
                                               fontSize: width * 0.04,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          "Time: ${controller.totalTime.toString()}",
+                                          "${"Time:".tr} ${controller.totalTime.toString()}",
                                           style: TextStyle(
                                               fontFamily: "primary",
                                               fontSize: width * 0.04,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          "Amount: ${controller.totalPrice.toStringAsFixed(3)} OMR",
+                                          "${"Amount:".tr} ${controller.totalPrice.toStringAsFixed(3)} ${"OMR".tr}",
                                           style: TextStyle(
                                               fontFamily: "primary",
                                               fontSize: width * 0.04,
@@ -241,7 +242,7 @@ class _Checkout extends State<Checkout> {
                                                   MaterialStateProperty.all(
                                                       primaryColor)),
                                           child: Text(
-                                            "Checkout",
+                                            "Checkout".tr,
                                             style: TextStyle(
                                                 fontFamily: "primary",
                                                 color: Colors.white,
@@ -251,10 +252,10 @@ class _Checkout extends State<Checkout> {
                             )
                           ],
                         )
-                      : const Center(
+                      : Center(
                           child: Text(
-                          "Cart is empty",
-                          style: TextStyle(
+                          "CartIsEmpty".tr,
+                          style: const TextStyle(
                             fontFamily: "primary",
                           ),
                         ))),

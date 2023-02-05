@@ -19,8 +19,6 @@ class _AppointmentTab extends State<AppointmentTab> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    final cardHeight = height * 0.3;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: GetX<AppoinmentController>(builder: (controller) {
@@ -33,7 +31,7 @@ class _AppointmentTab extends State<AppointmentTab> {
                             .isEmpty)
                 ? Center(
                     child: Text(
-                    "No appointments available",
+                    "NoAppointmentsAvailable".tr,
                     style: TextStyle(
                         fontFamily: "primary",
                         fontSize: screenWidth(context) * 0.04),

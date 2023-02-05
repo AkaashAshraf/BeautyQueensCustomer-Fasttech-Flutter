@@ -51,11 +51,11 @@ class AuthController extends GetxController {
 
   login() async {
     if (contact.value.length < 8) {
-      ToastMessages.showError("Please Enter a valid mobile number");
+      ToastMessages.showError("valid_number_alert".tr);
       return;
     }
     if (password.value.isEmpty) {
-      ToastMessages.showError("Please Enter password");
+      ToastMessages.showError("valid_password_alert".tr);
       return;
     }
     loading(true);
@@ -69,14 +69,14 @@ class AuthController extends GetxController {
         MyApp().storage.write(userIDPath, jsonData.data!.user!.id.toString());
         MyApp().storage.write(userNamePath, jsonData.data!.user!.name);
         MyApp().storage.write(userDataPath, loginToJson(jsonData));
-        ToastMessages.showSuccess("Logged in successfully");
+        ToastMessages.showSuccess("LoggedInSuccessfully".tr);
         // Get.to(const DashboardView(title: ""));
         getUserInfoFromCache();
 
         Get.offAll(const DashboardView(title: ""));
         // Get.toEnd(() => const DashboardView(title: ""));
       } else {
-        ToastMessages.showSuccess("Logged in successfully bnbn");
+        ToastMessages.showSuccess("LoggedInSuccessfully".tr);
       }
     } catch (e) {
       ToastMessages.showError(e.toString());
@@ -87,16 +87,16 @@ class AuthController extends GetxController {
 
   signUp() async {
     if (contact.value.length < 8) {
-      ToastMessages.showError("Please Enter a valid mobile number");
+      ToastMessages.showError("valid_number_alert".tr);
       return;
     }
 
     if (name.value.isEmpty) {
-      ToastMessages.showError("Please Enter Name");
+      ToastMessages.showError("valid_name_alert".tr);
       return;
     }
     if (password.value != confirmPassword.value) {
-      ToastMessages.showError("Password mismatch");
+      ToastMessages.showError("PasswordMismatch".tr);
       return;
     }
     loading(true);
@@ -112,14 +112,14 @@ class AuthController extends GetxController {
         MyApp().storage.write(userIDPath, jsonData.data!.user!.id.toString());
         MyApp().storage.write(userNamePath, jsonData.data!.user!.name);
         MyApp().storage.write(userDataPath, loginToJson(jsonData));
-        ToastMessages.showSuccess("Logged in successfully");
+        ToastMessages.showSuccess("LoggedInSuccessfully".tr);
         // Get.to(const DashboardView(title: ""));
         getUserInfoFromCache();
         Get.offAll(const DashboardView(title: ""));
 
         // Get.toEnd(() => const DashboardView(title: ""));
       } else {
-        ToastMessages.showError("This number already exist ");
+        ToastMessages.showError("ThisNumberAlreadyExist".tr);
       }
     } catch (e) {
       ToastMessages.showError(e.toString());

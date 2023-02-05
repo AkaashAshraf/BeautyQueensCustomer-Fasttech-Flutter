@@ -50,12 +50,15 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
 
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: appBar(title: widget.saloon.nameEn!),
+      appBar: appBar(
+          title: Get.locale.toString() == "en"
+              ? widget.saloon.nameEn ?? ''
+              : widget.saloon.nameAr ?? ""),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               height: height * 0.89,
               child: Column(
                 children: [
@@ -80,12 +83,16 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                           child: Column(
                             children: [
                               Align(
-                                alignment: Alignment.centerLeft,
+                                alignment: Get.locale.toString() == "en"
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
                                 child: AnimatedTextKit(
                                   repeatForever: true,
                                   animatedTexts: [
                                     ColorizeAnimatedText(
-                                      widget.saloon.nameEn!,
+                                      Get.locale.toString() == "en"
+                                          ? widget.saloon.nameEn ?? ""
+                                          : widget.saloon.nameAr ?? "",
                                       textStyle: TextStyle(
                                           fontSize: width * 0.05,
                                           fontFamily: "primary",
@@ -107,9 +114,17 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                               // ),
                               const SizedBox(height: 5),
                               Row(
+                                textDirection: Get.locale.toString() == "en"
+                                    ? TextDirection.rtl
+                                    : TextDirection.ltr,
                                 children: [
                                   Text(
-                                    widget.saloon.cityEn!,
+                                    Get.locale.toString() == "en"
+                                        ? widget.saloon.cityEn ?? ""
+                                        : widget.saloon.cityAr ?? "",
+                                    textAlign: Get.locale.toString() == "en"
+                                        ? TextAlign.left
+                                        : TextAlign.right,
                                     style: const TextStyle(
                                         fontFamily: "primary",
                                         color: secondaryTextColor),
@@ -120,8 +135,8 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  Text(
+                                children: [
+                                  const Text(
                                     "08:00 AM - 08:00 PM",
                                     style: TextStyle(
                                       color: secondaryTextColor,
@@ -130,8 +145,8 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                   ),
 
                                   Text(
-                                    "Open Now",
-                                    style: TextStyle(
+                                    "OpenNow".tr,
+                                    style: const TextStyle(
                                       color: secondaryTextColor,
                                       fontFamily: "primary",
                                     ),
@@ -163,9 +178,9 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                     onTap: (() {
                                       Get.to(const EmployeesListView());
                                     }),
-                                    child: const Text(
-                                      "View Employees",
-                                      style: TextStyle(
+                                    child: Text(
+                                      "ViewEmployees".tr,
+                                      style: const TextStyle(
                                         color: primaryColor,
                                         fontFamily: "primary",
                                         decoration: TextDecoration.underline,
@@ -213,9 +228,9 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                   children: [
                                     SizedBox(
                                       width: width * 0.7,
-                                      child: const Text(
-                                        "Description: dummy description text",
-                                        style: TextStyle(
+                                      child: Text(
+                                        widget.saloon.descriptionEn ?? "",
+                                        style: const TextStyle(
                                           color: secondaryTextColor,
                                           fontFamily: "primary",
                                         ),

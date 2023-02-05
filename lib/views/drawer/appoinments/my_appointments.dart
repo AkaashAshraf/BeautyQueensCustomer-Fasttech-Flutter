@@ -3,6 +3,7 @@ import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/views/drawer/appoinments/appointment_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:get/get.dart';
 
 class MyAppointmentsList extends StatefulWidget {
   const MyAppointmentsList({Key? key}) : super(key: key);
@@ -11,12 +12,12 @@ class MyAppointmentsList extends StatefulWidget {
 }
 
 class _MyAppointmentsList extends State<MyAppointmentsList> {
-  final List<Tab> myTabs = const <Tab>[
-    Tab(text: 'All'),
-    Tab(text: 'Pending'),
-    Tab(text: 'Confirmed'),
-    Tab(text: 'Completed'),
-    Tab(text: 'Cancelled'),
+  final List<Tab> myTabs = <Tab>[
+    Tab(text: 'All'.tr),
+    Tab(text: 'Pending'.tr),
+    Tab(text: 'Confirmed'.tr),
+    Tab(text: 'Completed'.tr),
+    Tab(text: 'Cancelled'.tr),
   ];
   final List<Widget> myWidgets = <Widget>[
     const AppointmentTab(type: 0),
@@ -29,13 +30,9 @@ class _MyAppointmentsList extends State<MyAppointmentsList> {
   ];
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-
-    final cardHeight = height * 0.3;
-
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: appBar(title: "My Appointments", showCart: false),
+      appBar: appBar(title: "MyAppointments".tr, showCart: false),
       body: SafeArea(
         child: DefaultTabController(
           length: myTabs.length,

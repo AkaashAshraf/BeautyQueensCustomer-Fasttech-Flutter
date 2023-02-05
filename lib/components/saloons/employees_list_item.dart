@@ -1,13 +1,12 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Card employeesListItem(Employee employee,
     {required dynamic onPress, required BuildContext context}) {
-  final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
 
   return Card(
@@ -37,9 +36,13 @@ Card employeesListItem(Employee employee,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Get.locale.toString() == "en"
+                        ? Alignment.centerLeft
+                        : Alignment.centerRight,
                     child: Text(
-                      employee.nameEn.toString(),
+                      Get.locale.toString() == "en"
+                          ? employee.nameEn ?? ""
+                          : employee.nameAr ?? "",
                       maxLines: 1,
                       style: TextStyle(
                           fontFamily: "primary",
@@ -49,10 +52,15 @@ Card employeesListItem(Employee employee,
                     ),
                   ),
                   Row(
+                    textDirection: Get.locale.toString() == "en"
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        employee.countryEn.toString(),
+                        Get.locale.toString() == "en"
+                            ? employee.countryEn ?? ""
+                            : employee.countryAr ?? "",
                         style: TextStyle(
                             fontFamily: "primary",
                             fontSize: getTextSize(context).twoColumnGridSubText,
@@ -60,7 +68,7 @@ Card employeesListItem(Employee employee,
                             color: secondaryTextColor),
                       ),
                       Text(
-                        "${employee.exp.toString()} years",
+                        "${employee.exp} ${"Years".tr}",
                         style: TextStyle(
                             fontFamily: "primary",
                             fontSize: getTextSize(context).twoColumnGridSubText,

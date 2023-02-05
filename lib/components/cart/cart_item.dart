@@ -7,9 +7,9 @@ import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:get/get.dart';
 
 class CartCardItem extends StatelessWidget {
-  CartCardItem({Key? key, required this.item}) : super(key: key);
+  const CartCardItem({Key? key, required this.item}) : super(key: key);
 
-  CartItem item;
+  final CartItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,9 @@ class CartCardItem extends StatelessWidget {
                     SizedBox(
                       width: width * 0.7,
                       child: Text(
-                        item.nameEn,
+                        Get.locale.toString() == "en"
+                            ? item.nameEn
+                            : item.nameAr,
                         style: TextStyle(
                             fontSize: width * 0.045,
                             fontFamily: "primary",
@@ -50,7 +52,7 @@ class CartCardItem extends StatelessWidget {
                     SizedBox(
                       width: width * 0.7,
                       child: Text(
-                        "${item.time.toString()} minutes",
+                        "${item.time.toString()} ${"Minutes".tr}",
                         style: TextStyle(
                             fontFamily: "primary",
                             color: secondaryTextColor,
@@ -60,7 +62,7 @@ class CartCardItem extends StatelessWidget {
                     SizedBox(
                       width: width * 0.7,
                       child: Text(
-                        "${item.unitPrice.toStringAsFixed(3)} OMR",
+                        "${item.unitPrice.toStringAsFixed(3)} ${"OMR".tr}",
                         style: TextStyle(
                             fontFamily: "primary",
                             color: secondaryTextColor,
