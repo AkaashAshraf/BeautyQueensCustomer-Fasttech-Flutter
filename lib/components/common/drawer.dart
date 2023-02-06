@@ -112,7 +112,7 @@ class MenuDrawer extends StatelessWidget {
             }, title: "Logout".tr),
             drawerItem(context,
                 icon: const Icon(
-                  Icons.logout,
+                  Icons.delete,
                   size: 25,
                   color: textInputIconColor,
                 ), onPress: () {

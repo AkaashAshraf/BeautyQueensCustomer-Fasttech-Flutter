@@ -1,15 +1,21 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/logo_image.dart';
+import 'package:beauty_queens_ustomer/components/common/text_alert.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/config/storages.dart';
+import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
+import 'package:beauty_queens_ustomer/main.dart';
 import 'package:beauty_queens_ustomer/views/auth/log_in.dart';
 import 'package:beauty_queens_ustomer/views/auth/sign_up.dart';
 import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class ChooseAuth extends StatefulWidget {
   const ChooseAuth({Key? key, required this.title}) : super(key: key);
@@ -116,6 +122,34 @@ class _ChooseAuth extends State<ChooseAuth> {
                             const SizedBox(
                               height: 30,
                             ),
+                            GestureDetector(
+                              onTap: () => {
+                                textAlert(context,
+                                    title: "language_alert".tr,
+                                    buttons: DialogButton(
+                                        onPressed: (() {
+                                          MyApp().storage.write(
+                                              localizationPath,
+                                              Get.locale.toString() == "en"
+                                                  ? "ar"
+                                                  : "en");
+                                          Restart.restartApp();
+                                        }),
+                                        child: Text(
+                                          "Yes".tr,
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        ))).show()
+                              },
+                              child: Text(
+                                "ChangeLanguage".tr,
+                                style: TextStyle(
+                                    fontFamily: "primary",
+                                    fontWeight: FontWeight.bold,
+                                    color: primaryColor,
+                                    fontSize: screenWidth(context) * 0.04),
+                              ),
+                            )
                           ],
                         ),
                       ),
