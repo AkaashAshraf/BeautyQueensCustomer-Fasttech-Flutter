@@ -122,34 +122,103 @@ class _ChooseAuth extends State<ChooseAuth> {
                             const SizedBox(
                               height: 30,
                             ),
-                            GestureDetector(
-                              onTap: () => {
-                                textAlert(context,
-                                    title: "language_alert".tr,
-                                    buttons: DialogButton(
-                                        onPressed: (() {
-                                          MyApp().storage.write(
-                                              localizationPath,
-                                              Get.locale.toString() == "en"
-                                                  ? "ar"
-                                                  : "en");
-                                          Restart.restartApp();
-                                        }),
+                            Center(
+                              child: Row(
+                                textDirection: TextDirection.ltr,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => {
+                                      if (Get.locale.toString() == "ar")
+                                        textAlert(context,
+                                            title: "language_alert".tr,
+                                            buttons: DialogButton(
+                                                onPressed: (() {
+                                                  MyApp().storage.write(
+                                                      localizationPath,
+                                                      Get.locale.toString() ==
+                                                              "en"
+                                                          ? "ar"
+                                                          : "en");
+                                                  Restart.restartApp();
+                                                }),
+                                                child: Text(
+                                                  "Yes".tr,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ))).show()
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: Get.locale.toString() == "ar"
+                                              ? secandaryColor
+                                              : primaryColor,
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          )),
+                                      child: Center(
                                         child: Text(
-                                          "Yes".tr,
-                                          style: const TextStyle(
-                                              color: Colors.white),
-                                        ))).show()
-                              },
-                              child: Text(
-                                "ChangeLanguage".tr,
-                                style: TextStyle(
-                                    fontFamily: "primary",
-                                    fontWeight: FontWeight.bold,
-                                    color: primaryColor,
-                                    fontSize: screenWidth(context) * 0.04),
+                                          "English",
+                                          style: TextStyle(
+                                            fontFamily: "primary",
+                                            color: Get.locale.toString() == "en"
+                                                ? Colors.white
+                                                : Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => {
+                                      if (Get.locale.toString() == "en")
+                                        textAlert(context,
+                                            title: "language_alert".tr,
+                                            buttons: DialogButton(
+                                                onPressed: (() {
+                                                  MyApp().storage.write(
+                                                      localizationPath,
+                                                      Get.locale.toString() ==
+                                                              "en"
+                                                          ? "ar"
+                                                          : "en");
+                                                  Restart.restartApp();
+                                                }),
+                                                child: Text(
+                                                  "Yes".tr,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ))).show()
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: Get.locale.toString() == "en"
+                                              ? secandaryColor
+                                              : primaryColor,
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          )),
+                                      child: Center(
+                                        child: Text(
+                                          "عربي",
+                                          style: TextStyle(
+                                            fontFamily: "primary",
+                                            color: Get.locale.toString() == "ar"
+                                                ? Colors.white
+                                                : Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
