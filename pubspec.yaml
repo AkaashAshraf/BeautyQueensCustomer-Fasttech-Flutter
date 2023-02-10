@@ -57,6 +57,7 @@ dependencies:
   data_table_2: ^2.3.10
   flutter_keyboard_visibility: ^5.4.0
   restart_app: ^1.1.0+1
+  flutter_phoenix: ^1.1.0
 
 dev_dependencies:
   flutter_test:

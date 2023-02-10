@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:beauty_queens_ustomer/components/common/text_alert.dart';
-import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/storages.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
@@ -9,6 +10,7 @@ import 'package:beauty_queens_ustomer/views/drawer/appoinments/my_appointments.d
 import 'package:beauty_queens_ustomer/views/drawer/notifications/notifications.dart';
 import 'package:beauty_queens_ustomer/views/drawer/profile/my_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -139,7 +141,14 @@ class MenuDrawer extends StatelessWidget {
                       onPressed: (() {
                         MyApp().storage.write(localizationPath,
                             Get.locale.toString() == "en" ? "ar" : "en");
-                        Restart.restartApp();
+                        if (Platform.isAndroid) {
+                          Restart.restartApp();
+                        } else {
+                          Phoenix.rebirth(context);
+
+                          Navigator.pop(context);
+                        }
+                        // Phoenix.rebirth(context);
                       }),
                       child: Text(
                         "Yes".tr,

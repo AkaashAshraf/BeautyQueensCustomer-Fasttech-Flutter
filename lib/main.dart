@@ -3,13 +3,14 @@ import 'package:beauty_queens_ustomer/conrtollers/languageController.dart';
 import 'package:beauty_queens_ustomer/views/auth/choose_auth.dart';
 import 'package:beauty_queens_ustomer/views/home/dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 
 void main() async {
   await GetStorage.init();
 
-  runApp(MyApp());
+  runApp(Phoenix(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
