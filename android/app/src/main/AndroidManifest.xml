@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="Beauty Queens"
+        android:label="ملكات الجمال"
          android:icon="@mipmap/ic_launcher_bq">
         <activity
             android:name="fasttech.bq.customer.MainActivity"

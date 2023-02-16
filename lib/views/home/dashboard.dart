@@ -184,7 +184,7 @@ class _DashboardView extends State<DashboardView> {
                                             onClick: () {
                                               Get.put(HelperController()).openUrl(
                                                   url:
-                                                      "mailto:akash131060@gmail.com");
+                                                      "mailto:$contactSuppportEmail");
                                               Navigator.pop(context);
                                             },
                                             text: "Email".tr,
