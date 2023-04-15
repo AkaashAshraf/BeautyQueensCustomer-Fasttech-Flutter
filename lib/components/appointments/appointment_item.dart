@@ -1,8 +1,12 @@
+import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/appointment.dart';
+import 'package:beauty_queens_ustomer/views/drawer/appoinments/ratting.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 class AppointmentItem extends StatelessWidget {
@@ -181,11 +185,75 @@ class AppointmentItem extends StatelessWidget {
                       ],
                     ),
                 ],
-              )
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              if (item.isRatted != 1)
+                button(
+                    text: "Rate".tr,
+                    onClick: () {
+                      Get.to(RattingView(
+                        appointmenID: item.id,
+                      ));
+                    })
+              else
+                Column(
+                  children: [
+                    const DottedLine(
+                      dashColor: bgColor,
+                      dashGapColor: bgColor,
+                    ),
+                    rattingRow(
+                        context, "ProductsRatting".tr, item.productRatting),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    rattingRow(context, "SaloonRatting".tr, item.saloonRatting),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    rattingRow(
+                        context, "EmployeeRatting".tr, item.employeeRatting),
+                  ],
+                )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Row rattingRow(BuildContext context, String text, double rating) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          text,
+          style: TextStyle(
+              fontFamily: "primary", fontSize: screenWidth(context) * 0.04),
+        ),
+        Center(
+          child: RatingBar.builder(
+            initialRating: rating,
+            ignoreGestures: true,
+            itemSize: 20,
+            minRating: 1,
+
+            // unratedColor: secandaryColor,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            // tapOnlyMode: true,
+            itemCount: 5,
+            itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+            itemBuilder: (context, _) => const Icon(
+              Icons.star,
+              color: secandaryColor,
+            ),
+            onRatingUpdate: (rating) {},
+          ),
+        ),
+      ],
     );
   }
 

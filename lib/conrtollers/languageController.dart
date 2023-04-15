@@ -119,6 +119,18 @@ class Messages extends Translations {
           "ChangeLanguage": "Change Language to   عربى'",
           "Month": "Month",
           "Months": "Months",
+          "ThisFeatureWillBeAvailableSoon":
+              "This Feature Will Be Available Soon",
+          "DataUpdated": "Data Updated",
+          "RateProducts": "Rate Products",
+          "RateEmployee": "Rate Employee",
+          "RateSaloon": "Rate Saloon",
+          "Ratting": "Ratting",
+          "Rate": "Rate",
+          "ProductsRatting": "Products Ratting",
+          "SaloonRatting": "Saloon Ratting",
+
+          "EmployeeRatting": "Employee Ratting",
         },
         'ar': {
 //////auth
@@ -234,6 +246,16 @@ class Messages extends Translations {
           "ChangeLanguage": "تغيير اللغة إلى اللغة الإنجليزية",
           "Month": "شهر",
           "Months": "شهور",
+          "DataUpdated": "تم تحديث البيانات",
+          "ThisFeatureWillBeAvailableSoon": "ستتوفر هذه الميزة قريبًا",
+          "Ratting": "الضرب",
+          "RateSaloon": "قيم الصالون",
+          "RateEmployee": "معدل الموظف",
+          "RateProducts": "قيم المنتجات",
+          "EmployeeRatting": "الموظف الخشخاش",
+          "SaloonRatting": "قعقعة الصالون",
+          "ProductsRatting": "المنتجات الخشخشة",
+          "Rate": "معدل",
         },
       };
 }

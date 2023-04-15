@@ -85,6 +85,37 @@ class AuthController extends GetxController {
     }
   }
 
+  updateProfile(
+      {String name = "",
+      String id = "",
+      String password = "",
+      String contact = ""}) async {
+    loading(true);
+    try {
+      var response = await post(updateProfileUrl,
+          {"name": name, "id": id, "contact": contact, "password": password});
+      // inspect(response);
+      if (response.statusCode == 200) {
+        var jsonData = loginFromJson(response.body);
+        MyApp().storage.write(tokenPath, jsonData.data!.token);
+        MyApp().storage.write(userIDPath, jsonData.data!.user!.id.toString());
+        MyApp().storage.write(userNamePath, jsonData.data!.user!.name);
+        MyApp().storage.write(userDataPath, loginToJson(jsonData));
+        ToastMessages.showSuccess("DataUpdated".tr);
+        // Get.to(const DashboardView(title: ""));
+        getUserInfoFromCache();
+        Get.back(); // Get.offAll(const DashboardView(title: ""));
+        // Get.toEnd(() => const DashboardView(title: ""));
+      } else {
+        // ToastMessages.showSuccess("LoggedInSuccessfully".tr);
+      }
+    } catch (e) {
+      ToastMessages.showError(e.toString());
+    } finally {
+      loading(false);
+    }
+  }
+
   signUp() async {
     if (contact.value.length < 8) {
       ToastMessages.showError("valid_number_alert".tr);

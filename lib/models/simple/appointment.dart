@@ -3,26 +3,29 @@ import 'package:beauty_queens_ustomer/models/simple/requested_service.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 
 class Appointment {
-  Appointment({
-    this.id = 0,
-    this.saloonId = 0,
-    this.customerId = 0,
-    this.employeeId = 0,
-    this.status = 0,
-    this.totalAmount = 0,
-    this.totalServices = 0,
-    this.discount = 0,
-    this.priceAfterDiscount = 0,
-    this.discountDescription = "",
-    this.respondBy,
-    this.appointmentDateTime = "",
-    this.createdAt = '',
-    this.updatedAt = '',
-    this.timeElapsed = 0,
-    required this.requestedServices,
-    required this.employee,
-    required this.saloon,
-  });
+  Appointment(
+      {this.id = 0,
+      this.saloonId = 0,
+      this.customerId = 0,
+      this.employeeId = 0,
+      this.status = 0,
+      this.totalAmount = 0,
+      this.totalServices = 0,
+      this.discount = 0,
+      this.priceAfterDiscount = 0,
+      this.discountDescription = "",
+      this.respondBy,
+      this.appointmentDateTime = "",
+      this.createdAt = '',
+      this.updatedAt = '',
+      this.timeElapsed = 0,
+      this.employeeRatting = 0.0,
+      this.saloonRatting = 0.0,
+      this.productRatting = 0.0,
+      required this.requestedServices,
+      required this.employee,
+      required this.saloon,
+      required this.isRatted});
 
   int id;
   int saloonId;
@@ -38,6 +41,11 @@ class Appointment {
   String appointmentDateTime;
   String createdAt;
   String updatedAt;
+  int isRatted;
+  double employeeRatting;
+  double saloonRatting;
+  double productRatting;
+
   int timeElapsed;
   Employee employee;
   Saloon saloon;
@@ -46,6 +54,12 @@ class Appointment {
 
   factory Appointment.fromJson(Map<String, dynamic> json) => Appointment(
         id: json["id"] ?? 0,
+        isRatted: json["is_ratted"] ?? 0,
+        saloonRatting: double.tryParse(json["saloon_ratting"].toString()) ?? 0,
+        employeeRatting:
+            double.tryParse(json["employee_ratting"].toString()) ?? 0,
+        productRatting:
+            double.tryParse(json["product_ratting"].toString()) ?? 0,
         saloonId: json["saloon_id"] ?? 0,
         customerId: json["customer_id"] ?? 0,
         employeeId: json["employee_id"] ?? 0,
@@ -72,6 +86,10 @@ class Appointment {
         "id": id,
         "saloon_id": saloonId,
         "customer_id": customerId,
+        "employee_ratting": employeeRatting,
+        "saloon_ratting": saloonRatting,
+        "product_ratting": productRatting,
+        "is_ratted": isRatted,
         "employee_id": employeeId,
         "status": status,
         "total_amount": totalAmount,

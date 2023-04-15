@@ -19,10 +19,6 @@ class _SPAList extends State<SPAList> {
   Widget build(BuildContext context) {
     Get.put(SPAController());
 
-    final height = MediaQuery.of(context).size.height;
-
-    final cardHeight = height * 0.3;
-
     return Scaffold(
       backgroundColor: bgColor,
       appBar: appBar(title: "SPA".tr, showCart: false),

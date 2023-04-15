@@ -329,8 +329,8 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                         child: iconButton(
                             onClick: () async {
                               Get.put(HelperController()).openLocation(
-                                latitude: widget.shop.id,
-                                longitude: widget.shop.id,
+                                latitude: widget.shop.latitude,
+                                longitude: widget.shop.longitude,
                               );
                             },
                             icon: const Icon(

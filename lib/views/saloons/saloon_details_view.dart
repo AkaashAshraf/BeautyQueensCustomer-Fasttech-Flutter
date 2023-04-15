@@ -1,10 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
+import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/dotted_line.dart';
+import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
 import 'package:beauty_queens_ustomer/components/saloons/saloon_service_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
+import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 import 'package:beauty_queens_ustomer/models/simple/service.dart';
@@ -241,6 +244,91 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                               ),
                             ],
                           ),
+                        ),
+                        SizedBox(
+                          width: width * 0.9,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: width * 0.43,
+                                child: iconButton(
+                                    onClick: () async {
+                                      genericPopup(context,
+                                          title:
+                                              "${"Contact".tr} ${Get.locale.toString() == "en" ? widget.saloon.nameEn : widget.saloon.nameAr}",
+                                          children: Column(
+                                            children: <Widget>[
+                                              SizedBox(
+                                                width: width * 0.5,
+                                                child: iconButton(
+                                                  onClick: () {
+                                                    Get.put(HelperController())
+                                                        .openUrl(
+                                                            url:
+                                                                "tel:+968${widget.saloon.contact}");
+                                                    Navigator.pop(context);
+                                                  },
+                                                  text: "Contact".tr,
+                                                  icon: const Icon(
+                                                    Icons.phone,
+                                                    size: 20,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              SizedBox(
+                                                width: width * 0.5,
+                                                child: iconButton(
+                                                  onClick: () {
+                                                    Get.put(HelperController())
+                                                        .openUrl(
+                                                            url:
+                                                                "whatsapp://send?phone=${widget.saloon.contact}&text=");
+                                                    Navigator.pop(context);
+                                                  },
+                                                  text: "Whatsapp".tr,
+                                                  icon: const Icon(
+                                                    Icons.whatsapp,
+                                                    size: 20,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          )).show();
+                                    },
+                                    icon: const Icon(
+                                      Icons.phone,
+                                      size: 20,
+                                      color: Colors.white,
+                                    ),
+                                    text: "Contact".tr),
+                              ),
+                              SizedBox(
+                                width: width * 0.43,
+                                child: iconButton(
+                                    onClick: () async {
+                                      Get.put(HelperController()).openLocation(
+                                        latitude: widget.saloon.latitude,
+                                        longitude: widget.saloon.longitude,
+                                      );
+                                    },
+                                    icon: const Icon(
+                                      size: 20,
+                                      Icons.location_on,
+                                      color: Colors.white,
+                                    ),
+                                    text: "Location".tr),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
                         ),
                         dottedLine(thicknes: 1),
                       ],

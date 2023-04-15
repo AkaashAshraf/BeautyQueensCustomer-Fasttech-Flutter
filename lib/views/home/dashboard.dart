@@ -2,6 +2,7 @@ import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/drawer.dart';
 import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
+import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/components/home/dashboard/dashboard_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
@@ -114,7 +115,10 @@ class _DashboardView extends State<DashboardView> {
                               dashboardItem(height, width,
                                   imgName: "offerss.jpeg",
                                   title: "Offers".tr, onTap: () {
-                                Get.to(const OffersView());
+                                ToastMessages.showWarning(
+                                    "ThisFeatureWillBeAvailableSoon".tr);
+
+                                // Get.to(const OffersView());
                               }),
                             ],
                           ),
