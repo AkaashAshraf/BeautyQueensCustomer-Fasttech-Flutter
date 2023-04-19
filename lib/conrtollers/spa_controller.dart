@@ -13,11 +13,11 @@ class SPAController extends GetxController {
   RxBool saloonListLoading = false.obs;
   @override
   void onInit() {
-    fetchSaloonsList();
+    fetchSpaList();
     super.onInit();
   }
 
-  fetchSaloonsList() async {
+  fetchSpaList() async {
     try {
       saloonListLoading(true);
       final result = await post("/client/salons/list", {"type": "2"});

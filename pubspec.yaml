@@ -58,6 +58,8 @@ dependencies:
   flutter_keyboard_visibility: ^5.4.0
   restart_app: ^1.1.0+1
   flutter_phoenix: ^1.1.0
+  # dropdown_search: ^5.0.6
+  dropdown_search: ^2.0.1
 
 dev_dependencies:
   flutter_test:

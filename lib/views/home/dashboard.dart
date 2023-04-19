@@ -7,6 +7,7 @@ import 'package:beauty_queens_ustomer/components/home/dashboard/dashboard_item.d
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
+import 'package:beauty_queens_ustomer/conrtollers/constants_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/gym_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/offers_controller.dart';
@@ -14,7 +15,6 @@ import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/spa_controller.dart';
 import 'package:beauty_queens_ustomer/views/home/gym.dart';
-import 'package:beauty_queens_ustomer/views/home/offers/offers_list.dart';
 import 'package:beauty_queens_ustomer/views/home/spa.dart';
 import 'package:beauty_queens_ustomer/views/products/products_shops_list_view.dart';
 import 'package:beauty_queens_ustomer/views/saloons/saloon_list_view.dart';
@@ -31,24 +31,21 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardView extends State<DashboardView> {
+  SaloonsController saloonsController = Get.put(SaloonsController());
+  GYMController gYMController = Get.put(GYMController());
+  SPAController sPAController = Get.put(SPAController());
+  OffersController offersController = Get.put(OffersController());
+  CartController cartController = Get.put(CartController());
+  HelperController helperController = Get.put(HelperController());
+  ShopsController shopsController = Get.put(ShopsController());
+  ConstantsController constantsController = Get.put(ConstantsController());
+
   @override
   Widget build(BuildContext context) {
-    Get.put(SaloonsController());
-    Get.put(GYMController());
-    Get.put(SPAController());
-    Get.put(OffersController());
-    Get.put(OffersController());
-
-    Get.put(ShopsController());
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    Get.put(CartController());
-    Get.put(HelperController());
 
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("Dashboard"),
-      // ),
       drawer: const MenuDrawer(),
       appBar: noAppBar(showCart: false),
       body: SafeArea(
