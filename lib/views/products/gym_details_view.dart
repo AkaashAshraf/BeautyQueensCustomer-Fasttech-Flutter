@@ -156,44 +156,44 @@ class _GYMDetailsView extends State<GYMDetailsView> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "08:00 AM - 11:00 PM",
-                            style: TextStyle(
-                              color: secondaryTextColor,
-                              fontFamily: "primary",
-                            ),
-                          ),
+                      // const SizedBox(height: 5),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     const Text(
+                      //       "08:00 AM - 11:00 PM",
+                      //       style: TextStyle(
+                      //         color: secondaryTextColor,
+                      //         fontFamily: "primary",
+                      //       ),
+                      //     ),
 
-                          Text(
-                            "OpenNow".tr,
-                            style: const TextStyle(
-                              color: secondaryTextColor,
-                              fontFamily: "primary",
-                            ),
-                          ),
-                          // DefaultTextStyle(
-                          //   style: TextStyle(
-                          //       // fontSize: 15.0,
+                      //     Text(
+                      //       "OpenNow".tr,
+                      //       style: const TextStyle(
+                      //         color: secondaryTextColor,
+                      //         fontFamily: "primary",
+                      //       ),
+                      //     ),
+                      //     // DefaultTextStyle(
+                      //     //   style: TextStyle(
+                      //     //       // fontSize: 15.0,
 
-                          //       fontWeight: FontWeight.bold,
-                          //       color: primaryColor),
-                          //   child: AnimatedTextKit(
-                          //     repeatForever: true,
-                          //     animatedTexts: [
-                          //       FadeAnimatedText('Opened'),
-                          //     ],
-                          //     onTap: () {
-                          //       print("Tap Event");
-                          //     },
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
+                      //     //       fontWeight: FontWeight.bold,
+                      //     //       color: primaryColor),
+                      //     //   child: AnimatedTextKit(
+                      //     //     repeatForever: true,
+                      //     //     animatedTexts: [
+                      //     //       FadeAnimatedText('Opened'),
+                      //     //     ],
+                      //     //     onTap: () {
+                      //     //       print("Tap Event");
+                      //     //     },
+                      //     //   ),
+                      //     // ),
+                      //   ],
+                      // ),
+                      // const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

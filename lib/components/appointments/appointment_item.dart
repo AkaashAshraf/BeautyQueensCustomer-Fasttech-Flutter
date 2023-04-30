@@ -171,10 +171,10 @@ class AppointmentItem extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "1 x ${item.requestedServices[i].providerService!.charges.toString()}",
+                            "1 x ${double.tryParse(item.requestedServices[i].providerService!.chargesAfterDiscount.toString())?.toStringAsFixed(3)} ",
                             textDirection: Get.locale.toString() == "en"
-                                ? TextDirection.rtl
-                                : TextDirection.ltr,
+                                ? TextDirection.ltr
+                                : TextDirection.rtl,
                             style: TextStyle(
                                 fontFamily: "primary",
                                 color: Colors.grey,
@@ -189,7 +189,7 @@ class AppointmentItem extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              if (item.isRatted != 1)
+              if (item.isRatted != 1 && item.status == 3)
                 button(
                     text: "Rate".tr,
                     onClick: () {
@@ -197,7 +197,7 @@ class AppointmentItem extends StatelessWidget {
                         appointmenID: item.id,
                       ));
                     })
-              else
+              else if (item.isRatted == 1 && item.status == 3)
                 Column(
                   children: [
                     const DottedLine(

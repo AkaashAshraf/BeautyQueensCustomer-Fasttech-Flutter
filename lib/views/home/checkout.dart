@@ -91,13 +91,16 @@ class _Checkout extends State<Checkout> {
                                     crossAxisSpacing: 4.0,
                                     mainAxisSpacing: 8.0,
                                     children: List.generate(
-                                        controller.employeesList.length,
-                                        (index) {
+                                        controller.employeesList
+                                            .where((p0) => p0.empId != 0)
+                                            .length, (index) {
                                       return Center(
                                           child: SizedBox(
                                         // width: 200,
                                         child: employeesListItem2(
-                                            controller.employeesList[index],
+                                            controller.employeesList
+                                                .where((p0) => p0.empId != 0)
+                                                .toList()[index],
                                             context: context,
                                             onPress: (Employee employee) {
                                           controller.selectedEmployee.value =

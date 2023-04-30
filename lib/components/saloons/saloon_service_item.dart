@@ -73,22 +73,43 @@ Padding serviceItem(double cardHeight, BuildContext context,
                         SizedBox(
                           width: screenWidth(context) * 0.65,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "${service.charges} ${"OMR".tr}",
-                                maxLines: 1,
-                                style: TextStyle(
-                                    fontFamily: "primary",
-                                    color: secondaryTextColor,
-                                    fontSize:
-                                        getTextSize(context).smallItemSubText),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  if ((double.tryParse(
+                                              service.charges.toString()) ??
+                                          0) >
+                                      (double.tryParse(service
+                                              .chargesAfterDiscount
+                                              .toString()) ??
+                                          0))
+                                    Text(
+                                      "${service.charges.toString()} OMR",
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontStyle: FontStyle.italic,
+                                        decoration: TextDecoration.lineThrough,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: "primary",
+                                      ),
+                                    ),
+                                  Text(
+                                    "${service.chargesAfterDiscount} ${"OMR".tr}",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        fontFamily: "primary",
+                                        color: secondaryTextColor,
+                                        fontSize: screenWidth(context) * 0.04),
+                                  ),
+                                  // Icon(
+                                  //   Icons.shopping_cart,
+                                  //   size: 18,
+                                  //   color: primaryColor,
+                                  // ),
+                                ],
                               ),
-                              // Icon(
-                              //   Icons.shopping_cart,
-                              //   size: 18,
-                              //   color: primaryColor,
-                              // ),
                             ],
                           ),
                         ),

@@ -11,6 +11,9 @@ Alert genericPopup(BuildContext context,
     content: children,
     // type: AlertType.error,
     title: title,
+    style: const AlertStyle(
+        titleStyle:
+            TextStyle(fontFamily: "primary", fontWeight: FontWeight.bold)),
     desc: description,
     buttons: [],
   );

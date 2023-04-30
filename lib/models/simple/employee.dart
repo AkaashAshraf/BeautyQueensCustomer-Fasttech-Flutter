@@ -10,6 +10,8 @@ class Employee {
     this.religionEn,
     this.religionAr,
     this.countryEn,
+    this.holiday1 = 0,
+    this.holiday2 = 0,
     this.countryAr,
   });
 
@@ -19,6 +21,9 @@ class Employee {
   String? nameAr;
   String? image;
   int? isActive;
+
+  int holiday1;
+  int holiday2;
   int? isDeleted;
   String? religionEn;
   String? religionAr;
@@ -31,6 +36,8 @@ class Employee {
         nameEn: json["name_en"] ?? "",
         nameAr: json["name_ar"] ?? "",
         image: json["image"] ?? "",
+        holiday1: json["holiday_1"] ?? 0,
+        holiday2: json["holiday_2"] ?? 0,
         isActive: json["isActive"] ?? "",
         isDeleted: json["isDeleted"] ?? "",
         religionEn: json["religion_en"] ?? "",

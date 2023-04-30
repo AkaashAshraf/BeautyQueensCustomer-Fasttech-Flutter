@@ -47,7 +47,7 @@ Widget employeesListItem2(Employee employee,
                           : Alignment.centerRight,
                       child: Text(
                         Get.locale.toString() == "en"
-                            ? employee.nameEn ?? ""
+                            ? DateTime.now().day.toString()
                             : employee.nameAr ?? "",
                         maxLines: 1,
                         style: TextStyle(

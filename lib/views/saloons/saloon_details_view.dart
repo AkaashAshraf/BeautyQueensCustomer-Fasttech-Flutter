@@ -25,6 +25,8 @@ class SaloonDetailsView extends StatefulWidget {
 }
 
 class _SaloonDetailsView extends State<SaloonDetailsView> {
+  HelperController helperController = Get.find<HelperController>();
+
   // var employees;
   // var services;
   // Employee? employees;
@@ -62,7 +64,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
         child: Stack(
           children: [
             SizedBox(
-              height: height * 0.89,
+              // height: height * 0.89,
               child: Column(
                 children: [
                   Container(
@@ -135,43 +137,74 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                 ],
                               ),
                               const SizedBox(height: 5),
+                              // Row(
+                              //   mainAxisAlignment:
+                              //       MainAxisAlignment.spaceBetween,
+                              //   children: [
+                              //     const Text(
+                              //       "08:00 AM - 08:00 PM",
+                              //       style: TextStyle(
+                              //         color: secondaryTextColor,
+                              //         fontFamily: "primary",
+                              //       ),
+                              //     ),
+
+                              //     Text(
+                              //       "OpenNow".tr,
+                              //       style: const TextStyle(
+                              //         color: secondaryTextColor,
+                              //         fontFamily: "primary",
+                              //       ),
+                              //     ),
+                              //     // DefaultTextStyle(
+                              //     //   style: TextStyle(
+                              //     //       // fontSize: 15.0,
+
+                              //     //       fontWeight: FontWeight.bold,
+                              //     //       color: primaryColor),
+                              //     //   child: AnimatedTextKit(
+                              //     //     repeatForever: true,
+                              //     //     animatedTexts: [
+                              //     //       FadeAnimatedText('Opened'),
+                              //     //     ],
+                              //     //     onTap: () {
+                              //     //       print("Tap Event");
+                              //     //     },
+                              //     //   ),
+                              //     // ),
+                              //   ],
+                              // ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                textDirection: Get.locale.toString() == "en"
+                                    ? TextDirection.rtl
+                                    : TextDirection.ltr,
                                 children: [
-                                  const Text(
-                                    "08:00 AM - 08:00 PM",
-                                    style: TextStyle(
-                                      color: secondaryTextColor,
-                                      fontFamily: "primary",
-                                    ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "${widget.saloon.openTime1}-${widget.saloon.closeTime1}",
+                                        style: const TextStyle(
+                                            color: secondaryTextColor,
+                                            fontFamily: "primary"),
+                                      ),
+                                      Text(
+                                        "${widget.saloon.openTime2}-${widget.saloon.closeTime2}",
+                                        style: const TextStyle(
+                                            color: secondaryTextColor,
+                                            fontFamily: "primary"),
+                                      ),
+                                    ],
                                   ),
-
-                                  Text(
-                                    "OpenNow".tr,
-                                    style: const TextStyle(
-                                      color: secondaryTextColor,
-                                      fontFamily: "primary",
-                                    ),
-                                  ),
-                                  // DefaultTextStyle(
-                                  //   style: TextStyle(
-                                  //       // fontSize: 15.0,
-
-                                  //       fontWeight: FontWeight.bold,
-                                  //       color: primaryColor),
-                                  //   child: AnimatedTextKit(
-                                  //     repeatForever: true,
-                                  //     animatedTexts: [
-                                  //       FadeAnimatedText('Opened'),
-                                  //     ],
-                                  //     onTap: () {
-                                  //       print("Tap Event");
-                                  //     },
-                                  //   ),
-                                  // ),
+                                  helperController.isProviderOpen(
+                                      open1: widget.saloon.openTime1 ?? "",
+                                      open2: widget.saloon.openTime2 ?? "",
+                                      close1: widget.saloon.closeTime1 ?? "",
+                                      close2: widget.saloon.closeTime2 ?? "")
                                 ],
                               ),
+
                               const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
@@ -195,7 +228,11 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                     children: [
                                       RatingBar.builder(
                                         ignoreGestures: true,
-                                        initialRating: 4.5,
+                                        initialRating:
+                                            widget.saloon.ratters == 0
+                                                ? 0
+                                                : widget.saloon.stars /
+                                                    widget.saloon.ratters,
                                         minRating: 1,
                                         direction: Axis.horizontal,
                                         allowHalfRating: true,
@@ -210,9 +247,11 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                         ),
                                         onRatingUpdate: (rating) {},
                                       ),
-                                      const Text(
-                                        "4.5 / 26",
-                                        style: TextStyle(
+                                      Text(
+                                        widget.saloon.ratters == 0
+                                            ? "0"
+                                            : "${(widget.saloon.stars / widget.saloon.ratters).toStringAsFixed(1)} / ${widget.saloon.ratters}",
+                                        style: const TextStyle(
                                           fontSize: 10,
                                           fontFamily: "primary",
                                         ),

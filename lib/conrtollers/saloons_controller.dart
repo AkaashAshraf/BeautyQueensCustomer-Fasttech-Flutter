@@ -17,6 +17,19 @@ class SaloonsController extends GetxController {
     super.onInit();
   }
 
+  sort({required bool topRate, required bool mostRate, required bool nearBy}) {
+    if (!topRate && !mostRate && !nearBy) {
+      saloonsList.sort((b, a) => a.id!.compareTo(b.id ?? 0));
+    }
+    if (topRate) {
+      saloonsList.sort((b, a) => (a.ratters == 0 ? 0 : (a.stars / a.ratters))
+          .compareTo((b.ratters == 0 ? 0 : (b.stars / b.ratters))));
+    }
+    if (mostRate) {
+      saloonsList.sort((b, a) => a.ratters.compareTo(b.ratters));
+    }
+  }
+
   fetchSaloonsList() async {
     try {
       saloonListLoading(true);

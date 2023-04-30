@@ -1,6 +1,7 @@
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
+import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 Card employeesListItem(Employee employee,
     {required dynamic onPress, required BuildContext context}) {
   final width = MediaQuery.of(context).size.width;
+  HelperController helperController = Get.find<HelperController>();
 
   return Card(
     shape: RoundedRectangleBorder(
@@ -29,7 +31,7 @@ Card employeesListItem(Employee employee,
             ),
           ),
           SizedBox(
-            height: width * 0.1,
+            // height: width * 0.15,
             child: Padding(
               padding: const EdgeInsets.only(left: 5, right: 5),
               child: Column(
@@ -69,6 +71,33 @@ Card employeesListItem(Employee employee,
                       ),
                       Text(
                         "${employee.exp} ${"Years".tr}",
+                        style: TextStyle(
+                            fontFamily: "primary",
+                            fontSize: getTextSize(context).twoColumnGridSubText,
+                            fontWeight: FontWeight.w500,
+                            color: secandaryColor),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    textDirection: Get.locale.toString() == "en"
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        helperController.getHolidaysName(
+                          employee.holiday1,
+                          employee.holiday2,
+                        ),
+                        style: TextStyle(
+                            fontFamily: "primary",
+                            fontSize: getTextSize(context).twoColumnGridSubText,
+                            fontWeight: FontWeight.w500,
+                            color: secondaryTextColor),
+                      ),
+                      Text(
+                        "Holidays".tr,
                         style: TextStyle(
                             fontFamily: "primary",
                             fontSize: getTextSize(context).twoColumnGridSubText,

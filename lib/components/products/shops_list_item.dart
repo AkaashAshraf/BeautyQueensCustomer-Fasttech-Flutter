@@ -80,25 +80,26 @@ Card shopsListItem(Shop shop,
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "08:00 AM - 08:00 PM",
-                      style: TextStyle(
-                        color: secondaryTextColor,
-                        fontFamily: "primary",
-                      ),
-                    ),
-                    Text(
-                      "OpenNow".tr,
-                      style: const TextStyle(
-                        color: secondaryTextColor,
-                        fontFamily: "primary",
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     const Text(
+                //       "08:00 AM - 08:00 PM",
+                //       style: TextStyle(
+                //         color: secondaryTextColor,
+                //         fontFamily: "primary",
+                //       ),
+                //     ),
+                //     Text(
+                //       "OpenNow".tr,
+                //       style: const TextStyle(
+                //         color: secondaryTextColor,
+                //         fontFamily: "primary",
+                //       ),
+                //     ),
+                //   ],
+                // ),
+
                 const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -4,7 +4,6 @@
 
 import 'dart:convert';
 
-import 'package:beauty_queens_ustomer/models/simple/city.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 
 Providers? providersFromJson(String str) =>

@@ -26,6 +26,8 @@ class Saloon {
     this.cityEn = "",
     this.cityAr = "",
     this.services,
+    this.ratters = 0,
+    this.stars = 0,
   });
 
   int? id;
@@ -49,6 +51,8 @@ class Saloon {
   String? createdAt;
   String? updatedAt;
   String? cityEn;
+  int ratters;
+  int stars;
   String? cityAr;
   List<Service>? services;
 
@@ -75,6 +79,8 @@ class Saloon {
         updatedAt: json["updated_at"] ?? "",
         cityEn: json["city_en"] ?? "",
         cityAr: json["city_ar"] ?? "",
+        ratters: json["ratters"] ?? 0,
+        stars: json["stars"] ?? 0,
         services: json["services"] == null
             ? []
             : json["services"] == null
@@ -106,6 +112,8 @@ class Saloon {
         "updated_at": updatedAt,
         "city_en": cityEn,
         "city_ar": cityAr,
+        "ratters": ratters,
+        "stars": stars,
         "services": services == null
             ? []
             : services == null

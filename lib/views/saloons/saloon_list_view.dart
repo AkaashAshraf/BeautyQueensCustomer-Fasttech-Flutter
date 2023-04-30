@@ -1,6 +1,6 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/no_data_widget.dart';
-import 'package:beauty_queens_ustomer/config/colors.dart';
+import 'package:beauty_queens_ustomer/components/filters/filters.dart';
 import 'package:beauty_queens_ustomer/conrtollers/constants_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/city.dart';
@@ -20,6 +20,10 @@ class SaloonsListView extends StatefulWidget {
 
 class _SaloonsListView extends State<SaloonsListView> {
   City city = City();
+  bool topRate = false;
+  bool mostRate = false;
+  bool nearBy = false;
+
   ConstantsController constantsController = Get.find<ConstantsController>();
   SaloonsController saloonsController = Get.find<SaloonsController>();
   @override
@@ -30,8 +34,6 @@ class _SaloonsListView extends State<SaloonsListView> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: appBar(title: "BeautyCenters".tr, showCart: false),
@@ -41,45 +43,84 @@ class _SaloonsListView extends State<SaloonsListView> {
             const SizedBox(
               height: 20,
             ),
-            SizedBox(
-                height: 45,
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropdownSearch<String>(
-                    label: "Select City",
-                    autoValidateMode: AutovalidateMode.always,
-                    dropdownBuilder: ((context, item) => Text(item ?? "")),
-                    showSearchBox: true,
-                    showAsSuffixIcons: true,
-                    showSelectedItems: true,
-                    items: constantsController.cities
-                        .map((element) => Get.locale.toString() == "en"
-                            ? element.nameEn ?? ""
-                            : element.nameAr ?? "")
-                        .toList(),
-                    onChanged: (value) {
-                      // inspect(_controller.stores.indexWhere((element) =>
-                      //     element.mobile.toString() ==
-                      //     _value.toString()));
+            Row(
+              children: [
+                SizedBox(
+                    height: 45,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: DropdownSearch<String>(
+                        label: "Select City",
+                        autoValidateMode: AutovalidateMode.always,
+                        dropdownBuilder: ((context, item) => Text(item ?? "")),
+                        showSearchBox: true,
+                        showAsSuffixIcons: true,
+                        showSelectedItems: true,
+                        items: constantsController.cities
+                            .map((element) => Get.locale.toString() == "en"
+                                ? element.nameEn ?? ""
+                                : element.nameAr ?? "")
+                            .toList(),
+                        onChanged: (value) {
+                          // inspect(_controller.stores.indexWhere((element) =>
+                          //     element.mobile.toString() ==
+                          //     _value.toString()));
 
-                      try {
-                        City currentSelectedCity = constantsController.cities[
-                            constantsController.cities.indexWhere((element) =>
-                                Get.locale.toString() == "en"
-                                    ? element.nameEn == value
-                                    : element.nameAr == value)];
-                        // inspect(currentSelectedStore);
-                        setState(() {
-                          city = currentSelectedCity;
-                        });
-                      } catch (e) {}
-                    },
-                    selectedItem: Get.locale.toString() == "en"
-                        ? city.nameEn
-                        : city.nameAr,
+                          try {
+                            City currentSelectedCity = constantsController
+                                    .cities[
+                                constantsController.cities.indexWhere(
+                                    (element) => Get.locale.toString() == "en"
+                                        ? element.nameEn == value
+                                        : element.nameAr == value)];
+                            // inspect(currentSelectedStore);
+                            setState(() {
+                              city = currentSelectedCity;
+                            });
+                          } catch (e) {}
+                        },
+                        selectedItem: Get.locale.toString() == "en"
+                            ? city.nameEn
+                            : city.nameAr,
+                      ),
+                    )),
+                GestureDetector(
+                  onTap: () {
+                    filtersPopup(context, topRateChange: () {
+                      setState(() {
+                        topRate = !topRate;
+                      });
+                      controller.sort(
+                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                    }, mostRateChange: () {
+                      setState(() {
+                        mostRate = !mostRate;
+                      });
+                      controller.sort(
+                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                    }, nearByChange: () {
+                      setState(() {
+                        nearBy = !nearBy;
+                      });
+                      controller.sort(
+                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                    }, topRate: topRate, mostRate: mostRate, nearBy: nearBy)
+                        .show();
+                  },
+                  child: const Text(
+                    "Filters",
+                    style: TextStyle(
+                        fontFamily: "primary",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
                   ),
-                )),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: ((city.id == 0 && controller.saloonsList.isNotEmpty) ||
                       (city.id != 0 &&

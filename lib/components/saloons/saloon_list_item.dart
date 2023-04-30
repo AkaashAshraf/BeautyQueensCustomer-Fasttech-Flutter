@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
+import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -11,6 +12,7 @@ Card saloonListItem(Saloon saloon,
     {required dynamic onPress, required BuildContext context}) {
   final height = MediaQuery.of(context).size.height;
   final width = MediaQuery.of(context).size.width;
+  HelperController helperController = Get.find<HelperController>();
 
   final cardHeight = height * 0.3;
   return Card(
@@ -84,16 +86,25 @@ Card saloonListItem(Saloon saloon,
                       ? TextDirection.rtl
                       : TextDirection.ltr,
                   children: [
-                    const Text(
-                      "08:00 AM - 08:00 PM",
-                      style: TextStyle(
-                          color: secondaryTextColor, fontFamily: "primary"),
+                    Column(
+                      children: [
+                        Text(
+                          "${saloon.openTime1}-${saloon.closeTime1}",
+                          style: const TextStyle(
+                              color: secondaryTextColor, fontFamily: "primary"),
+                        ),
+                        Text(
+                          "${saloon.openTime2}-${saloon.closeTime2}",
+                          style: const TextStyle(
+                              color: secondaryTextColor, fontFamily: "primary"),
+                        ),
+                      ],
                     ),
-                    Text(
-                      "OpenNow".tr,
-                      style: const TextStyle(
-                          color: secondaryTextColor, fontFamily: "primary"),
-                    ),
+                    helperController.isProviderOpen(
+                        open1: saloon.openTime1 ?? "",
+                        open2: saloon.openTime2 ?? "",
+                        close1: saloon.closeTime1 ?? "",
+                        close2: saloon.closeTime2 ?? "")
                   ],
                 ),
                 const SizedBox(height: 5),
@@ -102,7 +113,9 @@ Card saloonListItem(Saloon saloon,
                   children: [
                     RatingBar.builder(
                       ignoreGestures: true,
-                      initialRating: 4.5,
+                      initialRating: saloon.stars == 0
+                          ? 0
+                          : ((saloon.stars) / (saloon.ratters)),
                       minRating: 1,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
@@ -116,11 +129,15 @@ Card saloonListItem(Saloon saloon,
                       ),
                       onRatingUpdate: (rating) {},
                     ),
-                    const Text(
-                      "4.5 / 26",
-                      style: TextStyle(fontSize: 10, fontFamily: "primary"),
+                    Text(
+                      "${(saloon.stars == 0 ? 0 : saloon.stars / saloon.ratters)}/${saloon.ratters}",
+                      style:
+                          const TextStyle(fontSize: 10, fontFamily: "primary"),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 10,
                 )
               ],
             ),
