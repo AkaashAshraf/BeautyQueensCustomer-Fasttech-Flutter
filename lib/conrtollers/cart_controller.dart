@@ -17,6 +17,7 @@ class CartController extends GetxController {
 
   RxList<Employee> employeesList = <Employee>[].obs;
 
+  double get totalPriceAfterDiscount => items.fold(0, (sum, item) => sum + (item.discountedPrice));
   double get totalPrice => items.fold(0, (sum, item) => sum + (item.unitPrice));
   double get totalTime => items.fold(0, (sum, item) => sum + (item.time));
 

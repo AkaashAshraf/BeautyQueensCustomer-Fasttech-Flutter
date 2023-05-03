@@ -180,7 +180,7 @@ class _Checkout extends State<Checkout> {
                                                       fontFamily: "primary"),
                                                 )),
                                                 DataCell(Text(
-                                                  "${controller.items[index].unitPrice.toStringAsFixed(3)} ${"OMR".tr}",
+                                                  "${controller.items[index].discountedPrice.toStringAsFixed(3)} ${"OMR".tr}",
                                                   style: const TextStyle(
                                                       fontFamily: "primary"),
                                                 )),
@@ -210,7 +210,7 @@ class _Checkout extends State<Checkout> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          "${"Amount:".tr} ${controller.totalPrice.toStringAsFixed(3)} ${"OMR".tr}",
+                                          "${"Amount:".tr} ${controller.totalPriceAfterDiscount.toStringAsFixed(3)} ${"OMR".tr}",
                                           style: TextStyle(
                                               fontFamily: "primary",
                                               fontSize: width * 0.04,

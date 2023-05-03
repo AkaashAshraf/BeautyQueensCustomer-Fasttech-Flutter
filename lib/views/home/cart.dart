@@ -9,12 +9,14 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class Cart extends StatefulWidget {
   const Cart({Key? key}) : super(key: key);
+
   @override
   State<Cart> createState() => _Cart();
 }
 
 class _Cart extends State<Cart> {
   CartController cartController = Get.put(CartController());
+
   @override
   void initState() {
     cartController.fetchEmployees(cartController.selectedSaloon.value.id ?? 0);
@@ -44,7 +46,7 @@ class _Cart extends State<Cart> {
                               padding: const EdgeInsets.only(
                                   top: 2.0, left: 5, right: 5),
                               child: SizedBox(
-                                  height: cardHeight,
+                                  // height: cardHeight,
                                   // width: width * 0.95,
 
                                   child: CartCardItem(
@@ -83,13 +85,30 @@ class _Cart extends State<Cart> {
                                       fontWeight: FontWeight.w500),
                                 ),
                               ),
+                                const SizedBox(
+                                height: 5,
+                              ),
+                              SizedBox(
+                                                                width: width * 0.5,
+
+                                child: Text(
+                                        "${controller.totalPrice.toString()} OMR",
+                                        style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic,
+                                          decoration: TextDecoration.lineThrough,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "primary",
+                                        ),
+                                      ),
+                              ),
                               const SizedBox(
                                 height: 5,
                               ),
                               SizedBox(
                                 width: width * 0.5,
                                 child: Text(
-                                    "${controller.totalPrice.toStringAsFixed(3)} ${"OMR".tr}",
+                                    "${controller.totalPriceAfterDiscount.toStringAsFixed(3)} ${"OMR".tr}",
                                     style: TextStyle(
                                         fontSize: width * 0.045,
                                         fontWeight: FontWeight.w500)),

@@ -59,10 +59,25 @@ class CartCardItem extends StatelessWidget {
                             fontSize: screenWidth(context) * 0.035),
                       ),
                     ),
+                    if(item.unitPrice>item.discountedPrice)
+                     SizedBox(
+                                                                width: width * 0.7,
+
+                                child: Text(
+                                        "${item.unitPrice.toString()} OMR",
+                                        style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontStyle: FontStyle.italic,
+                                          decoration: TextDecoration.lineThrough,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "primary",
+                                        ),
+                                      ),
+                              ),
                     SizedBox(
                       width: width * 0.7,
                       child: Text(
-                        "${item.unitPrice.toStringAsFixed(3)} ${"OMR".tr}",
+                        "${item.discountedPrice.toStringAsFixed(3)} ${"OMR".tr}",
                         style: TextStyle(
                             fontFamily: "primary",
                             color: secondaryTextColor,

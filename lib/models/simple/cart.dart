@@ -7,6 +7,8 @@ class CartItem {
       this.qty = 1,
       this.time = 0,
       this.unitPrice = 0,
+      this.discountedPrice = 0,
+      
       this.providerID = 0});
 
   int productID;
@@ -17,6 +19,8 @@ class CartItem {
   String nameAr;
   int qty;
   double unitPrice;
+  double discountedPrice;
+  
   int time;
 
   factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
@@ -27,6 +31,8 @@ class CartItem {
         imagePath: json["image_path"] ?? "",
         qty: json["qty"] ?? 0,
         unitPrice: json["unitPrice"] ?? 0,
+        discountedPrice: json["discounted_price"] ?? 0,
+        
         time: json["time"] ?? "",
       );
 
@@ -35,6 +41,7 @@ class CartItem {
         "providerID": providerID,
         "name_en": nameEn,
         "name_ar": nameAr,
+        "discounted_price":discountedPrice,
         "image_path": imagePath,
         "qty": qty,
         "unitPrice": unitPrice,

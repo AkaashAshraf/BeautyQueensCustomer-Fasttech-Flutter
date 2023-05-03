@@ -162,6 +162,7 @@ Padding serviceItem(double cardHeight, BuildContext context,
                         CartItem(
                             imagePath: service.image ?? "",
                             productID: service.id ?? 0,
+                            discountedPrice:double.tryParse( service.chargesAfterDiscount.toString())??0,
                             providerID: service.companyId ?? 0,
                             nameEn: service.generalService?.nameEn ?? "",
                             time: service.time ?? 0,
