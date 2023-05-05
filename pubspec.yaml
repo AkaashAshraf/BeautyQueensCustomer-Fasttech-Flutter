@@ -60,6 +60,8 @@ dependencies:
   flutter_phoenix: ^1.1.0
   # dropdown_search: ^5.0.6
   dropdown_search: ^2.0.1
+  location: ^4.4.0
+  # geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:

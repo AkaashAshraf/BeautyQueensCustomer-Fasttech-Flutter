@@ -27,10 +27,12 @@ class Saloon {
     this.cityAr = "",
     this.services,
     this.ratters = 0,
+    this.distance = 0,
     this.stars = 0,
   });
 
   int? id;
+  double distance;
   String? nameEn;
   String? nameAr;
   City? city;

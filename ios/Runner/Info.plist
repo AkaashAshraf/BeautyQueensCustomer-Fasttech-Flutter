@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<key>NSLocationAlwaysUsageDescription</key>
+	<string>App need location permission to allow you to show shops and saloons nearby you</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App need location permission to allow you to show shops and saloons nearby you</string>
+	
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

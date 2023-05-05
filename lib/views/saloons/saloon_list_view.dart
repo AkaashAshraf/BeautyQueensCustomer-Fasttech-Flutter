@@ -8,6 +8,7 @@ import 'package:beauty_queens_ustomer/views/saloons/saloon_details_view.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
 
 import '../../components/saloons/saloon_list_item.dart';
 
@@ -23,12 +24,32 @@ class _SaloonsListView extends State<SaloonsListView> {
   bool topRate = false;
   bool mostRate = false;
   bool nearBy = false;
+  void getLocationPermission() async {
+    Location location = Location();
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+  }
 
   ConstantsController constantsController = Get.find<ConstantsController>();
   SaloonsController saloonsController = Get.find<SaloonsController>();
   @override
   void initState() {
     saloonsController.fetchSaloonsList();
+    getLocationPermission();
     super.initState();
   }
 
@@ -51,7 +72,7 @@ class _SaloonsListView extends State<SaloonsListView> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: DropdownSearch<String>(
-                        label: "Select City",
+                        label: "SelectCity".tr,
                         autoValidateMode: AutovalidateMode.always,
                         dropdownBuilder: ((context, item) => Text(item ?? "")),
                         showSearchBox: true,
@@ -87,6 +108,8 @@ class _SaloonsListView extends State<SaloonsListView> {
                     )),
                 GestureDetector(
                   onTap: () {
+                    // controller.findDistance();
+                    // return;
                     filtersPopup(context, topRateChange: () {
                       setState(() {
                         topRate = !topRate;
@@ -108,9 +131,9 @@ class _SaloonsListView extends State<SaloonsListView> {
                     }, topRate: topRate, mostRate: mostRate, nearBy: nearBy)
                         .show();
                   },
-                  child: const Text(
-                    "Filters",
-                    style: TextStyle(
+                  child: Text(
+                    "Filters".tr,
+                    style: const TextStyle(
                         fontFamily: "primary",
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
@@ -153,7 +176,7 @@ class _SaloonsListView extends State<SaloonsListView> {
                           })),
                         );
                       })
-                  : const NoDataWidget(text: "No Data Available"),
+                  : NoDataWidget(text: "NoDataAvailable".tr),
             ),
           ],
         );

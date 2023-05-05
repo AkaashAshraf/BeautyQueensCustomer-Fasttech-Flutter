@@ -95,18 +95,18 @@ class HelperController extends GetxController {
 
       int time = (h * 60) + m;
 
-      String text = "Closed Now";
+      String text = "ClosedNow".tr;
       if (time >= time1 && time <= time2) {
-        text = "Open Now ";
+        text = "OpenNow".tr;
       }
       if (time >= time3 && time < time4) {
-        text = "Open Now";
+        text = "OpenNow".tr;
       }
 
       return Text(
         text,
         style: TextStyle(
-            color: text == "Closed Now" ? Colors.red : Colors.green,
+            color: text == "ClosedNow".tr ? Colors.red : Colors.green,
             fontFamily: "primary"),
       );
     }

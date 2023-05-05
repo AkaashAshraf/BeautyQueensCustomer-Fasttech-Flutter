@@ -67,18 +67,39 @@ Card saloonListItem(Saloon saloon,
                   //       color: titleColor),
                   // ),
                 ),
-                SizedBox(
-                  width: screenWidth(context) * 0.9,
-                  child: Text(
-                    Get.locale.toString() == "en"
-                        ? saloon.cityEn ?? ""
-                        : saloon.cityAr ?? "",
-                    textDirection: Get.locale.toString() == "en"
-                        ? TextDirection.rtl
-                        : TextDirection.ltr,
-                    style: const TextStyle(
-                        color: secondaryTextColor, fontFamily: "primary"),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: screenWidth(context) * 0.45,
+                      child: Row(
+                        children: [
+                          Text(
+                            Get.locale.toString() == "en"
+                                ? saloon.cityEn ?? ""
+                                : saloon.cityAr ?? "",
+                            textDirection: Get.locale.toString() == "en"
+                                ? TextDirection.rtl
+                                : TextDirection.ltr,
+                            style: const TextStyle(
+                                color: secondaryTextColor,
+                                fontFamily: "primary"),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenWidth(context) * 0.45,
+                      child: Text(
+                        "${"KM".tr} ${saloon.distance.toStringAsFixed(2)}  ",
+                        textDirection: Get.locale.toString() == "en"
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
+                        style: const TextStyle(
+                            color: secondaryTextColor, fontFamily: "primary"),
+                      ),
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

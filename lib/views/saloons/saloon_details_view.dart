@@ -6,6 +6,7 @@ import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
 import 'package:beauty_queens_ustomer/components/saloons/saloon_service_item.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/constants.dart';
+import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/cart_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
@@ -119,20 +120,40 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                               // ),
                               const SizedBox(height: 5),
                               Row(
-                                textDirection: Get.locale.toString() == "en"
-                                    ? TextDirection.rtl
-                                    : TextDirection.ltr,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    Get.locale.toString() == "en"
-                                        ? widget.saloon.cityEn ?? ""
-                                        : widget.saloon.cityAr ?? "",
-                                    textAlign: Get.locale.toString() == "en"
-                                        ? TextAlign.left
-                                        : TextAlign.right,
-                                    style: const TextStyle(
-                                        fontFamily: "primary",
-                                        color: secondaryTextColor),
+                                  SizedBox(
+                                    width: screenWidth(context) * 0.45,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          Get.locale.toString() == "en"
+                                              ? widget.saloon.cityEn ?? ""
+                                              : widget.saloon.cityAr ?? "",
+                                          textDirection:
+                                              Get.locale.toString() == "en"
+                                                  ? TextDirection.rtl
+                                                  : TextDirection.ltr,
+                                          style: const TextStyle(
+                                              color: secondaryTextColor,
+                                              fontFamily: "primary"),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: screenWidth(context) * 0.45,
+                                    child: Text(
+                                      "${"KM".tr} ${widget.saloon.distance.toStringAsFixed(2)}  ",
+                                      textDirection:
+                                          Get.locale.toString() == "en"
+                                              ? TextDirection.rtl
+                                              : TextDirection.ltr,
+                                      style: const TextStyle(
+                                          color: secondaryTextColor,
+                                          fontFamily: "primary"),
+                                    ),
                                   ),
                                 ],
                               ),

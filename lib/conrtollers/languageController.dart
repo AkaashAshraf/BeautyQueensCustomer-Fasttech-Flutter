@@ -4,6 +4,24 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en': {
+          "MostRate": "Most Rate",
+          "TopRate": "Top Rate",
+          "NearBy": "Near By",
+
+          "SelectCity": "Select City",
+          "KM": "KM",
+          "Filters": "Filters",
+          "NoDataAvailable": "No Data Available",
+          "Monday": "Monday",
+          "Tuesday": "Tuesday",
+          "Wednesday": "Wednesday",
+          "Thursday": "Thursday",
+          "Friday": "Friday",
+          "Satureday": "Satureday",
+          "Sunday": "Sunday",
+          "ClosedNow": "Closed Now",
+          "OpenNow": "Open Now",
+
 //////auth
           "SignIn": "Sign In",
           "SignUp": "Sign Up",
@@ -133,6 +151,22 @@ class Messages extends Translations {
           "EmployeeRatting": "Employee Ratting",
         },
         'ar': {
+          "NearBy": "بالقرب مني",
+          "TopRate": "أعلى معدل",
+          "MostRate": "الأكثر معدل",
+          "OpenNow": "مفتوح الان",
+          "ClosedNow": "مغلق الآن",
+          "Monday": "الاثنين",
+          "Tuesday": "الثلاثاء",
+          "Wednesday": "الأربعاء",
+          "Thursday": "الخميس",
+          "Friday": "جمعة",
+          "Satureday": "يوم السبت",
+          "Sunday": "الأحد",
+          "SelectCity": "اختر مدينة",
+          "KM": "كيلو متر",
+          "Filters": "المرشحات",
+          "NoDataAvailable": "لا تتوافر بيانات",
 //////auth
           "SignIn": "دخول",
           "SignUp": "التسجيل",

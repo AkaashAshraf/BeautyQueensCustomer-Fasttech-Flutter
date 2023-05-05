@@ -1,23 +1,26 @@
 import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-Alert filtersPopup(
-  BuildContext context, {
-  required dynamic topRateChange,
-  required dynamic mostRateChange,
-  required dynamic nearByChange,
-  required bool topRate,
-  required bool mostRate,
-  required bool nearBy,
-}) {
+Alert filtersPopup(BuildContext context,
+    {required dynamic topRateChange,
+    required dynamic mostRateChange,
+    required dynamic nearByChange,
+    required bool topRate,
+    required bool mostRate,
+    required bool nearBy,
+    bool mostRateShow = true,
+    bool topRateShow = true}) {
   return genericPopup(context,
-      title: "Filters",
+      title: "Filters".tr,
       children: Filters(
           mostRate: mostRate,
           topRate: topRate,
           nearBy: nearBy,
+          mostRateShow: mostRateShow,
+          topRateShow: topRateShow,
           topRateChange: topRateChange,
           mostRateChange: mostRateChange,
           nearByChange: nearByChange));
@@ -32,6 +35,8 @@ class Filters extends StatefulWidget {
     required this.topRateChange,
     required this.mostRateChange,
     required this.nearByChange,
+    required this.mostRateShow,
+    required this.topRateShow,
   }) : super(key: key);
   dynamic topRateChange;
   dynamic mostRateChange;
@@ -39,6 +44,8 @@ class Filters extends StatefulWidget {
   bool topRate;
   bool mostRate;
   bool nearBy;
+  bool mostRateShow;
+  bool topRateShow;
 
   @override
   State<Filters> createState() => _FiltersState();
@@ -67,9 +74,9 @@ class _FiltersState extends State<Filters> {
 
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "Near By",
-              style: TextStyle(fontFamily: "primary"),
+            Text(
+              "NearBy".tr,
+              style: const TextStyle(fontFamily: "primary"),
             ),
             SizedBox(
               width: screenWidth(context) * 0.2,
@@ -87,55 +94,57 @@ class _FiltersState extends State<Filters> {
             ),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        if (widget.topRateShow)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "Top Rate",
-              style: TextStyle(fontFamily: "primary"),
-            ),
-            SizedBox(
-              width: screenWidth(context) * 0.2,
-              child: CheckboxListTile(
-                value: topRate,
-                onChanged: (newValue) {
-                  widget.topRateChange();
-                  setState(() {
-                    topRate = !topRate;
-                  });
-                },
-                controlAffinity:
-                    ListTileControlAffinity.leading, //  <-- leading Checkbox
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "TopRate".tr,
+                style: const TextStyle(fontFamily: "primary"),
               ),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "Most Rate",
-              style: TextStyle(fontFamily: "primary"),
-            ),
-            SizedBox(
-              width: screenWidth(context) * 0.2,
-              child: CheckboxListTile(
-                value: mostRate,
-                onChanged: (newValue) {
-                  widget.mostRateChange();
-                  setState(() {
-                    mostRate = !mostRate;
-                  });
-                },
-                controlAffinity:
-                    ListTileControlAffinity.leading, //  <-- leading Checkbox
+              SizedBox(
+                width: screenWidth(context) * 0.2,
+                child: CheckboxListTile(
+                  value: topRate,
+                  onChanged: (newValue) {
+                    widget.topRateChange();
+                    setState(() {
+                      topRate = !topRate;
+                    });
+                  },
+                  controlAffinity:
+                      ListTileControlAffinity.leading, //  <-- leading Checkbox
+                ),
               ),
-            ),
-          ],
-        )
+            ],
+          ),
+        if (widget.mostRateShow)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "MostRate".tr,
+                style: const TextStyle(fontFamily: "primary"),
+              ),
+              SizedBox(
+                width: screenWidth(context) * 0.2,
+                child: CheckboxListTile(
+                  value: mostRate,
+                  onChanged: (newValue) {
+                    widget.mostRateChange();
+                    setState(() {
+                      mostRate = !mostRate;
+                    });
+                  },
+                  controlAffinity:
+                      ListTileControlAffinity.leading, //  <-- leading Checkbox
+                ),
+              ),
+            ],
+          )
       ],
     );
   }

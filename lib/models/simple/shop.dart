@@ -25,6 +25,10 @@ class Shop {
     this.b8 = "",
     this.b9 = "",
     this.b10 = "",
+    this.openTime1 = "",
+    this.closeTime1 = "",
+    this.openTime2 = "",
+    this.closeTime2 = "",
     this.createdAt = "",
     this.updatedAt = "",
     this.cityEn = "",
@@ -33,6 +37,7 @@ class Shop {
     this.longitude,
     this.description,
     this.products,
+    this.distance = 0,
     this.gymPackages,
   });
 
@@ -40,6 +45,10 @@ class Shop {
   String? nameEn;
   String? nameAr;
   City? city;
+  String? openTime1;
+  String? closeTime1;
+  String? openTime2;
+  String? closeTime2;
   String? image1;
   int? image2;
   dynamic image3;
@@ -63,6 +72,7 @@ class Shop {
   String? updatedAt;
   String? cityEn;
   String? cityAr;
+  double distance;
 
   dynamic latitude;
   dynamic longitude;
@@ -81,6 +91,10 @@ class Shop {
         type: json["type"] ?? 0,
         status: json["status"] ?? 0,
         createdBy: json["created_by"] ?? 0,
+        openTime1: json["open_time_1"] ?? "",
+        closeTime1: json["close_time_1"] ?? "",
+        openTime2: json["open_time_2"] ?? "",
+        closeTime2: json["close_time_2"] ?? '',
         b1: json["b1"] ?? "",
         b2: json["b2"] ?? "",
         b3: json["b3"] ?? "",
@@ -121,6 +135,10 @@ class Shop {
         "image_2": image2,
         "image_3": image3,
         "contact": contact,
+        "open_time_1": openTime1,
+        "close_time_1": closeTime1,
+        "open_time_2": openTime2,
+        "close_time_2": closeTime2,
         "type": type,
         "status": status,
         "created_by": createdBy,

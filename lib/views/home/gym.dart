@@ -1,12 +1,11 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/no_data_widget.dart';
+import 'package:beauty_queens_ustomer/components/filters/filters.dart';
 import 'package:beauty_queens_ustomer/components/products/shops_list_item.dart';
-import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/constants_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/gym_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/city.dart';
 import 'package:beauty_queens_ustomer/views/products/gym_details_view.dart';
-import 'package:beauty_queens_ustomer/views/products/shop_details_view.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +18,9 @@ class GYM extends StatefulWidget {
 
 class _GYM extends State<GYM> {
   City city = City();
+  bool topRate = false;
+  bool mostRate = false;
+  bool nearBy = false;
   ConstantsController constantsController = Get.find<ConstantsController>();
   GYMController gYMController = Get.find<GYMController>();
   @override
@@ -38,45 +40,85 @@ class _GYM extends State<GYM> {
             const SizedBox(
               height: 20,
             ),
-            SizedBox(
-                height: 45,
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: DropdownSearch<String>(
-                    label: "Select City",
-                    autoValidateMode: AutovalidateMode.always,
-                    dropdownBuilder: ((context, item) => Text(item ?? "")),
-                    showSearchBox: true,
-                    showAsSuffixIcons: true,
-                    showSelectedItems: true,
-                    items: constantsController.cities
-                        .map((element) => Get.locale.toString() == "en"
-                            ? element.nameEn ?? ""
-                            : element.nameAr ?? "")
-                        .toList(),
-                    onChanged: (value) {
-                      // inspect(_controller.stores.indexWhere((element) =>
-                      //     element.mobile.toString() ==
-                      //     _value.toString()));
+            Row(
+              children: [
+                SizedBox(
+                    height: 45,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: DropdownSearch<String>(
+                        label: "SelectCity".tr,
+                        autoValidateMode: AutovalidateMode.always,
+                        dropdownBuilder: ((context, item) => Text(item ?? "")),
+                        showSearchBox: true,
+                        showAsSuffixIcons: true,
+                        showSelectedItems: true,
+                        items: constantsController.cities
+                            .map((element) => Get.locale.toString() == "en"
+                                ? element.nameEn ?? ""
+                                : element.nameAr ?? "")
+                            .toList(),
+                        onChanged: (value) {
+                          // inspect(_controller.stores.indexWhere((element) =>
+                          //     element.mobile.toString() ==
+                          //     _value.toString()));
 
-                      try {
-                        City currentSelectedCity = constantsController.cities[
-                            constantsController.cities.indexWhere((element) =>
-                                Get.locale.toString() == "en"
-                                    ? element.nameEn == value
-                                    : element.nameAr == value)];
-                        // inspect(currentSelectedStore);
-                        setState(() {
-                          city = currentSelectedCity;
-                        });
-                      } catch (e) {}
-                    },
-                    selectedItem: Get.locale.toString() == "en"
-                        ? city.nameEn
-                        : city.nameAr,
+                          try {
+                            City currentSelectedCity = constantsController
+                                    .cities[
+                                constantsController.cities.indexWhere(
+                                    (element) => Get.locale.toString() == "en"
+                                        ? element.nameEn == value
+                                        : element.nameAr == value)];
+                            // inspect(currentSelectedStore);
+                            setState(() {
+                              city = currentSelectedCity;
+                            });
+                          } catch (e) {}
+                        },
+                        selectedItem: Get.locale.toString() == "en"
+                            ? city.nameEn
+                            : city.nameAr,
+                      ),
+                    )),
+                GestureDetector(
+                  onTap: () {
+                    // controller.findDistance();
+                    // return;
+                    filtersPopup(context,
+                            mostRateShow: false,
+                            topRateShow: false, topRateChange: () {
+                      setState(() {
+                        topRate = !topRate;
+                      });
+                      controller.sort(
+                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                    }, mostRateChange: () {
+                      setState(() {
+                        mostRate = !mostRate;
+                      });
+                      controller.sort(
+                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                    }, nearByChange: () {
+                      setState(() {
+                        nearBy = !nearBy;
+                      });
+                      controller.sort(
+                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                    }, topRate: topRate, mostRate: mostRate, nearBy: nearBy)
+                        .show();
+                  },
+                  child: Text(
+                    "Filters".tr,
+                    style: const TextStyle(
+                        fontFamily: "primary",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
                   ),
-                )),
+                ),
+              ],
+            ),
             Expanded(
               child: ((city.id == 0 && controller.gymCenterList.isNotEmpty) ||
                       (city.id != 0 &&
