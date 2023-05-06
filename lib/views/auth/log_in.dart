@@ -83,6 +83,7 @@ class _Login extends State<Login> {
                                     ),
                                     textInputCustom(
                                         label: "EnterMobileNo".tr,
+                                        keyboardType: TextInputType.number,
                                         initialValue:
                                             controller.contact.toString(),
                                         preIcon: const Icon(

@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/no_data_widget.dart';
 import 'package:beauty_queens_ustomer/components/filters/filters.dart';
+import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/constants_controller.dart';
+import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/saloons_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/city.dart';
 import 'package:beauty_queens_ustomer/views/saloons/saloon_details_view.dart';
@@ -24,6 +28,8 @@ class _SaloonsListView extends State<SaloonsListView> {
   bool topRate = false;
   bool mostRate = false;
   bool nearBy = false;
+  bool isOpen = false;
+
   void getLocationPermission() async {
     Location location = Location();
     bool serviceEnabled;
@@ -50,6 +56,8 @@ class _SaloonsListView extends State<SaloonsListView> {
   void initState() {
     saloonsController.fetchSaloonsList();
     getLocationPermission();
+    saloonsController.checkLocation();
+
     super.initState();
   }
 
@@ -66,48 +74,54 @@ class _SaloonsListView extends State<SaloonsListView> {
             ),
             Row(
               children: [
-                SizedBox(
-                    height: 45,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: DropdownSearch<String>(
-                        label: "SelectCity".tr,
-                        autoValidateMode: AutovalidateMode.always,
-                        dropdownBuilder: ((context, item) => Text(item ?? "")),
-                        showSearchBox: true,
-                        showAsSuffixIcons: true,
-                        showSelectedItems: true,
-                        items: constantsController.cities
-                            .map((element) => Get.locale.toString() == "en"
-                                ? element.nameEn ?? ""
-                                : element.nameAr ?? "")
-                            .toList(),
-                        onChanged: (value) {
-                          // inspect(_controller.stores.indexWhere((element) =>
-                          //     element.mobile.toString() ==
-                          //     _value.toString()));
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropdownSearch<String>(
+                    label: "SelectCity".tr,
+                    autoValidateMode: AutovalidateMode.always,
+                    dropdownBuilder: ((context, item) => Text(item ?? "")),
+                    showSearchBox: true,
+                    showAsSuffixIcons: true,
+                    showSelectedItems: true,
+                    items: constantsController.cities
+                        .map((element) => Get.locale.toString() == "en"
+                            ? element.nameEn ?? ""
+                            : element.nameAr ?? "")
+                        .toList(),
+                    onChanged: (value) {
+                      // inspect(_controller.stores.indexWhere((element) =>
+                      //     element.mobile.toString() ==
+                      //     _value.toString()));
 
-                          try {
-                            City currentSelectedCity = constantsController
-                                    .cities[
-                                constantsController.cities.indexWhere(
-                                    (element) => Get.locale.toString() == "en"
-                                        ? element.nameEn == value
-                                        : element.nameAr == value)];
-                            // inspect(currentSelectedStore);
-                            setState(() {
-                              city = currentSelectedCity;
-                            });
-                          } catch (e) {}
-                        },
-                        selectedItem: Get.locale.toString() == "en"
-                            ? city.nameEn
-                            : city.nameAr,
-                      ),
-                    )),
+                      try {
+                        City currentSelectedCity = constantsController.cities[
+                            constantsController.cities.indexWhere((element) =>
+                                Get.locale.toString() == "en"
+                                    ? element.nameEn == value
+                                    : element.nameAr == value)];
+                        // inspect(currentSelectedStore);
+                        setState(() {
+                          city = currentSelectedCity;
+                        });
+                      } catch (e) {}
+                    },
+                    selectedItem: Get.locale.toString() == "en"
+                        ? city.nameEn
+                        : city.nameAr,
+                  ),
+                )),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    // var res = Get.find<HelperController>().distance(23.6050501,
+                    //     58.0229838, 23.6854010541444, 57.8863915116916, "K");
+                    // 23.6050501
+                    // 58.0229838
+                    // await controller.checkLocation();
+                    // controller.fetchSaloonsList();
+// checkLocation
+                    // inspect(res);
+                    // return;
                     // controller.findDistance();
                     // return;
                     filtersPopup(context, topRateChange: () {
@@ -115,30 +129,53 @@ class _SaloonsListView extends State<SaloonsListView> {
                         topRate = !topRate;
                       });
                       controller.sort(
-                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                          isOpen: isOpen,
+                          topRate: topRate,
+                          mostRate: mostRate,
+                          nearBy: nearBy);
+                    }, isOpenChange: () {
+                      setState(() {
+                        isOpen = !isOpen;
+                      });
+                      controller.sort(
+                          isOpen: isOpen,
+                          topRate: topRate,
+                          mostRate: mostRate,
+                          nearBy: nearBy);
                     }, mostRateChange: () {
                       setState(() {
                         mostRate = !mostRate;
                       });
                       controller.sort(
-                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                          isOpen: isOpen,
+                          topRate: topRate,
+                          mostRate: mostRate,
+                          nearBy: nearBy);
                     }, nearByChange: () {
                       setState(() {
                         nearBy = !nearBy;
                       });
                       controller.sort(
-                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
-                    }, topRate: topRate, mostRate: mostRate, nearBy: nearBy)
+                          isOpen: isOpen,
+                          topRate: topRate,
+                          mostRate: mostRate,
+                          nearBy: nearBy);
+                    },
+                            topRate: topRate,
+                            isOpen: isOpen,
+                            mostRate: mostRate,
+                            nearBy: nearBy)
                         .show();
                   },
-                  child: Text(
-                    "Filters".tr,
-                    style: const TextStyle(
-                        fontFamily: "primary",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                  child: const Icon(
+                    Icons.menu,
+                    color: primaryColor,
+                    size: 36.0,
                   ),
                 ),
+                const SizedBox(
+                  width: 5,
+                )
               ],
             ),
             const SizedBox(

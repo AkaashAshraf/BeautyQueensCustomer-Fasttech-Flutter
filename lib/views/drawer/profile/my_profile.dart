@@ -1,6 +1,7 @@
 import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/buttons.dart';
 import 'package:beauty_queens_ustomer/components/common/loading_indicator.dart';
+import 'package:beauty_queens_ustomer/components/common/textInputs/password_input.dart';
 import 'package:beauty_queens_ustomer/components/common/textInputs/text_input.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
@@ -97,20 +98,27 @@ class _Profile extends State<Profile> {
                                   contact = val;
                                 });
                               }),
-                          textInputCustom(
-                              label: "Password".tr,
-                              initialValue: "",
-                              obscureText: true,
-                              preIcon: const Icon(
-                                Icons.password,
-                                size: 20,
-                                color: textInputIconColor,
-                              ),
+                          PasswordInput(
                               onTextChange: (val) {
                                 setState(() {
                                   password = val;
                                 });
-                              }),
+                              },
+                              lable: "Password".tr),
+                          // textInputCustom(
+                          //     label: "Password".tr,
+                          //     initialValue: "",
+                          //     obscureText: true,
+                          //     preIcon: const Icon(
+                          //       Icons.password,
+                          //       size: 20,
+                          //       color: textInputIconColor,
+                          //     ),
+                          //     onTextChange: (val) {
+                          //       setState(() {
+                          //         password = val;
+                          //       });
+                          //     }),
                           const SizedBox(
                             height: 30,
                           ),

@@ -320,6 +320,7 @@ class _OfferDetailsView extends State<OfferDetailsView> {
                         child: iconButton(
                             onClick: () async {
                               Get.put(HelperController()).openLocation(
+                                context: context,
                                 latitude: widget.item.providerType == 1
                                     ? widget.item.saloon?.latitude ?? ""
                                     : widget.item.shop?.latitude ?? "",

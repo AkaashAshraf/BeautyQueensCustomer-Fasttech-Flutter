@@ -2,6 +2,7 @@ import 'package:beauty_queens_ustomer/components/common/app_bar.dart';
 import 'package:beauty_queens_ustomer/components/common/no_data_widget.dart';
 import 'package:beauty_queens_ustomer/components/filters/filters.dart';
 import 'package:beauty_queens_ustomer/components/products/shops_list_item.dart';
+import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/conrtollers/constants_controller.dart';
 import 'package:beauty_queens_ustomer/conrtollers/shops_controller.dart';
 import 'package:beauty_queens_ustomer/models/simple/city.dart';
@@ -19,6 +20,8 @@ class ShopsListView extends StatefulWidget {
 class _ShopsListView extends State<ShopsListView> {
   City city = City();
   bool topRate = false;
+  bool isOpen = false;
+
   bool mostRate = false;
   bool nearBy = false;
   ConstantsController constantsController = Get.find<ConstantsController>();
@@ -26,6 +29,8 @@ class _ShopsListView extends State<ShopsListView> {
   @override
   void initState() {
     shopsController.fetchShopsList();
+    shopsController.checkLocation();
+
     super.initState();
   }
 
@@ -42,46 +47,43 @@ class _ShopsListView extends State<ShopsListView> {
             ),
             Row(
               children: [
-                SizedBox(
-                    height: 45,
-                    width: MediaQuery.of(context).size.width * 0.8,
+                Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: DropdownSearch<String>(
-                        label: "SelectCity".tr,
-                        autoValidateMode: AutovalidateMode.always,
-                        dropdownBuilder: ((context, item) => Text(item ?? "")),
-                        showSearchBox: true,
-                        showAsSuffixIcons: true,
-                        showSelectedItems: true,
-                        items: constantsController.cities
-                            .map((element) => Get.locale.toString() == "en"
-                                ? element.nameEn ?? ""
-                                : element.nameAr ?? "")
-                            .toList(),
-                        onChanged: (value) {
-                          // inspect(_controller.stores.indexWhere((element) =>
-                          //     element.mobile.toString() ==
-                          //     _value.toString()));
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: DropdownSearch<String>(
+                    label: "SelectCity".tr,
+                    autoValidateMode: AutovalidateMode.always,
+                    dropdownBuilder: ((context, item) => Text(item ?? "")),
+                    showSearchBox: true,
+                    showAsSuffixIcons: true,
+                    showSelectedItems: true,
+                    items: constantsController.cities
+                        .map((element) => Get.locale.toString() == "en"
+                            ? element.nameEn ?? ""
+                            : element.nameAr ?? "")
+                        .toList(),
+                    onChanged: (value) {
+                      // inspect(_controller.stores.indexWhere((element) =>
+                      //     element.mobile.toString() ==
+                      //     _value.toString()));
 
-                          try {
-                            City currentSelectedCity = constantsController
-                                    .cities[
-                                constantsController.cities.indexWhere(
-                                    (element) => Get.locale.toString() == "en"
-                                        ? element.nameEn == value
-                                        : element.nameAr == value)];
-                            // inspect(currentSelectedStore);
-                            setState(() {
-                              city = currentSelectedCity;
-                            });
-                          } catch (e) {}
-                        },
-                        selectedItem: Get.locale.toString() == "en"
-                            ? city.nameEn
-                            : city.nameAr,
-                      ),
-                    )),
+                      try {
+                        City currentSelectedCity = constantsController.cities[
+                            constantsController.cities.indexWhere((element) =>
+                                Get.locale.toString() == "en"
+                                    ? element.nameEn == value
+                                    : element.nameAr == value)];
+                        // inspect(currentSelectedStore);
+                        setState(() {
+                          city = currentSelectedCity;
+                        });
+                      } catch (e) {}
+                    },
+                    selectedItem: Get.locale.toString() == "en"
+                        ? city.nameEn
+                        : city.nameAr,
+                  ),
+                )),
                 GestureDetector(
                   onTap: () {
                     // controller.findDistance();
@@ -93,30 +95,53 @@ class _ShopsListView extends State<ShopsListView> {
                         topRate = !topRate;
                       });
                       controller.sort(
-                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                          topRate: topRate,
+                          isOpen: isOpen,
+                          mostRate: mostRate,
+                          nearBy: nearBy);
+                    }, isOpenChange: () {
+                      setState(() {
+                        isOpen = !isOpen;
+                      });
+                      controller.sort(
+                          topRate: topRate,
+                          mostRate: mostRate,
+                          nearBy: nearBy,
+                          isOpen: isOpen);
                     }, mostRateChange: () {
                       setState(() {
                         mostRate = !mostRate;
                       });
                       controller.sort(
-                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
+                          topRate: topRate,
+                          isOpen: isOpen,
+                          mostRate: mostRate,
+                          nearBy: nearBy);
                     }, nearByChange: () {
                       setState(() {
                         nearBy = !nearBy;
                       });
                       controller.sort(
-                          topRate: topRate, mostRate: mostRate, nearBy: nearBy);
-                    }, topRate: topRate, mostRate: mostRate, nearBy: nearBy)
+                          topRate: topRate,
+                          isOpen: isOpen,
+                          mostRate: mostRate,
+                          nearBy: nearBy);
+                    },
+                            topRate: topRate,
+                            isOpen: isOpen,
+                            mostRate: mostRate,
+                            nearBy: nearBy)
                         .show();
                   },
-                  child: Text(
-                    "Filters".tr,
-                    style: const TextStyle(
-                        fontFamily: "primary",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                  child: const Icon(
+                    Icons.menu,
+                    color: primaryColor,
+                    size: 36.0,
                   ),
                 ),
+                const SizedBox(
+                  width: 5,
+                )
               ],
             ),
             Expanded(

@@ -38,6 +38,7 @@ class Shop {
     this.description,
     this.products,
     this.distance = 0,
+    this.isOpen = 0,
     this.gymPackages,
   });
 
@@ -73,6 +74,7 @@ class Shop {
   String? cityEn;
   String? cityAr;
   double distance;
+  int isOpen;
 
   dynamic latitude;
   dynamic longitude;

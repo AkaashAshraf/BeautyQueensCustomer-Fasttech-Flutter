@@ -373,6 +373,7 @@ class _SaloonDetailsView extends State<SaloonDetailsView> {
                                 child: iconButton(
                                     onClick: () async {
                                       Get.put(HelperController()).openLocation(
+                                        context: context,
                                         latitude: widget.saloon.latitude,
                                         longitude: widget.saloon.longitude,
                                       );

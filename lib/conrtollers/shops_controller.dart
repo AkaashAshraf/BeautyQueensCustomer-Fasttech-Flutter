@@ -1,16 +1,18 @@
 import 'dart:math';
 
+import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/http/http.dart';
 import 'package:beauty_queens_ustomer/models/shops/shops_listing.dart';
 import 'package:beauty_queens_ustomer/models/simple/shop.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:location/location.dart';
 
 class ShopsController extends GetxController {
   RxList<Shop> shopsList = <Shop>[].obs;
-  RxDouble currentLat = 0.0.obs;
-  RxDouble currentLong = 0.0.obs;
+  RxDouble currentLat = 23.6050501.obs;
+  RxDouble currentLong = 58.0229838.obs;
   RxBool loading = false.obs;
+  HelperController helperController = Get.put(HelperController());
 
   @override
   void onInit() {
@@ -51,16 +53,26 @@ class ShopsController extends GetxController {
           double.tryParse(element.latitude ?? "") ?? 0,
           double.tryParse(element.longitude ?? "") ?? 0,
           "K");
+      element.isOpen = helperController.isProviderOpenInt(
+          open1: element.openTime1 ?? "",
+          open2: element.openTime2 ?? "",
+          close1: element.closeTime1 ?? "",
+          close2: element.closeTime2 ?? "");
       shops.add(element);
     }
     shopsList(shops);
     update();
   }
 
-  sort({required bool topRate, required bool mostRate, required bool nearBy}) {
+  sort(
+      {required bool topRate,
+      required bool mostRate,
+      required bool nearBy,
+      required bool isOpen}) {
     if (!topRate && !mostRate && !nearBy) {
-      shopsList.sort((b, a) => a.id!.compareTo(b.id ?? 0));
+      shopsList.sort((a, b) => a.id!.compareTo(b.id ?? 0));
     }
+
     // if (topRate) {
     //   gymCenterList.sort((b, a) => (a.ratters == 0 ? 0 : (a.stars / a.ratters))
     //       .compareTo((b.ratters == 0 ? 0 : (b.stars / b.ratters))));
@@ -70,6 +82,9 @@ class ShopsController extends GetxController {
     // }
     if (nearBy) {
       shopsList.sort((a, b) => a.distance.compareTo(b.distance));
+    }
+    if (isOpen) {
+      shopsList.sort((b, a) => a.isOpen.compareTo(b.isOpen));
     }
   }
 

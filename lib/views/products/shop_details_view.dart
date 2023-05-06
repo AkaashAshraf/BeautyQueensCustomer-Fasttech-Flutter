@@ -291,6 +291,7 @@ class _ShopsDetailsView extends State<ShopsDetailsView> {
                         child: iconButton(
                             onClick: () async {
                               Get.put(HelperController()).openLocation(
+                                context: context,
                                 latitude: widget.shop,
                                 longitude: widget.shop,
                               );

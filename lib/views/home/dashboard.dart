@@ -39,6 +39,15 @@ class _DashboardView extends State<DashboardView> {
   HelperController helperController = Get.put(HelperController());
   ShopsController shopsController = Get.put(ShopsController());
   ConstantsController constantsController = Get.put(ConstantsController());
+  @override
+  void initState() {
+    saloonsController.checkLocation();
+    gYMController.checkLocation();
+    sPAController.checkLocation();
+    shopsController.checkLocation();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +137,7 @@ class _DashboardView extends State<DashboardView> {
                               dashboardItem(height, width,
                                   imgName: "beauty_products.jpeg",
                                   title: "BeautyProducts".tr, onTap: () {
-                                Get.put(ShopsController()).fetchShopsList();
+                                // Get.put(ShopsController()).fetchShopsList();
 
                                 Get.to(const ShopsListView());
                               }),

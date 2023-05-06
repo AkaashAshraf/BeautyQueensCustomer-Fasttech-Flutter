@@ -1,23 +1,26 @@
 import 'dart:math';
 
+import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/http/http.dart';
 import 'package:beauty_queens_ustomer/models/providers/providers_list.dart';
 import 'package:beauty_queens_ustomer/models/response/employee_list.dart';
 import 'package:beauty_queens_ustomer/models/response/service_list.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:location/location.dart';
 
 class SPAController extends GetxController {
   RxList<Saloon> spaList = <Saloon>[].obs;
   RxList<Employee> employees = <Employee>[].obs;
-  RxDouble currentLat = 0.0.obs;
-  RxDouble currentLong = 0.0.obs;
+  RxDouble currentLat = 23.6050501.obs;
+  RxDouble currentLong = 58.0229838.obs;
   RxBool saloonListLoading = false.obs;
+  HelperController helperController = Get.put(HelperController());
+
   @override
   void onInit() {
-    checkLocation();
+    // checkLocation();
 
     fetchSpaList();
     super.onInit();
@@ -79,15 +82,25 @@ class SPAController extends GetxController {
           double.tryParse(element.latitude ?? "") ?? 0,
           double.tryParse(element.longitude ?? "") ?? 0,
           "K");
+      element.isOpen = helperController.isProviderOpenInt(
+          open1: element.openTime1 ?? "",
+          open2: element.openTime2 ?? "",
+          close1: element.closeTime1 ?? "",
+          close2: element.closeTime2 ?? "");
       saloons.add(element);
     }
     spaList(saloons);
     update();
   }
 
-  sort({required bool topRate, required bool mostRate, required bool nearBy}) {
-    if (!topRate && !mostRate && !nearBy) {
-      spaList.sort((b, a) => a.id!.compareTo(b.id ?? 0));
+  sort({
+    required bool topRate,
+    required bool mostRate,
+    required bool nearBy,
+    required bool isOpen,
+  }) {
+    if (!topRate && !mostRate && !nearBy && !isOpen) {
+      spaList.sort((a, b) => a.id!.compareTo(b.id ?? 0));
     }
     if (topRate) {
       spaList.sort((b, a) => (a.ratters == 0 ? 0 : (a.stars / a.ratters))
@@ -98,6 +111,9 @@ class SPAController extends GetxController {
     }
     if (nearBy) {
       spaList.sort((a, b) => a.distance.compareTo(b.distance));
+    }
+    if (isOpen) {
+      spaList.sort((b, a) => a.isOpen.compareTo(b.isOpen));
     }
   }
 

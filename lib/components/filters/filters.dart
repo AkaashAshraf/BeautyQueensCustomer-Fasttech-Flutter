@@ -8,14 +8,18 @@ Alert filtersPopup(BuildContext context,
     {required dynamic topRateChange,
     required dynamic mostRateChange,
     required dynamic nearByChange,
+    required dynamic isOpenChange,
     required bool topRate,
     required bool mostRate,
     required bool nearBy,
+    required bool isOpen,
     bool mostRateShow = true,
     bool topRateShow = true}) {
   return genericPopup(context,
       title: "Filters".tr,
       children: Filters(
+          isOpen: isOpen,
+          isOpenChange: isOpenChange,
           mostRate: mostRate,
           topRate: topRate,
           nearBy: nearBy,
@@ -37,11 +41,17 @@ class Filters extends StatefulWidget {
     required this.nearByChange,
     required this.mostRateShow,
     required this.topRateShow,
+    required this.isOpenChange,
+    required this.isOpen,
   }) : super(key: key);
   dynamic topRateChange;
   dynamic mostRateChange;
   dynamic nearByChange;
+  dynamic isOpenChange;
+
   bool topRate;
+  bool isOpen;
+
   bool mostRate;
   bool nearBy;
   bool mostRateShow;
@@ -54,6 +64,8 @@ class Filters extends StatefulWidget {
 class _FiltersState extends State<Filters> {
   bool topRate = false;
   bool mostRate = false;
+  bool isOpen = false;
+
   bool nearBy = false;
   @override
   void initState() {
@@ -61,6 +73,7 @@ class _FiltersState extends State<Filters> {
       topRate = widget.topRate;
       mostRate = widget.mostRate;
       nearBy = widget.nearBy;
+      isOpen = widget.isOpen;
     });
     super.initState();
   }
@@ -144,7 +157,31 @@ class _FiltersState extends State<Filters> {
                 ),
               ),
             ],
-          )
+          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Opened".tr,
+              style: const TextStyle(fontFamily: "primary"),
+            ),
+            SizedBox(
+              width: screenWidth(context) * 0.2,
+              child: CheckboxListTile(
+                value: isOpen,
+                onChanged: (newValue) {
+                  widget.isOpenChange();
+                  setState(() {
+                    isOpen = !isOpen;
+                  });
+                },
+                controlAffinity:
+                    ListTileControlAffinity.leading, //  <-- leading Checkbox
+              ),
+            ),
+          ],
+        )
       ],
     );
   }

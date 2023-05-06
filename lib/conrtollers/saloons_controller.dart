@@ -2,21 +2,24 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:beauty_queens_ustomer/conrtollers/helper_controller.dart';
 import 'package:beauty_queens_ustomer/http/http.dart';
 import 'package:beauty_queens_ustomer/models/providers/providers_list.dart';
 import 'package:beauty_queens_ustomer/models/response/employee_list.dart';
 import 'package:beauty_queens_ustomer/models/simple/employee.dart';
 import 'package:beauty_queens_ustomer/models/simple/saloon.dart';
+import 'package:get/get.dart';
 // import 'package:geolocator/geolocator.dart';
-import 'package:get/state_manager.dart';
 import 'package:location/location.dart';
 
 class SaloonsController extends GetxController {
   RxList<Saloon> saloonsList = <Saloon>[].obs;
   RxList<Employee> employees = <Employee>[].obs;
-  RxDouble currentLat = 0.0.obs;
-  RxDouble currentLong = 0.0.obs;
-
+  RxDouble currentLat = 23.6050501.obs;
+  RxDouble currentLong = 58.0229838.obs;
+  // 23.6050501
+  // 58.0229838
+  HelperController helperController = Get.put(HelperController());
   RxBool saloonListLoading = false.obs;
   Future<bool> checkLocation() async {
     Location location = Location();
@@ -32,6 +35,8 @@ class SaloonsController extends GetxController {
       }
     } else {
       var position = await location.getLocation();
+      // inspect(position.longitude);
+
       currentLat(position.latitude);
       currentLong(position.longitude);
 
@@ -42,7 +47,6 @@ class SaloonsController extends GetxController {
 
   @override
   void onInit() {
-    checkLocation();
     fetchSaloonsList();
     super.onInit();
   }
@@ -72,7 +76,8 @@ class SaloonsController extends GetxController {
   }
 
   findDistance() async {
-    inspect(saloonsList.length);
+    // inspect(saloonsList.length);
+
     List<Saloon> saloons = [];
     for (var element in saloonsList) {
       element.distance = await distance(
@@ -81,15 +86,25 @@ class SaloonsController extends GetxController {
           double.tryParse(element.latitude ?? "") ?? 0,
           double.tryParse(element.longitude ?? "") ?? 0,
           "K");
+      element.isOpen = helperController.isProviderOpenInt(
+          open1: element.openTime1 ?? "",
+          open2: element.openTime2 ?? "",
+          close1: element.closeTime1 ?? "",
+          close2: element.closeTime2 ?? "");
       saloons.add(element);
     }
+
     saloonsList(saloons);
     update();
   }
 
-  sort({required bool topRate, required bool mostRate, required bool nearBy}) {
-    if (!topRate && !mostRate && !nearBy) {
-      saloonsList.sort((b, a) => a.id!.compareTo(b.id ?? 0));
+  sort(
+      {required bool topRate,
+      required bool mostRate,
+      required bool nearBy,
+      required bool isOpen}) {
+    if (!topRate && !mostRate && !nearBy && !isOpen) {
+      saloonsList.sort((a, b) => a.id!.compareTo(b.id ?? 0));
     }
     if (topRate) {
       saloonsList.sort((b, a) => (a.ratters == 0 ? 0 : (a.stars / a.ratters))
@@ -101,6 +116,9 @@ class SaloonsController extends GetxController {
     if (nearBy) {
       saloonsList.sort((a, b) => a.distance.compareTo(b.distance));
     }
+    if (isOpen) {
+      saloonsList.sort((b, a) => a.isOpen.compareTo(b.isOpen));
+    }
   }
 
   fetchSaloonsList() async {
@@ -111,6 +129,7 @@ class SaloonsController extends GetxController {
         final saloons = providersFromJson(result?.body);
 
         saloonsList(saloons!.data!);
+        // await checkLocation();
 
         findDistance();
       }

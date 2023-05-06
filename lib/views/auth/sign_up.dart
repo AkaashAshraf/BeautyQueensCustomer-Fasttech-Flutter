@@ -86,6 +86,7 @@ class _SignUp extends State<SignUp> {
                                     textInputCustom(
                                         label: "EnterMobileNo".tr,
                                         initialValue: "",
+                                        keyboardType: TextInputType.number,
                                         preIcon: const Icon(
                                           Icons.numbers,
                                           size: 20,

@@ -4,6 +4,7 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en': {
+          "Opened": "Opened",
           "MostRate": "Most Rate",
           "TopRate": "Top Rate",
           "NearBy": "Near By",
@@ -21,6 +22,29 @@ class Messages extends Translations {
           "Sunday": "Sunday",
           "ClosedNow": "Closed Now",
           "OpenNow": "Open Now",
+          "Pending": "Pending",
+          "Confirmed": "Confirmed",
+          "All": "All",
+          "Availed": "Availed",
+          "Rejected": "Rejected",
+          "Completed": "Completed",
+
+          "Cancelled": "Cancelled",
+          "ChangeLanguage": "عربى",
+          "Month": "Month",
+          "Months": "Months",
+          "ThisFeatureWillBeAvailableSoon":
+              "This Feature Will Be Available Soon",
+          "DataUpdated": "Data Updated",
+          "RateProducts": "Rate Products",
+          "RateEmployee": "Rate Employee",
+          "RateSaloon": "Rate Saloon",
+          "Ratting": "Rating",
+          "Rate": "Rate",
+          "ProductsRatting": "Products Rating",
+          "SaloonRatting": "Saloon Rating",
+
+          "EmployeeRatting": "Employee Rating",
 
 //////auth
           "SignIn": "Sign In",
@@ -76,7 +100,7 @@ class Messages extends Translations {
           "BeautyProducts": "Beauty Products",
           "JoinUs": "Join Us",
           "Call": "Call",
-          "OpenNow": "Open Now",
+          // "OpenNow": "Open Now",
           "Packages": "Packages",
           "BeautyProductsShops": "Beauty Products Shops",
           "Minutes": "Minutes",
@@ -100,7 +124,7 @@ class Messages extends Translations {
           "Yes": "Yes",
           "DeleteAccount": "Delete Account",
           "WillAvailableSoon": "Will available soon",
-          "Change Language to   عربى": "Change Language to   عربى",
+          "Change Language to   عربى": "عربى",
           "OK": "OK",
           "Discount": "Discount",
           "Years": "years",
@@ -126,31 +150,9 @@ class Messages extends Translations {
 
           "LoggedInSuccessfully": "Logged in successfully",
           // /////statuses
-          "Pending": "Pending",
-          "Confirmed": "Confirmed",
-          "All": "All",
-          "Availed": "Availed",
-          "Rejected": "Rejected",
-          "Completed": "Completed",
-
-          "Cancelled": "Cancelled",
-          "ChangeLanguage": "Change Language to   عربى'",
-          "Month": "Month",
-          "Months": "Months",
-          "ThisFeatureWillBeAvailableSoon":
-              "This Feature Will Be Available Soon",
-          "DataUpdated": "Data Updated",
-          "RateProducts": "Rate Products",
-          "RateEmployee": "Rate Employee",
-          "RateSaloon": "Rate Saloon",
-          "Ratting": "Ratting",
-          "Rate": "Rate",
-          "ProductsRatting": "Products Ratting",
-          "SaloonRatting": "Saloon Ratting",
-
-          "EmployeeRatting": "Employee Ratting",
         },
         'ar': {
+          "Opened": "افتتح",
           "NearBy": "بالقرب مني",
           "TopRate": "أعلى معدل",
           "MostRate": "الأكثر معدل",
@@ -244,7 +246,7 @@ class Messages extends Translations {
           "Yes": "نعم",
           "DeleteAccount": "حذف الحساب",
           "WillAvailableSoon": "سيكون متوفر قريباً",
-          "Change Language to   عربي": "  عربى",
+          "Change Language to   عربي": "English",
           "OK": "موافق",
           "Discount": "تخفيض",
           "Years": "السنة",
@@ -277,7 +279,7 @@ class Messages extends Translations {
           "Cancelled": "ملغي",
 
           "Completed": "مكتمل",
-          "ChangeLanguage": "تغيير اللغة إلى اللغة الإنجليزية",
+          "ChangeLanguage": "English",
           "Month": "شهر",
           "Months": "شهور",
           "DataUpdated": "تم تحديث البيانات",
