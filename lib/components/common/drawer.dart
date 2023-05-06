@@ -39,7 +39,7 @@ class MenuDrawer extends StatelessWidget {
               child: Column(
                 children: [
                   Image(
-                      height: height * 0.125,
+                      height: height * 0.118,
                       fit: BoxFit.contain,
                       // opacity: AlwaysStoppedAnimation<double>(0.4),
                       image: const AssetImage(
