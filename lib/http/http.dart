@@ -13,19 +13,19 @@ Future<dynamic> post(String url, dynamic body) async {
     });
     // inspect(response);
 
-    print("url hitted now  ======>${baseUrl + url}");
-    print(
-        "response of api-------------------------------------------------start");
-    print(response.body);
-    print(
-        "response of api-------------------------------------------------end");
+    // print("url hitted now  ======>${baseUrl + url}");
+    // print(
+    //     "response of api-------------------------------------------------start");
+    // print(response.body);
+    // print(
+    //     "response of api-------------------------------------------------end");
 
     // return response.body;
     if (response.statusCode == 200) {
       return response;
     } else if (response.statusCode == 401) {
     } else {
-      return null;
+      return response;
     }
   } catch (e) {
     print("----------------------");

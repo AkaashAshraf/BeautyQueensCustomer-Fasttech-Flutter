@@ -4,6 +4,7 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en': {
+          "invalidPassword": "Invalid mobile/password",
           "ok": "OK",
           "cancel": "Cancel",
           "mon": "MON",
@@ -163,6 +164,7 @@ class Messages extends Translations {
           // /////statuses
         },
         'ar': {
+          "invalidPassword": "رقم الهاتف او كلمة المرور غير صحيحة",
           "ok": "نعم",
           "cancel": "إلغاء",
           "mon": "الاثنين",

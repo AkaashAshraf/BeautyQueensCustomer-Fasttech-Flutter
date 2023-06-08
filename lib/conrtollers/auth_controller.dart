@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:beauty_queens_ustomer/components/common/toasts.dart';
 import 'package:beauty_queens_ustomer/config/storages.dart';
 import 'package:beauty_queens_ustomer/config/sub_urls.dart';
@@ -62,7 +64,7 @@ class AuthController extends GetxController {
     try {
       var response = await post(
           loginUrl, {"user_name": contact.value, "password": password.value});
-      // inspect(response);
+      inspect(response);
       if (response.statusCode == 200) {
         var jsonData = loginFromJson(response.body);
         MyApp().storage.write(tokenPath, jsonData.data!.token);
@@ -76,7 +78,7 @@ class AuthController extends GetxController {
         Get.offAll(const DashboardView(title: ""));
         // Get.toEnd(() => const DashboardView(title: ""));
       } else {
-        ToastMessages.showSuccess("LoggedInSuccessfully".tr);
+        ToastMessages.showError("invalidPassword".tr);
       }
     } catch (e) {
       ToastMessages.showError(e.toString());
