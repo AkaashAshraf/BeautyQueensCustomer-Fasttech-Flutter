@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   await GetStorage.init();
@@ -25,7 +26,14 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('ar'), // Thai
+      ],
       translations: Messages(), // your translations
       locale: Locale(local), // translations will be displayed in that locale
       fallbackLocale: Locale(local),

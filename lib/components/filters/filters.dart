@@ -1,4 +1,5 @@
 import 'package:beauty_queens_ustomer/components/common/generic_popup.dart';
+import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -87,9 +88,21 @@ class _FiltersState extends State<Filters> {
 
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "NearBy".tr,
-              style: const TextStyle(fontFamily: "primary"),
+            Row(
+              children: [
+                const Icon(
+                  Icons.location_on,
+                  color: primaryColor,
+                  // size: 30.0,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "NearBy".tr,
+                  style: const TextStyle(fontFamily: "primary"),
+                ),
+              ],
             ),
             SizedBox(
               width: screenWidth(context) * 0.2,
@@ -113,10 +126,27 @@ class _FiltersState extends State<Filters> {
 
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "TopRate".tr,
-                style: const TextStyle(fontFamily: "primary"),
+              // Text(
+              //   "TopRate".tr,
+              //   style: const TextStyle(fontFamily: "primary"),
+              // ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.star,
+                    color: primaryColor,
+                    // size: 30.0,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "TopRate".tr,
+                    style: const TextStyle(fontFamily: "primary"),
+                  ),
+                ],
               ),
+
               SizedBox(
                 width: screenWidth(context) * 0.2,
                 child: CheckboxListTile(
@@ -138,9 +168,21 @@ class _FiltersState extends State<Filters> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "MostRate".tr,
-                style: const TextStyle(fontFamily: "primary"),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.motion_photos_auto,
+                    color: primaryColor,
+                    // size: 30.0,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "MostRate".tr,
+                    style: const TextStyle(fontFamily: "primary"),
+                  ),
+                ],
               ),
               SizedBox(
                 width: screenWidth(context) * 0.2,
@@ -162,9 +204,21 @@ class _FiltersState extends State<Filters> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Opened".tr,
-              style: const TextStyle(fontFamily: "primary"),
+            Row(
+              children: [
+                const Icon(
+                  Icons.shop,
+                  color: primaryColor,
+                  // size: 30.0,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "Opened".tr,
+                  style: const TextStyle(fontFamily: "primary"),
+                ),
+              ],
             ),
             SizedBox(
               width: screenWidth(context) * 0.2,

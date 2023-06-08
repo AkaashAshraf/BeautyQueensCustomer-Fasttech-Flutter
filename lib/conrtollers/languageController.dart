@@ -4,6 +4,16 @@ class Messages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en': {
+          "ok": "OK",
+          "cancel": "Cancel",
+          "mon": "MON",
+          "tue": "TUE",
+          "wed": "WED",
+          "thu": "THUR",
+          "fri": "FRI",
+          "sat": "SAT",
+          "sun": "SUN",
+
           "Opened": "Opened",
           "MostRate": "Most Rate",
           "TopRate": "Top Rate",
@@ -82,7 +92,8 @@ class Messages extends Translations {
           "Offers": "Offers",
           "Cart": "Cart",
           "CartIsEmpty": "Cart is empty",
-          "AppointmentDate": "Appointment Date",
+          "AppointmentDate": "Select Your Date",
+          "enterTime": "Select Your Time",
           "ChooseEmployee": "Choose Employee",
           "Number": "No:",
           "ServiceName": "Service Name",
@@ -152,6 +163,15 @@ class Messages extends Translations {
           // /////statuses
         },
         'ar': {
+          "ok": "نعم",
+          "cancel": "إلغاء",
+          "mon": "الاثنين",
+          "tue": "الثلاثاء",
+          "wed": "الأربعاء",
+          "thu": "الخميس",
+          "fri": "جمعة",
+          "sat": "السبت",
+          "sun": "الأحد",
           "Opened": "مفتوح",
           // "NearBy": "بالقرب مني",
           // "TopRate": "أعلى معدل",
@@ -207,6 +227,7 @@ class Messages extends Translations {
           "Cart": "السلة",
           "CartIsEmpty": "سلة الخدمات فارغة",
           "AppointmentDate": "تاريخ الموعد",
+          "enterTime": "حدد وقتك",
           "ChooseEmployee": "اختاري خبيرة التجميل",
           "Number": "لا:",
           "ServiceName": "اسم الخدمة",
@@ -310,7 +331,7 @@ class Messages extends Translations {
           "Satureday": "السبت",
           "Sunday": "الاحد",
           "ClosedNow": "مغلق",
-          "OpenNow": "مفتوح",
+          // "OpenNow": "مفتوح",
           "Pending": "قيد الانتظار",
           "Confirmed": "مؤكد",
           "All": "الجميع",
@@ -319,7 +340,7 @@ class Messages extends Translations {
           "Completed": "مكتمل",
 
           "Cancelled": "ملغي",
-          "ChangeLanguage": " عربى'",
+          "ChangeLanguage": " English ",
           "Month": "شهر",
           "Months": "شهور",
           "ThisFeatureWillBeAvailableSoon": "هذه الخدمة ستتوفر قريبا",

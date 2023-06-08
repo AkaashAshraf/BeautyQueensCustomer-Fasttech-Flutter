@@ -62,6 +62,12 @@ dependencies:
   dropdown_search: ^2.0.1
   location: ^4.4.0
   flutter_svg: ^1.1.6
+  bottom_picker: ^2.0.4
+  flutter_rounded_date_picker: ^3.0.3
+  day_night_time_picker: ^1.2.0+2
+  time_range: ^1.1.0
+  flutter_localizations:
+    sdk: flutter
   # geolocator: ^9.0.2
 
 dev_dependencies:
