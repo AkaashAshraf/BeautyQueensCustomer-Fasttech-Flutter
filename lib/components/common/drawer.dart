@@ -3,12 +3,14 @@ import 'dart:io';
 import 'package:beauty_queens_ustomer/components/common/text_alert.dart';
 import 'package:beauty_queens_ustomer/config/colors.dart';
 import 'package:beauty_queens_ustomer/config/storages.dart';
+import 'package:beauty_queens_ustomer/config/sub_urls.dart';
 import 'package:beauty_queens_ustomer/config/text_sizes.dart';
 import 'package:beauty_queens_ustomer/conrtollers/auth_controller.dart';
 import 'package:beauty_queens_ustomer/main.dart';
 import 'package:beauty_queens_ustomer/views/drawer/appoinments/my_appointments.dart';
 import 'package:beauty_queens_ustomer/views/drawer/notifications/notifications.dart';
 import 'package:beauty_queens_ustomer/views/drawer/profile/my_profile.dart';
+import 'package:beauty_queens_ustomer/views/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
@@ -155,6 +157,15 @@ class MenuDrawer extends StatelessWidget {
                         style: const TextStyle(color: Colors.white),
                       ))).show();
             }, title: "ChangeLanguage".tr),
+            drawerItem(context,
+                icon: const Icon(
+                  Icons.notifications,
+                  size: 25,
+                  color: textInputIconColor,
+                ), onPress: () {
+              Get.to(WebViewScreen(
+                  title: "termsConditions".tr, url: termsAndConditions));
+            }, title: "termsConditions".tr),
           ],
         );
       }),

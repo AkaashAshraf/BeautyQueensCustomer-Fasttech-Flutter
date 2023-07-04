@@ -66,8 +66,11 @@ dependencies:
   flutter_rounded_date_picker: ^3.0.3
   day_night_time_picker: ^1.2.0+2
   time_range: ^1.1.0
+  webview_flutter: ^3.0.1
+
   flutter_localizations:
     sdk: flutter
+
   # geolocator: ^9.0.2
 
 dev_dependencies:
